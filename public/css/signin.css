@@ -1,0 +1,22 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jun 1, 2019, 5:47:44 PM
+    Author     : bnson
+*/
+
+body {
+    font-family: "Lora", sans-serif;
+    height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    background: url("../..//public/img/bg-1.jpg") no-repeat right center;
+    background-size: cover;    
+    position: relative;
+    display: block;
+}
