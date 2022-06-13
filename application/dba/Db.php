@@ -1,7 +1,5 @@
 <?php
-
-//require_once 'config/general.php';
-require_once(dirname(__FILE__) . '/../config/general.php');
+require_once(dirname(__FILE__) . '/../config/General.php');
 
 class Db {
 
@@ -17,25 +15,27 @@ class Db {
 //        mysqli_query($this->conn, "SET NAMES 'utf8'");
 //    }
 
-    protected function connect() {        
-        $this->dbHost = host;
-        $this->dbUser = user;
-        $this->dbPass = pass;
-        $this->dbName = name;
+    protected function connect() {              
+
+        $this->dbHost = dbHost;
+        $this->dbUser = dbUser;
+        $this->dbPass = dbPass;
+        $this->dbName = dbName;
 
         // Create connection
         $conn = new mysqli($this->dbHost, $this->dbUser, $this->dbPass, $this->dbName);
+        
         // Check connection
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
-            //header("Location: https://ehosito.com/public/page/Error.php");
+            //header("Location: " . $GLOBALS['page_error']);
             exit();
         }
         
         mysqli_set_charset($conn,"utf8");
         return $conn;
     }
-//    
+
 //    function close($conn) {
 //        $conn->close();
 //    }

@@ -119,7 +119,7 @@
         $("#monitor1, #control").addClass("d-none");
         $("#monitor2").removeClass("d-none");
 
-        audioElement.setAttribute('src', 'https://ehosito.com/public/music/Oh_No-Kreepa.mp3');
+        audioElement.setAttribute('src', '/public/music/Oh_No-Kreepa.mp3');
         audioElement.setAttribute('autoplay', 'autoplay');
         audioElement.play();
     }

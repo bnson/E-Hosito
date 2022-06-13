@@ -1,7 +1,7 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-light mb-3 border-bottom">
         <div class="container">
-            <a id="logo" class="navbar-brand pt-1 pb-1 pl-2 pr-2 text-dark border border-secondary" href="https://ehosito.com/">E-HOSITO</a>
+            <a id="logo" class="navbar-brand pt-1 pb-1 pl-2 pr-2 text-dark border border-secondary" href="<?php echo $GLOBALS['domain_https'] ?>"><?php echo strtoupper($GLOBALS['website_name']) ?></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -19,7 +19,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://ehosito.com/About" target="_blank"></span>Chúng tôi là?</a>
+                        <a class="nav-link" href="/About" target="_blank"></span>Chúng tôi là?</a>
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">

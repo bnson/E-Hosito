@@ -37,7 +37,7 @@ class Book extends Controller {
     }
 
     public function load() {
-        header("Location: https://ehosito.com/"); 
+        header("Location: http://ehosito.local/"); 
     }
     
     public function loadBookDetail($bookId) {

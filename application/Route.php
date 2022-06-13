@@ -1,4 +1,6 @@
 <?php
+// Load config
+require_once "config/Variables.php";
 
 // Process URL from browser
 require_once "main/Application.php";
