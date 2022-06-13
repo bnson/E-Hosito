@@ -6,7 +6,7 @@
         </div>
         <div class="row">
             <div class="w-100"></div>
-            <div class="col p-2 m-1 border effect" onclick="location.href = '/Filter'"><i class="far fa-clock"></i> Sách Mới</div>
+            <div class="col p-2 m-1 border effect" onclick="location.href = '/filterBookByGenre/'"><i class="far fa-clock"></i> Sách Mới</div>
             <div class="col p-2 m-1 border effect" onclick="location.href = '/Filter'"><i class="fas fa-fire-alt"></i> Xem Nhiều</div>
             <div class="w-100"></div>
             <div class="col p-2 m-1 border effect" onclick="location.href = '/Filter'"><i class="fab fa-gratipay"></i> Sách Hay</div>

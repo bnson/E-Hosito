@@ -1,5 +1,6 @@
 <?php
-require_once("./application/Utilities/UtilityString.php");
+require_once('./application/utilities/UtilityString.php');
+require_once('./application/utilities/Debug.php');
 
 class Book extends Controller {
 
@@ -37,7 +38,7 @@ class Book extends Controller {
     }
 
     public function load() {
-        header("Location: http://ehosito.local/"); 
+        header('Location: ' . $GLOBALS['domain_https']); 
     }
     
     public function loadBookDetail($bookId) {
