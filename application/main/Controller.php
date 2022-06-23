@@ -1,5 +1,4 @@
 <?php
-require_once('./application/utilities/Debug.php');
 
 class Controller {
 

@@ -8,19 +8,35 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home"></span>Sách</a>
+                    </li>     
+
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            TÀI KHOẢN
+                        <a class="nav-link dropdown-toggle" href="/Tool" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Công cụ
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="profile.php">Thông Tin</a>
+                            <a class="dropdown-item" href="/Tool/Load/ReadText">Đọc văn bản</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/Tool/Load/HtmlEditor">Trình soạn thảo HTML</a>
+                        </div>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="/About" target="_blank"></span>Chúng tôi là?</a>
+                    </li>                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Tài khoản
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="profile.php">Thông tin</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="logout.php">Thoát</a>
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/About" target="_blank"></span>Chúng tôi là?</a>
-                    </li>
+
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

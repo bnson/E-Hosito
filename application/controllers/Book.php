@@ -1,6 +1,5 @@
 <?php
-require_once('./application/utilities/UtilityString.php');
-require_once('./application/utilities/Debug.php');
+
 
 class Book extends Controller {
 

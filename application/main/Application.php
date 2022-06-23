@@ -1,5 +1,4 @@
 <?php
-require_once('./application/utilities/Debug.php');
 
 class Application {
 
@@ -8,11 +7,11 @@ class Application {
     protected $parameters = [];
 
     function __construct() {
-
+        
         $urlParameter = $this->UrlProcess();
 
         // Controller
-        if (file_exists("./application/controllers/" . $urlParameter[0] . ".php")) {
+        if (!is_null($urlParameter) && !is_null($urlParameter[0]) && file_exists("./application/controllers/" . $urlParameter[0] . ".php")) {
             $this->controller = $urlParameter[0];
             //print_r($urlParameter);
             unset($urlParameter[0]);
