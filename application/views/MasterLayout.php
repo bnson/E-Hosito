@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="vi">
-    <?php require_once("./application/views/components/head-content.php"); ?>
+    <head>
+        <?php require_once("./application/views/components/head-content.php"); ?>
+    </head>
 
     <body>
         <?php require_once("./application/views/components/header-content.php"); ?>

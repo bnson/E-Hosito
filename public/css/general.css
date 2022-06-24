@@ -4,17 +4,41 @@
 */
 
 /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
-@media (min-width:320px)  { body { font-size: 18px !important; } }
+@media (min-width:320px)  {
+    body {
+        font-size: 18px !important;
+    }
+}
 /* smartphones, Android phones, landscape iPhone */
-@media (min-width:480px)  { body { font-size: 18px !important; } }
+@media (min-width:480px)  {
+    body {
+        font-size: 18px !important;
+    }
+}
 /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
-@media (min-width:600px)  { body { font-size: 18px !important; } }
+@media (min-width:600px)  {
+    body {
+        font-size: 18px !important;
+    }
+}
 /* tablet, landscape iPad, lo-res laptops ands desktops */
-@media (min-width:801px)  { body { font-size: 18px !important; } }
+@media (min-width:801px)  {
+    body {
+        font-size: 18px !important;
+    }
+}
 /* big landscape tablets, laptops, and desktops */
-@media (min-width:1025px) { body { font-size: 18px !important; } }
+@media (min-width:1025px) {
+    body {
+        font-size: 18px !important;
+    }
+}
 /* hi-res laptops and desktops */
-@media (min-width:1281px) { body { font-size: 18px !important; } }
+@media (min-width:1281px) {
+    body {
+        font-size: 18px !important;
+    }
+}
 
 
 @font-face {
@@ -35,12 +59,12 @@ body {
     -khtml-user-select: none; /* Konqueror HTML */
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */  
+    user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
 
     -webkit-tap-highlight-color: rgba(0,0,0,0);
-    -webkit-tap-highlight-color: transparent;    
-  
-    
+    -webkit-tap-highlight-color: transparent;
+
+
 }
 .aside-right {
     color: #444444;
@@ -78,12 +102,12 @@ div.effect:hover{
 .display-5 {
     font-size: 2.5rem;
     font-weight: 300;
-    line-height: 1.2;	
+    line-height: 1.2;
 }
 .display-6 {
     font-size: 1.5rem;
     font-weight: 300;
-    line-height: 1.2;	
+    line-height: 1.2;
 }
 
 .videoYoutube {
@@ -94,7 +118,7 @@ div.effect:hover{
 }
 .videoYoutube iframe {
     position: absolute;
-    top: 0; 
+    top: 0;
     left: 0;
     width: 100%;
     height: 100%;
@@ -114,34 +138,82 @@ div.effect:hover{
 
 /*================================*/
 .wordsContent {
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
-  text-decoration: none;
-  overflow: hidden;
-  cursor: pointer;    
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
 }
 
 .wordsContent:after {
-  content: "";
-  background: #dedede;
-  display: block;
-  position: absolute;
-  padding-top: 300%;
-  padding-left: 350%;
-  margin-left: -20px!important;
-  margin-top: -120%;
-  opacity: 0;
-  transition: all 1s
+    content: "";
+    background: #dedede;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px!important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 1s
 }
 
 .wordsContent:active:after {
-  padding: 0;
-  margin: 0;
-  opacity: 1;
-  transition: 0s
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
 }
 /*================================*/
 .quizTemplate1 > .answer {
     min-width: 50px;
-    text-align: center;    
+    text-align: center;
+}
+
+/*================================*/
+/*https://codepen.io/pradeeptomar21/pen/MWaLXzR?editors=0110*/
+
+.button-style-1,
+.button-style-1::after {
+    -webkit-transition: all 0.1s;
+    -moz-transition: all 0.1s;
+    -o-transition: all 0.1s;
+    transition: all 0.1s;
+}
+
+.button-style-1 {
+    background: none;
+    position: relative;
+    display: block;
+}
+
+.button-style-1::before,
+.button-style-1::after {
+    background: #dee2e6;
+    content: '';
+    position: absolute;
+    z-index: -1;
+}
+
+.button-style-1:active {
+    color: #000;
+}
+
+.button-style-1:after {
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 0;
+
+    /*    height: 0;
+        left: 0;
+        top: 0;
+        width: 100%;*/
+
+
+}
+
+.button-style-1:active:after {
+    width: 100%;
+    /*    height: 100%;*/
 }

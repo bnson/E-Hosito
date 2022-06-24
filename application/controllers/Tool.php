@@ -3,7 +3,6 @@
 class Tool extends Controller {
 
     public $layout;
-    
     public $page;
     public $pageTitle;
     public $pageDescription;
@@ -13,10 +12,10 @@ class Tool extends Controller {
         $this->layout = "ToolLayout";
 
         //== Page        
-        $this->page = "Index";
-        $this->pageTitle = "Tool";
-        $this->pageDescription = "Chuyên trang sách học online, mang đến cho bạn trải nghiệm đọc sách trực tuyến đa giác gian...";
-        $this->pageKeywords = "Sách giáo khoa, sách tiếng anh, sách tin học, sách lập trình, sách kỹ thuật, sách nói, sách chuyên đề, ...";
+        $this->page = "ReadText";
+        $this->pageTitle = "Read Text";
+        $this->pageDescription = "Công cụ hỗ trợ đọc văn bản.";
+        $this->pageKeywords = "đọc văn bản, đọc văn bản trực tuyến, read text, read text online, công cụ trực tuyến, tool online , ...";
     }
 
     public function load($page = null) {
@@ -25,8 +24,6 @@ class Tool extends Controller {
             $this->pageTitle = $page;
             $this->pageDescription = $page;
         }
-        
-        echo("<script>console.log('PHP: " . $this->page . "');</script>");
 
         $this->view($this->layout, [
             "page" => $this->page,
@@ -34,7 +31,6 @@ class Tool extends Controller {
             "pageDescription" => $this->pageDescription,
             "pageKeywords" => $this->pageKeywords,
         ]);
-        
     }
 
 }
