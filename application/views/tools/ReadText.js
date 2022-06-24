@@ -21,6 +21,9 @@ const taInput = $("#taInput");
 const messageDiv = $("#messageDiv");
 const utterance = new SpeechSynthesisUtterance();
 
+const wordEnglish = $(".wordEnglish");
+const displayEachWords = $(".displayEachWords");
+
 //====
 function convertToHtml() {
     var dataInput = taInput.val();
@@ -29,33 +32,59 @@ function convertToHtml() {
     var dataOutput;
     var dataOutputArray = [];
 
-    var wordsTemplate2 = "<div class=\"wordsTemplate2 d-flex pt-1 pb-1\">\n" +
-            "	<div class=\"wordsTranslate col-auto border p-2 mr-2 mb-1 d-none align-items-center justify-content-center\"><i class=\"fa fa-language fa-2x text-secondary\" aria-hidden=\"true\"></i></div>\n" +
-            "	<div class=\"wordsRepeat col-auto border pt-2 pb-2 pl-3 pr-3 mr-2 mb-1 d-none align-items-center justify-content-center\"><i class=\"fas fa-sync-alt text-secondary\"></i></div>\n" +
-            "	<div class=\"wordsContent col border p-2 mb-1 d-flex flex-wrap align-items-center\" onclick=\"personRead(this, 1);\">\n" +
-            "		<span class=\"words-english\">§1</span>\n" +
-            "		<span class=\"words-pronounce d-none font-weight-light font-italic w-100\">§2</span>\n" +
-            "		<span class=\"words-vietnamese d-none font-weight-bold text-primary w-100\">§3</span>\n" +
-            "	</div>\n" +
-            "</div>";
 
-    var line = "";
+    var englishRowTemplateVersion1 = "" +
+        "<div class=\"englishRowTemplateVersion1 col-12\">\n" +
+        "	<div class=\"row\">\n" +
+        "		<div onclick=\"displayEachWordsAction(this)\" class=\"displayEachWords col-auto border p-2 m-1 d-flex align-items-center justify-content-center\">\n" +
+        "			<i class=\"fab fa-buromobelexperte fa-2x text-secondary\"></i>\n" +
+        "		</div>\n" +
+        "		<div onclick=\"personRead(this)\" class=\"col englishLines border p-2 m-1 d-flex align-items-center button-style-1\">\n" +
+        "			<span class=\"english\">§1</span>\n" +
+        "			<span class=\"pronounce d-none font-weight-light font-italic w-100\">§2</span>\n" +
+        "			<span class=\"vietnamese d-none font-weight-bold text-primary w-100\">§3</span>\n" +
+        "		</div>\n" +
+        "	</div>\n" +
+        "	<div class=\"row englishWords d-none\">\n" +
+        "		§4\n" +
+        "	</div>\n" +
+        "</div>";
+    
+    var englishWordTemplateVersion1 = "<div onclick=\"personRead(this)\" class=\"englishWord border rounded text-secondary pt-2 pb-2 pl-3 pr-3 m-1 button-style-1\">§1</div>";
 
+    var line;
+    var words;
+    var wordsAutoGenerate;
+    
     if (dataInput) {
         for (index = 0; index < dataInputArray.length; index++) {
+            line = "";
+            words = null;
+            wordsAutoGenerate = null;            
+            
             line = processingSpecialCharacter(dataInputArray[index]);
             if (line != "") {
                 //==
-                var tmpWordsTemplate2 = wordsTemplate2;
                 var lineArray = line.split("↨");
+                
+                line = englishRowTemplateVersion1.replace('§1', lineArray[0]);
+                
+                words = lineArray[0].match(/\b(\w+)\b/g);
+                if (words) {
+                    wordsAutoGenerate = words.map(function(x){return englishWordTemplateVersion1.replace('§1', x);});
+                }
+                if (Array.isArray(wordsAutoGenerate)) {
+                    line = line.replace('§4', trimSpace(wordsAutoGenerate.join(" ")));
+                } else {
+                    line = line.replace('§4', englishWordTemplateVersion1.replace('§1', lineArray[0]));
+                }               
 
-                line = tmpWordsTemplate2.replace('§1', lineArray[0]);
                 if (lineArray.length > 1) {
-                    line = tmpWordsTemplate2.replace('§2', lineArray[1]);
+                    line = line.replace('§2', lineArray[1]);
                 }
                 if (lineArray.length > 2) {
-                    line = tmpWordsTemplate2.replace('§3', lineArray[1]);
-                    line = line.replace('words-pronounce d-none', 'words-pronounce');
+                    line = line.replace('§3', lineArray[1]);
+                    line = line.replace('pronounce d-none', 'pronounce');
                 }
 
                 dataOutputArray.push(line);
@@ -151,32 +180,37 @@ function unique(list) {
 
 function personRead(el) {
     if (synth) {
-        elWordsTemplate = $(el).parent().get(0);
-        if ($(elWordsTemplate).hasClass('wordsTemplate2')) {
-            $($(el).children()[2]).addClass("d-none");
-        } else {
-            $($(el).children()[4]).addClass("d-none");
+        var englishLinesElements = $(el);
+        var textRead = "";
+        
+        if (englishLinesElements.hasClass('englishLines')) {
+            textRead = $(englishLinesElements.children()[0]).text();            
         }
-
-        var textRead = $($(el).children()[0]).text();
-        textRead = processingRegexReplace(textRead, "[â†’|*|_|-]", "");
-        textRead = processingRegexReplace(textRead, "^[^:]+: ", "");
-        textRead = trimSpace(textRead);
-
-        if (synth.speaking) {
-            synth.cancel();
+        
+        if (englishLinesElements.hasClass('englishWord')) {
+            textRead = englishLinesElements.text();            
         }
+        
+        if (textRead) {
+            textRead = processingRegexReplace(textRead, "[â†’|*|_|-]", "");
+            textRead = processingRegexReplace(textRead, "^[^:]{0,8}: ", "");
+            textRead = trimSpace(textRead);
 
-        //console.log("person.voice.name: " + person.voice.name);
-        //var utterance = new SpeechSynthesisUtterance();
-        utterance.voice = person.voice;
-        utterance.lang = person.voice.lang;
-        //utterance.pitch = pitch.value;
-        //utterance.rate = rate.value;
-        //utterance.volume = volume.value;
-        utterance.text = textRead;
+            if (synth.speaking) {
+                synth.cancel();
+            }
 
-        synth.speak(utterance);
+            //console.log("person.voice.name: " + person.voice.name);
+            //var utterance = new SpeechSynthesisUtterance();
+            utterance.voice = person.voice;
+            utterance.lang = person.voice.lang;
+            //utterance.pitch = pitch.value;
+            //utterance.rate = rate.value;
+            //utterance.volume = volume.value;
+            utterance.text = textRead;
+
+            synth.speak(utterance);                
+        }
 
     } else {
         console.log("Can't read!");
@@ -425,6 +459,8 @@ function personRead(el) {
 
     }, 10);
 
+    //====
+
 })();
 
 //====
@@ -438,9 +474,27 @@ function setVoiceDefault() {
     }  
 }
 
+function displayEachWordsAction(el) {
+    //alert("Hello.");
+    var parentElement = $($(el).parent().get(0));
+    var englishWordsElement = $(parentElement.next()[0]);
+    //console.log(englishWordsElement.attr('class'));    
+    
+    if (englishWordsElement.hasClass('englishWords d-none')) {
+        englishWordsElement.removeClass("d-none");
+        $(el).addClass("font-weight-bold");
+    } else {
+        englishWordsElement.addClass("d-none");
+        $(el).removeClass("font-weight-bold");
+    }
+}
+
 //====
 $(window).on('beforeunload', function () {
     synth.resume();
     synth.cancel();
     clearTimeout(speechTimeOut);
 });
+
+
+

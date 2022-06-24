@@ -44,11 +44,11 @@
     <?php
     if ($data["page"] == "ReadText") {
         $link = "/application/views/tools/ReadText.js";
-        //$link = "/application/views/tools/ReadText.min.js";
+        if (environment == "live") {
+            $link = "/application/views/tools/ReadText.min.js";
+        }
         echo PHP_EOL . '<script type="text/javascript" src="' . $link . '"></script>';
     }
     ?>
 
 </html>
-
-

@@ -34,14 +34,12 @@
         </div>
 
         <div class="row p-2">
-            <div id="pOne" class="col-12 col-sm-12 col-md-6 pt-2 pl-1 pr-1 pb-2">
-                <form class="w-100 h-100">
-                    <textarea id="taInput" class="w-100 h-100 border rounded overflow-hidden p-2"></textarea>
-                </form> 
+            <div id="pOne" class="col-12 col-sm-12 col-md-6 p-2">
+                <textarea id="taInput" class="p-2 w-100 h-100 overflow-hidden border rounded"></textarea>
             </div>
 
-            <div id="pTwo" class="col-12 col-sm-12 col-md-6 pt-2 pl-1 pr-1 pb-2">
-                <div id="screen" class="w-100 h-100 border rounded p-2"></div>
+            <div id="pTwo" class="col-12 col-sm-12 col-md-6 p-2">
+                <div id="screen" class="row w-100 h-100 border rounded m-0 d-block"></div>
             </div>            
         </div>
 
