@@ -6,16 +6,18 @@
         </div>          
 
         <div class="row p-1">
-            <?php foreach ($data["books"] as $book) { ?>
-                <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-3 p-1">
-                    <div class="card mb-2 border" onclick="location.href = '/Book/loadBookDetail/<?php echo $book['id']; ?>'">
-                        <img class="card-img-top img-fluid" src="<?php echo $book['cover']; ?>" >
-                        <div class="card-body p-2">
-                            <p class="card-text"><?php echo $book['name']; ?></p>
+            <?php if(isset($data["books"])) : ?>
+                <?php foreach ($data["books"] as $book) { ?>
+                    <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-3 p-1">
+                        <div class="card mb-2 border" onclick="location.href = '/Book/loadBookDetail/<?php echo $book['id']; ?>'">
+                            <img class="card-img-top img-fluid" src="<?php echo $book['cover']; ?>" >
+                            <div class="card-body p-2">
+                                <p class="card-text"><?php echo $book['name']; ?></p>
+                            </div>
                         </div>
-                    </div>
-                </div> 
-            <?php } ?>
+                    </div> 
+                <?php } ?>
+            <?php endif; ?>
 
         </div>
     </div>
