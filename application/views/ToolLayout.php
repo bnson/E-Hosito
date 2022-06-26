@@ -43,11 +43,12 @@
     <?php require_once("./application/views/components/javascript.php"); ?>
     <?php
     if ($data["page"] == "ReadText") {
+        $date = date("YmdHis");
         $link = "/application/views/tools/ReadText.js";
-        if (environment == "live") {
-            $link = "/application/views/tools/ReadText.min.js";
+        if ($GLOBALS['environment'] == 'live') {
+            $link = "/application/views/tools/ReadText.js";
         }
-        echo PHP_EOL . '<script type="text/javascript" src="' . $link . '"></script>';
+        echo PHP_EOL . '<script type="text/javascript" src="' . $link . '?t=' . $date . '"></script>';
     }
     ?>
 

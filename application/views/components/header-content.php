@@ -14,7 +14,7 @@
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="/Tool" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Công cụ
+                            Chương trình
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="/Tool/Load/ReadText">Đọc văn bản</a>
@@ -31,9 +31,9 @@
                             Tài khoản
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="profile.php">Thông tin</a>
+                            <a class="dropdown-item" href="login.php">Đăng nhập</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="logout.php">Thoát</a>
+                            <a class="dropdown-item" href="signup.php">Đăng ký</a>
                         </div>
                     </li>
 

@@ -175,10 +175,13 @@ div.effect:hover{
 
 .button-style-1,
 .button-style-1::after {
+    -webkit-transition-duration: all 0.1s; /* Safari */
     -webkit-transition: all 0.1s;
     -moz-transition: all 0.1s;
     -o-transition: all 0.1s;
     transition: all 0.1s;
+    transition-duration: 0.1s;
+    cursor: pointer;
 }
 
 .button-style-1 {

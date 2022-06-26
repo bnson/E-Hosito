@@ -25,7 +25,7 @@
 <link rel="stylesheet" href="/public/framework/highlight/styles/a11y-dark.css">
 
 <!-- Custom styles for this template -->
-<link rel="stylesheet" type="text/css" href="/public/css/general.css?v=1" />
+<link rel="stylesheet" type="text/css" href="/public/css/general.css" />
 
 <!--
 <script type="text/javascript" src="/public/js/jquery-3.4.1.min.js"></script>
