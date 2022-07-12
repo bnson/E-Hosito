@@ -33,7 +33,7 @@
 
         <div class="row p-2">
             <div id="pOne" class="col-12 col-sm-12 col-md-6 p-2">
-                <textarea id="taInput" class="p-2 w-100 h-100 overflow-hidden border rounded"></textarea>
+                <textarea id="taInput" class="p-2 w-100 h-100 border rounded"></textarea>
             </div>
 
             <div id="pTwo" class="col-12 col-sm-12 col-md-6 p-2">

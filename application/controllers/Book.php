@@ -3,6 +3,8 @@
 
 class Book extends Controller {
 
+    public $controllerName;
+    
     public $layout;
     
     public $page;
@@ -18,26 +20,27 @@ class Book extends Controller {
     public $utilityString;
 
     public function __construct() {
-        //== Layout
+        $this->controllerName = "Book";
+        
+        //== LAYOUT ==
         $this->layout = "MasterLayout";
                 
-        //== Page
+        //== PAGE == 
         $this->pageTitle = "Book";
         $this->pageDescription = "Chuyên trang sách học online, mang đến cho bạn trải nghiệm đọc sách trực tuyến đa giác gian...";
         $this->pageKeywords = "Sách giáo khoa, sách tiếng anh, sách tin học, sách lập trình, sách kỹ thuật, sách nói, sách chuyên đề, ...";
         
-        //== Model
+        //== MODEL ==
         $this->book = $this->model("BookModel");
         $this->genres = $this->model("GenresModel");
 
-        //== Option
+        //== OPTION ==
         $this->showAsideLeftBookChapters = TRUE;
-        
         $this->utilityString = new UtilityString();
     }
 
     public function load() {
-        header('Location: ' . $GLOBALS['domain_https']); 
+        header('Location: ' . $GLOBALS['root_link']); 
     }
     
     public function loadBookDetail($bookId) {
@@ -58,6 +61,7 @@ class Book extends Controller {
         $bookChapters = $this->book->getChapters($idData);
         
         $this->view($this->layout, [
+            "controllerName" => $this->controllerName,
             "page" => "BookDetail",
             "pageTitle" => $this->pageTitle,
             "pageDescription" => $this->pageDescription,
@@ -82,6 +86,7 @@ class Book extends Controller {
         $this->pageDescription = $this->utilityString->processPageDescription($bookContent['content']);
         
         $this->view($this->layout, [
+            "controllerName" => $this->controllerName,
             "page" => "BookContent",
             "pageTitle" => $this->pageTitle,
             "pageDescription" => $this->pageDescription,
@@ -107,6 +112,7 @@ class Book extends Controller {
         $books = $this->book->getByGenres($genre, $limit);
 
         $this->view($this->layout, [
+            "controllerName" => $this->controllerName,
             "page" => "Filter",
             "pageTitle" => $this->pageTitle,
             "pageDescription" => $this->pageDescription,
@@ -132,6 +138,7 @@ class Book extends Controller {
             $this->pageTitle = "Admin";
             $this->pageDescription = "Admin";
             $this->view($this->layout, [
+                "controllerName" => $this->controllerName,
                 "page" => $this->page,
                 "pageTitle" => $this->pageTitle,
                 "pageDescription" => $this->pageDescription,

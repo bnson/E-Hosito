@@ -2,6 +2,8 @@
 
 class Tool extends Controller {
 
+    public $controllerName;
+    
     public $layout;
     public $page;
     public $pageTitle;
@@ -9,9 +11,11 @@ class Tool extends Controller {
     public $pageKeywords;
 
     public function __construct() {
+        $this->controllerName = "Tool";
+        
         $this->layout = "ToolLayout";
 
-        //== Page        
+        //== PAGE ==
         $this->page = "ReadText";
         $this->pageTitle = "Read Text";
         $this->pageDescription = "Công cụ hỗ trợ đọc văn bản.";
@@ -26,6 +30,7 @@ class Tool extends Controller {
         }
 
         $this->view($this->layout, [
+            "controllerName" => $this->controllerName,
             "page" => $this->page,
             "pageTitle" => $this->pageTitle,
             "pageDescription" => $this->pageDescription,

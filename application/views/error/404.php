@@ -2,7 +2,7 @@
 <html lang="en" >
     <head>
         <meta charset="UTF-8">
-        <title>CodePen - simple 404 page</title>
+        <title>404 Page</title>
         <link rel="stylesheet" href="./style.css">
         <style>
             body {
@@ -76,7 +76,7 @@
             <div class="err">4</div>
             <i class="far fa-question-circle fa-spin"></i>
             <div class="err2">4</div>
-            <div class="msg">Maybe this page moved? Got deleted? Is hiding out in quarantine? Never existed in the first place?<p>Let's go <a href="#">home</a> and try from there.</p></div>
+            <div class="msg">Maybe this page moved? Got deleted? Is hiding out in quarantine? Never existed in the first place?<p>Let's go <a href="<?php echo $GLOBALS['root_link']; ?>">home</a> and try from there.</p></div>
         </div>
         <!-- partial -->
 

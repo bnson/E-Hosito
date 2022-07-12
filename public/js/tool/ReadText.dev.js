@@ -263,7 +263,7 @@ var person = new Object();
 
 //====
 function convertToHtml() {
-    console.log("convertToHtml");
+    //console.log("convertToHtml");
     var dataInput = taInput.val();
     //var dataInputArray = dataInput.split(/\r?\n/);
     var dataInputArray = dataInput.match(/[^\r\n.?!]+[\r\n.?!]+(\s)+[\])'"`’”]*|.+/g);
@@ -288,7 +288,7 @@ function convertToHtml() {
             "	</div>\n" +
             "</div>";
 
-    var englishWordTemplateVersion1 = "<div onclick=\"personRead(this)\" class=\"englishWord border rounded text-secondary pt-2 pb-2 pl-3 pr-3 m-1 button-style-1\">§1</div>";
+    var englishWordTemplateVersion1 = "<div onclick=\"personRead(this)\" class=\"englishWord col-auto border rounded text-secondary pt-2 pb-2 pl-3 pr-3 m-1 button-style-1\">§1</div>";
 
     var line;
     var words;
@@ -521,7 +521,6 @@ function setVoiceDefault() {
     }
     
 }
-
 
 function load() {
     systhVoices = synth.getVoices();

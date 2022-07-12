@@ -1,16 +1,29 @@
 <?php
-$GLOBALS['environment'] = 'live';
+//====
+$GLOBALS['environment'] = 'dev';
+$GLOBALS['domain'] = 'ehosito.com';
 $GLOBALS['website_name'] = 'E-Hosito';
 
-if ($GLOBALS['environment'] == 'live') {
-    $GLOBALS['domain'] = 'ehosito.com';
-} else {
+$GLOBALS['ssl'] = 'off';
+
+$GLOBALS['domain_http'] = 'http://' . $GLOBALS['domain'];
+$GLOBALS['domain_https'] = 'https://' . $GLOBALS['domain'];
+
+//====
+if ($GLOBALS['environment'] == 'dev') {
     $GLOBALS['domain'] = 'ehosito.local';
 }
 
-$GLOBALS['domain_http'] = 'http://' . $GLOBALS['domain'] . '/';
-$GLOBALS['domain_https'] = 'http://' . $GLOBALS['domain'] . '/';
+if ($GLOBALS['ssl'] == 'off') {
+    $GLOBALS['protocol'] = 'http://';
+} else {
+    $GLOBALS['protocol'] = 'https://';
+}
 
-$GLOBALS['page_error'] = 'https://' . $GLOBALS['domain'] . '/public/page/Error.php';
+//====
+$GLOBALS['root_link'] = $GLOBALS['protocol'] . $GLOBALS['domain'];
+//$GLOBALS['page_error'] = $GLOBALS['root_link'] . '/application/views/error/404.php';
+$GLOBALS['page_error'] = '/application/views/error/404.php';
+
 ?>
 

@@ -1,7 +1,7 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-light mb-3 border-bottom">
         <div class="container">
-            <a id="logo" class="navbar-brand pt-1 pb-1 pl-2 pr-2 text-dark border border-secondary" href="<?php echo $GLOBALS['domain_https'] ?>"><?php echo strtoupper($GLOBALS['website_name']) ?></a>
+            <a id="logo" class="navbar-brand pt-1 pb-1 pl-2 pr-2 text-dark border border-secondary" href="<?php echo $GLOBALS['root_link'] ?>"><?php echo strtoupper($GLOBALS['website_name']) ?></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>

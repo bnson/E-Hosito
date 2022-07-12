@@ -1,7 +1,9 @@
 <?php
 
 class Home extends Controller {
-
+    
+    public $controllerName;
+    
     public $pageTitle;
     public $pageDescription;
     public $pageKeywords;
@@ -10,12 +12,17 @@ class Home extends Controller {
     public $genres;
 
     public function __construct() {
-        //== Page
+        $this->controllerName = "Home";
+        
+        
+        $this->layout = "ToolLayout";
+        
+        //== PAGE ==
         $this->pageTitle = "Home";
         $this->pageDescription = "Chuyên trang sách học online, mang đến cho bạn trải nghiệm đọc sách trực tuyến đa giác gian...";
         $this->pageKeywords = "Sách giáo khoa, sách tiếng anh, sách tin học, sách lập trình, sách kỹ thuật, sách nói, sách chuyên đề, ...";
         
-        //== Model
+        //== MODEL ==
         $this->book = $this->model("BookModel");
         $this->genres = $this->model("GenresModel");
         
@@ -24,6 +31,7 @@ class Home extends Controller {
     public function load() {
         // View
         $this->view("MasterLayout", [
+            "controllerName" => $this->controllerName,
             "page" => "Home",
             "pageTitle" => $this->pageTitle,
             "pageDescription" => $this->pageDescription,
