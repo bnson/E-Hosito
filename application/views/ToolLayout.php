@@ -46,9 +46,10 @@
         $date = date("YmdHis");
         $link = "/application/views/tools/ReadText.js";
         if ($GLOBALS['environment'] == 'live') {
-            $link = "/application/views/tools/ReadText.js";
+            $link = "/application/views/tools/ReadText.min.js";
         }
-        echo PHP_EOL . '<script type="text/javascript" src="' . $link . '?t=' . $date . '"></script>';
+        //echo PHP_EOL . '<script type="text/javascript" src="' . $link . '?t=' . $date . '"></script>';
+        echo PHP_EOL . '<script type="text/javascript" src="' . $link . '"></script>';
     }
     ?>
 

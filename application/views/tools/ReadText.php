@@ -5,12 +5,12 @@
         <div id="panel-button-row-1" class="row p-0 pl-2 pr-2">
 
             <div class="col-12 col-sm-4 col-md-3 p-2 form-group mb-0">
-                <label for="languages" class="font-weight-bold">Ngôn Ngữ</label>
+                <label for="languages" class="font-weight-bold">Ngôn ngữ</label>
                 <select class="form-control" id="languages">
                 </select>               
             </div>
             <div class="col-12 col-sm-8 col-md-9 p-2 form-group mb-0">
-                <label for="voices" class="font-weight-bold">Giọng Nói</label>
+                <label for="voices" class="font-weight-bold">Giọng đọc</label>
                 <select class="form-control" id="voices">
                 </select>                 
             </div>
@@ -54,12 +54,12 @@
                 <p class="h5">Hướng dẫn sử dụng:</p>
                 <ul id="ulGuides">
                     <li>Các tính năng cơ bản.</li>
-                    <li>Hướng dẫn cài đặt thêm giọng nói trên máy tính Windows.</li>
-                    <li>Hướng dẫn cài đặt thêm giọng nói trên điện thoại Android.</li>
+                    <li>Hướng dẫn cài đặt thêm giọng đọc trên máy tính Windows.</li>
+                    <li>Hướng dẫn cài đặt thêm giọng đọc trên điện thoại Android.</li>
                 </ul>
             </div>            
             <div id="piVoicesSupport" class="col-12 col-sm-12 col-md-6 m-0 p-1">
-                <p class="h5">Ngôn ngữ & Giọng nói được hỗ trợ:</p>
+                <p class="h5">Ngôn ngữ & Giọng đọc được hỗ trợ:</p>
                 <ul id="ulVoicesSupport">
                 </ul>
             </div>
