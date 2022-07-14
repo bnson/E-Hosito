@@ -35,14 +35,15 @@ function processUrl($url) {
 
         if ($GLOBALS['environment'] == 'live') {
             $today = date("Ymd");
-            $url = rtrim($url, '.dev.js') . '.min.js';
+            $url = str_last_replace_1('.dev.js', '.min.js', $url);
         }
 
         $urlFull = $GLOBALS['root_link'] . $url;
-        if (url_file_exists($urlFull)) {
+        if (url_file_exists_1($urlFull)) {
             echo PHP_EOL . '<script type="text/javascript" src="' . $url . '?t=' . $today . '"></script>';
             return true;
         }
+        
     }
     return false;
 }

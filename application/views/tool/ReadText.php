@@ -37,7 +37,7 @@
             </div>
 
             <div id="pTwo" class="col-12 col-sm-12 col-md-6 p-2">
-                <div id="screen" class="row w-100 h-100 border rounded m-0 d-block"></div>
+                <div id="divScreen" class="row w-100 h-100 border rounded m-0 d-block"></div>
             </div>            
         </div>
 

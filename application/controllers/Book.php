@@ -130,22 +130,23 @@ class Book extends Controller {
             $subject = $_POST["subject"];
             $content = $_POST["content"];
             $contentRaw = $_POST["contentRaw"];
+
+            echo $this->book->insertBookChapterContent($bookId, $bookChapterId, $numericalOrder, $subject, $content, $contentRaw);
             
-            $this->book->insertBookChapterContent($bookId, $bookChapterId, $numericalOrder, $subject, $content, $contentRaw);
+//            $this->layout = "AdminLayout";
+//            $this->page = "BookChapterContentInsert";
+//            $this->pageTitle = "Admin";
+//            $this->pageDescription = "Admin";
+//            $this->view($this->layout, [
+//                "controllerName" => $this->controllerName,
+//                "page" => $this->page,
+//                "pageTitle" => $this->pageTitle,
+//                "pageDescription" => $this->pageDescription,
+//                "pageKeywords" => $this->pageKeywords,
+//                "bookId" => $bookId,
+//                "bookChapterId" => $bookChapterId,                
+//            ]);  
             
-            $this->layout = "AdminLayout";
-            $this->page = "BookChapterContentInsert";
-            $this->pageTitle = "Admin";
-            $this->pageDescription = "Admin";
-            $this->view($this->layout, [
-                "controllerName" => $this->controllerName,
-                "page" => $this->page,
-                "pageTitle" => $this->pageTitle,
-                "pageDescription" => $this->pageDescription,
-                "pageKeywords" => $this->pageKeywords,
-                "bookId" => $bookId,
-                "bookChapterId" => $bookChapterId,                
-            ]);            
         }
     }
     

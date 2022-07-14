@@ -22,8 +22,7 @@ if ($GLOBALS['ssl'] == 'off') {
 
 //====
 $GLOBALS['root_link'] = $GLOBALS['protocol'] . $GLOBALS['domain'];
-//$GLOBALS['page_error'] = $GLOBALS['root_link'] . '/application/views/error/404.php';
-$GLOBALS['page_error'] = '/application/views/error/404.php';
+$GLOBALS['page_error'] = './application/views/error/404.php';
 
 ?>
 

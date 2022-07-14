@@ -17,18 +17,18 @@
 require_once(dirname(__FILE__) . '/../../config/Prepend.php');
 
 if ($data["controllerName"] && $data["page"]) {
-    $date = date("Ymd");
-    $dateTime = date("YmdHis");
+    $today = date("YmdHis");
     $link = "/public/css/" . $data["controllerName"] . "/" . $data["page"] . ".dev.css";
     $linkFull = $GLOBALS['root_link'] . $link;
     //echo $linkFull;
 
-    if (url_file_exists($linkFull)) {
+    if (url_file_exists_1($linkFull)) {
         if ($GLOBALS['environment'] == 'live') {
-            $link = rtrim($link, '.dev.js') . '.min.js';
-            echo '<link rel="stylesheet" href="' . $link . '?t=' . $date . '" type="text/css" />';
+            $today = date("Ymd");
+            $link = str_last_replace_1('.dev.js', '.min.js', $link);
+            echo '<link rel="stylesheet" href="' . $link . '?t=' . $today . '" type="text/css" />';
         } else {
-            echo '<link rel="stylesheet" href="' . $link . '?t=' . $dateTime . '" type="text/css" />';
+            echo '<link rel="stylesheet" href="' . $link . '?t=' . $today . '" type="text/css" />';
         }
     }
 }

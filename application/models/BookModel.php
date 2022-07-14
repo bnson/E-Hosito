@@ -87,11 +87,13 @@ class BookModel extends Db {
         $slqQuery = str_replace("$4", $subject , $slqQuery);
         $slqQuery = str_replace("$5", $content , $slqQuery);
         $slqQuery = str_replace("$6", $contentRaw , $slqQuery);
-        //echo 'SQL: ' . $sql;
+        //echo 'SQL: ' . $slqQuery;
         
-        if(mysqli_query($con, $slqQuery)) {
-            $result = true;
-        }
+        
+//        if(mysqli_query($con, $slqQuery)) {
+//            $result = true;
+//        }
+        $result = mysqli_query($con, $slqQuery) or trigger_error("Query Failed! SQL: $slqQuery - Error: ".mysqli_error($con), E_USER_ERROR);
         
         mysqli_close($con);
         return json_encode($result);

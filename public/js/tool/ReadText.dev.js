@@ -249,6 +249,9 @@ const stopButton = $("#stopButton");
 const taInput = $("#taInput");
 const messageDiv = $("#messageDiv");
 const ulVoicesSupport = $("#ulVoicesSupport");
+const divScreen = $("#divScreen");
+
+var divEnglishLine = $(".divEnglishLine");
 
 const wordEnglish = $(".wordEnglish");
 const displayEachWords = $(".displayEachWords");
@@ -258,10 +261,129 @@ var synth = window.speechSynthesis;
 var systhVoices = [];
 var synthLanguagesUnique = [];
 
+var languageSelected = "";
+var voiceSelected = "";
+
 var speechTimeOut;
 var person = new Object();
 
-//====
+var punctuationPattern = /[\.,;:"[\]{\}!?<>]+/g;
+
+//== VOICE FUNCTION ==
+function setVoice() {
+    voiceSelected = voicesSelect.find(":selected").val();
+    person.voice = systhVoices.find(x => x.name === voiceSelected);
+}
+
+function voicesSelectOnChange() {
+    //console.log("voicesSelectOnChange");
+    setVoice();
+}
+
+function speechSynthesisUtteranceEnd(event) {
+    //console.log("speechSynthesisUtteranceEnd()");
+    //console.log('Utterance has finished being spoken after ' + event.elapsedTime + ' seconds.');
+    
+    clearTimeout(speechTimeOut);
+
+    playButton.prop('disabled', false);
+    pauseButton.prop('disabled', true);
+    stopButton.prop('disabled', true);
+
+    taInput.prop('disabled', false);
+    languagesSelect.prop('disabled', false);
+    voicesSelect.prop('disabled', false);
+
+    messageDiv.html("");
+}
+
+function speak(text) {
+    clearTimeout(speechTimeOut);
+
+    if (synth) {
+        if (synth.paused && synth.speaking) {
+            pauseButton.prop('disabled', false);
+            return synth.resume();
+        }
+
+        if (synth.speaking) {
+            synth.cancel();
+        }
+
+        //console.log("person.voice.name: " + person.voice.name);
+        //var utterance = new SpeechSynthesisUtterance();
+        utterance.voice = person.voice;
+        utterance.lang = person.voice.lang;
+        //utterance.pitch = pitch.value;
+        //utterance.rate = rate.value;
+        //utterance.volume = volume.value;
+        utterance.text = text;
+
+        if (person.voice.localService) {
+            pauseButton.prop('disabled', false);
+            //speechTimeOut = setTimeout(speechTimer, 10000);
+            //clearTimeout(speechTimeOut);
+            utterance.onboundary = onBoundary;
+
+        } else {
+            pauseButton.prop('disabled', true);
+            speechTimeOut = setTimeout(speechTimer, 10000);
+            messageDiv.html("😞 Giọng nói này không hỗ trợ tạm dừng (pause).");
+        }
+
+        synth.speak(utterance);
+        
+    } else {
+        messageDiv.html("Trình duyệt internet của bạn khônf hỗ trợ giọng nói đọc văn bảng.");
+    }
+
+}
+
+function speechTimer() {
+    if (synth) {
+        synth.pause();
+        synth.resume();
+        speechTimeOut = setTimeout(speechTimer, 10000);        
+    } else {
+        console.log("synth undefined!");
+    }
+}
+
+// Get word at specific position. Used for extracting the word currently spoken
+// Source: https://stackoverflow.com/questions/5173316/finding-the-word-at-a-position-in-javascript
+function getWordAt(str, pos) {
+    // Perform type conversions.
+    str = String(str);
+    pos = Number(pos) >>> 0;
+
+    // Search for the word's beginning and end.
+    var left = str.slice(0, pos + 1).search(/\S+$/);
+    var right = str.slice(pos).search(/\s/);
+
+    // The last word in the string is a special case.
+    // else Return the word, using the located bounds to extract it from the string.
+    return right < 0 ? str.slice(left) : str.slice(left, right + pos);
+}
+
+// OnBoundary callback handler for when words is spoken
+// Note: Event is not triggered when "localService" is false (Like the Google voices in Chrome)
+function onBoundary(e) {
+    //console.log(e);
+    if (e.name == "word") {
+        if (punctuationPattern.test(word)) {
+            synth.pause();
+            setTimeout(function () {
+                synth.resume();
+            }, 2000);
+        }
+
+        var word = getWordAt(e.target.text, e.charIndex);
+        messageDiv.html(word);
+
+    }
+}
+
+//== PAGE FUNCTIONS ==
 function convertToHtml() {
     //console.log("convertToHtml");
     var dataInput = taInput.val();
@@ -277,7 +399,7 @@ function convertToHtml() {
             "		<div onclick=\"displayEachWordsAction(this)\" class=\"displayEachWords col-auto border p-2 m-1 d-flex align-items-center justify-content-center\">\n" +
             "			<i class=\"fab fa-buromobelexperte fa-2x text-secondary\"></i>\n" +
             "		</div>\n" +
-            "		<div onclick=\"personRead(this)\" class=\"col englishLines border p-2 m-1 d-flex align-items-center button-style-1\">\n" +
+            "		<div class=\"col divEnglishLine border p-2 m-1 d-flex align-items-center button-style-1\">\n" +
             "			<span class=\"english\">§1</span>\n" +
             "			<span class=\"pronounce d-none font-weight-light font-italic w-100\">§2</span>\n" +
             "			<span class=\"vietnamese d-none font-weight-bold text-primary w-100\">§3</span>\n" +
@@ -288,7 +410,7 @@ function convertToHtml() {
             "	</div>\n" +
             "</div>";
 
-    var englishWordTemplateVersion1 = "<div onclick=\"personRead(this)\" class=\"englishWord col-auto border rounded text-secondary pt-2 pb-2 pl-3 pr-3 m-1 button-style-1\">§1</div>";
+    var englishWordTemplateVersion1 = "<div class=\"divEnglishWord col-auto border rounded text-secondary pt-2 pb-2 pl-3 pr-3 m-1 button-style-1\">§1</div>";
 
     var line;
     var words;
@@ -333,9 +455,9 @@ function convertToHtml() {
         }
 
         dataOutput = dataOutputArray.join("\n");
-        $('#screen').html(dataOutput);
+        divScreen.html(dataOutput);
     } else {
-        $('#screen').html("");
+        divScreen.html("");
     }
 
 }
@@ -418,51 +540,12 @@ function unique(list) {
     return result;
 }
 
-function personRead(el) {
-    if (synth) {
-        var englishLinesElements = $(el);
-        var textRead = "";
-
-        if (englishLinesElements.hasClass('englishLines')) {
-            textRead = $(englishLinesElements.children()[0]).text();
-        }
-
-        if (englishLinesElements.hasClass('englishWord')) {
-            textRead = englishLinesElements.text();
-        }
-
-        if (textRead) {
-            textRead = processingRegexReplace(textRead, "[â†’|*|_|-]", "");
-            textRead = processingRegexReplace(textRead, "^[^:]{0,8}: ", "");
-            textRead = trimSpace(textRead);
-
-            if (synth.speaking) {
-                synth.cancel();
-            }
-
-            //console.log("person.voice.name: " + person.voice.name);
-            //var utterance = new SpeechSynthesisUtterance();
-            utterance.voice = person.voice;
-            utterance.lang = person.voice.lang;
-            //utterance.pitch = pitch.value;
-            //utterance.rate = rate.value;
-            //utterance.volume = volume.value;
-            utterance.text = textRead;
-
-            synth.speak(utterance);
-        }
-
-    } else {
-        console.log("Can't read!");
-    }
-}
-
 function displayEachWordsAction(el) {
     //alert("Hello.");
     var parentElement = $($(el).parent().get(0));
     var englishWordsElement = $(parentElement.next()[0]);
     //console.log(englishWordsElement.attr('class'));    
-    
+
     if (englishWordsElement.hasClass('englishWords d-none')) {
         englishWordsElement.removeClass("d-none");
         $(el).addClass("font-weight-bold");
@@ -479,7 +562,7 @@ function setLanguageDefault() {
         "en-GB",
         "en_GB"
     ];
-    
+
     languagesSelect.val(languagesSelect.find("option:first-child").val());
     for (var i = 0; i < arrPriorityLanguages.length; i++) {
         var optionFind = 'option[value="' + arrPriorityLanguages[i] + '"]';
@@ -488,7 +571,7 @@ function setLanguageDefault() {
             break;
         }
     }
-    
+
 //    if (languagesSelect.find('option[value="en-US"]').length !== 0) {
 //        languagesSelect.val('en-US');
 //    } else if (languagesSelect.find('option[value="en-GB"]').length !== 0) {
@@ -510,7 +593,7 @@ function setVoiceDefault() {
         "English United States (en_us)",
         "English United Kingdom (en_GB)"
     ];
-    
+
     voicesSelect.val(voicesSelect.find("option:first-child").val());
     for (var i = 0; i < arrPriorityVoices.length; i++) {
         var optionFind = 'option[value="' + arrPriorityVoices[i] + '"]';
@@ -519,21 +602,96 @@ function setVoiceDefault() {
             break;
         }
     }
-    
+
 }
 
+//== EVENT FUNCTION ==
+function playButtonAction() {
+    var textRead = taInput.val();
+    textRead = processingSpecialCharacter(textRead);
+
+    taInput.prop('disabled', true);
+    languagesSelect.prop('disabled', true);
+    voicesSelect.prop('disabled', true);
+
+    speak(textRead);
+
+    playButton.prop('disabled', true);
+    stopButton.prop('disabled', false);
+
+}
+
+function pauseButtonAction() {
+    if (synth.speaking) {
+        synth.pause();
+        clearTimeout(speechTimeOut);
+    }
+
+    playButton.prop('disabled', false);
+    pauseButton.prop('disabled', true);
+    stopButton.prop('disabled', false);
+}
+
+function stopButtonAction() {
+    synth.resume();
+    synth.cancel();
+    clearTimeout(speechTimeOut);
+
+    playButton.prop('disabled', false);
+    pauseButton.prop('disabled', true);
+    stopButton.prop('disabled', true);
+
+    taInput.prop('disabled', false);
+    languagesSelect.prop('disabled', false);
+    voicesSelect.prop('disabled', false);
+
+}
+
+function addDivEnglishLineAction() {
+    divScreen.on('click', '.divEnglishLine', function () {
+        //console.log("Hello...");
+        var spanEnglish = $(this).find(".english");
+        var text = spanEnglish.text();
+        speak(text);
+    });
+}
+
+function addDivEnglishWordAction() {
+    divScreen.on('click', '.divEnglishWord', function () {
+        var text = $(this).text();
+        speak(text);
+    });
+}
+
+function languagesSelectOnChange() {
+    //console.log("languagesSelectOnChange");
+    languageSelected = languagesSelect.find(":selected").val().toLowerCase();
+    voicesSelect.empty();
+    for (var i = 0; i < systhVoices.length; i++) {
+        if (systhVoices[i].lang.toLowerCase().startsWith(languageSelected)) {
+            var option = $('<option/>');
+            var optionTextContent = systhVoices[i].name + " (" + systhVoices[i].lang + ")";
+            var optionValue = systhVoices[i].name;
+            option.attr({'value': optionValue}).text(optionTextContent);
+            voicesSelect.append(option);
+        }
+    }
+
+    setVoiceDefault();
+    setVoice();
+}
+
+//== PAGE LOAD EVENT ==
 function load() {
+    synth.cancel;
     systhVoices = synth.getVoices();
 
-    //====================================
+    //====
     playButton.prop('disabled', false);
     pauseButton.prop('disabled', true);
     stopButton.prop('disabled', true);
 
     if (systhVoices) {
-        var languageSelected = "";
-        var voiceSelected = "";
-
         messageDiv.html("");
         languagesSelect.empty();
         voicesSelect.empty();
@@ -586,6 +744,7 @@ function load() {
             languagesSelect.append(option);
 
         });
+        
         setLanguageDefault();
 
         //== Set voices ==
@@ -593,7 +752,6 @@ function load() {
         //languageSelected = languagesSelect.find(":selected").text();
         for (var i = 0; i < systhVoices.length; i++) {
             //panelInformation.append(systhVoices[i].name + "<br>");
-            //----
             if (systhVoices[i].lang == languageSelected) {
                 var option = $('<option/>');
                 var optionTextContent = systhVoices[i].name + " (" + systhVoices[i].lang + ")";
@@ -603,171 +761,32 @@ function load() {
             }
         }
         setVoiceDefault();
+        //setVoice();
 
-        //== Functions ==
-        var setVoice = function () {
-            voiceSelected = voicesSelect.find(":selected").val();
-            person.voice = systhVoices.find(x => x.name === voiceSelected);
-        };
-
-        var speechTimer = function () {
-            synth.pause();
-            synth.resume();
-            speechTimeOut = setTimeout(speechTimer, 10000);
-        };
-
-        // Get word at specific position. Used for extracting the word currently spoken
-        // Source: https://stackoverflow.com/questions/5173316/finding-the-word-at-a-position-in-javascript
-        var getWordAt = function (str, pos) {
-            // Perform type conversions.
-            str = String(str);
-            pos = Number(pos) >>> 0;
-
-            // Search for the word's beginning and end.
-            var left = str.slice(0, pos + 1).search(/\S+$/);
-            var right = str.slice(pos).search(/\s/);
-
-            // The last word in the string is a special case.
-            // else Return the word, using the located bounds to extract it from the string.
-            return right < 0 ? str.slice(left) : str.slice(left, right + pos);
-        };
-
-        // OnBoundary callback handler for when words is spoken
-        // Note: Event is not triggered when "localService" is false (Like the Google voices in Chrome)
-        var onBoundary = function (e) {
-            if (e.name == "word") {
-                var word = getWordAt(e.target.text, e.charIndex);
-                messageDiv.html(word);
-            }
-        };
-
-        var languagesSelectOnChange = function () {
-            //console.log("languagesSelectOnChange");
-            languageSelected = languagesSelect.find(":selected").val().toLowerCase();
-            voicesSelect.empty();
-            for (var i = 0; i < systhVoices.length; i++) {
-                if (systhVoices[i].lang.toLowerCase().startsWith(languageSelected)) {
-                    var option = $('<option/>');
-                    var optionTextContent = systhVoices[i].name + " (" + systhVoices[i].lang + ")";
-                    var optionValue = systhVoices[i].name;
-                    option.attr({'value': optionValue}).text(optionTextContent);
-                    voicesSelect.append(option);
-                }
-            }
-
-            setVoiceDefault();
-            setVoice();
-        };
-
-        var voicesSelectOnChange = function () {
-            //console.log("voicesSelectOnChange");
-            setVoice();
-        };
-
-        var playButtonAction = function () {
-
-            var textRead = taInput.val();
-            textRead = processingSpecialCharacter(textRead);
-
-            taInput.prop('disabled', true);
-            languagesSelect.prop('disabled', true);
-            voicesSelect.prop('disabled', true);
-
-            if (synth.paused && synth.speaking) {
-                pauseButton.prop('disabled', false);
-                return synth.resume();
-            }
-
-            if (synth.speaking) {
-                synth.cancel();
-            }
-
-            //console.log("person.voice.name: " + person.voice.name);
-            //var utterance = new SpeechSynthesisUtterance();
-            utterance.voice = person.voice;
-            utterance.lang = person.voice.lang;
-            //utterance.pitch = pitch.value;
-            //utterance.rate = rate.value;
-            //utterance.volume = volume.value;
-            utterance.text = textRead;
-
-            if (person.voice.localService) {
-                pauseButton.prop('disabled', false);
-                clearTimeout(speechTimeOut);
-                utterance.onboundary = onBoundary;
-
-            } else {
-                speechTimeOut = setTimeout(speechTimer, 10000);
-                pauseButton.prop('disabled', true);
-                messageDiv.html("😞 Giọng nói này không hỗ trợ tạm dừng (pause).");
-
-            }
-
-            synth.speak(utterance);
-
-            playButton.prop('disabled', true);
-            stopButton.prop('disabled', false);
-        };
-
-        var pauseButtonAction = function () {
-            if (synth.speaking) {
-                synth.pause();
-            }
-
-            playButton.prop('disabled', false);
-            pauseButton.prop('disabled', true);
-            stopButton.prop('disabled', false);
-        };
-
-        var stopButtonAction = function () {
-            synth.resume();
-            synth.cancel();
-            clearTimeout(speechTimeOut);
-
-            playButton.prop('disabled', false);
-            pauseButton.prop('disabled', true);
-            stopButton.prop('disabled', true);
-
-            taInput.prop('disabled', false);
-            languagesSelect.prop('disabled', false);
-            voicesSelect.prop('disabled', false);
-
-        };
-
-        //--
+        //== ADD EVENT ==
+        addDivEnglishLineAction();
+        addDivEnglishWordAction();
         languagesSelect.on("change", languagesSelectOnChange);
         voicesSelect.on("change", voicesSelectOnChange);
         playButton.on("click", playButtonAction);
         pauseButton.on("click", pauseButtonAction);
         stopButton.on("click", stopButtonAction);
-        //--
-        //taInput.on('keyup', convertToHtml);
-        //taInput.on('propertychange keyup input paste', convertToHtml);
         taInput.on('input', convertToHtml);
-        //--
-        utterance.addEventListener("end", () => {
-            playButton.prop('disabled', false);
-            pauseButton.prop('disabled', true);
-            stopButton.prop('disabled', true);
-
-            taInput.prop('disabled', false);
-            languagesSelect.prop('disabled', false);
-            voicesSelect.prop('disabled', false);
-
-            messageDiv.html("");
-            clearTimeout(speechTimeOut);
+        //taInput.on('keyup', convertToHtml);
+        //taInput.on('propertychange keyup input paste', convertToHtml);     
+        utterance.addEventListener('end', function (event) {
+            speechSynthesisUtteranceEnd(event);
         });
+        
         //====
         setVoice();
 
     } else {
         messageDiv.html("Trình duyệt internet của bạn khônf hỗ trợ giọng nói đọc văn bảng.");
     }
-    //====================================
 
 }
 
-//== PAGE LOAD EVENT ==
 $(function () {
     load();
     if (speechSynthesis.onvoiceschanged !== undefined) {
@@ -776,9 +795,9 @@ $(function () {
 
 });
 
-//== BEFORE UNLOAD EVENT ==
+//== PAGE BEFORE UNLOAD EVENT ==
 $(window).on('beforeunload', function () {
-    synth.resume();
+    //synth.resume();
     synth.cancel();
     clearTimeout(speechTimeOut);
 });

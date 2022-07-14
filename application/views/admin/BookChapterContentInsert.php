@@ -12,7 +12,7 @@
                         <div class="card-body">
 
                             <!-- MAIN CONTENT -->
-                            <form action="https://ehosito.com/Book/insertBookChapterContent" method="POST" class="">
+                            <form action="http://ehosito.local/Book/insertBookChapterContent" method="POST" class="">
 
                                 <div class="row">
                                     <div class="col-auto p-1">
@@ -40,9 +40,9 @@
                                                 </ul>
                                                 <div class="tab-content h-100" id="pills-tabContent">
                                                     <div class="tab-pane fade show active  h-100" id="pills-editor" role="tabpanel" aria-labelledby="pills-editor-tab">
-                                                        <form class="w-100 flex-grow-1 h-100">
-                                                            <textarea id="taInput" name="taInput" class="w-100 h-100 border border-secondary rounded"></textarea>
-                                                        </form>  
+                                                        <div class="w-100 flex-grow-1 h-100">
+                                                            <textarea id="taInput" name="contentRaw" class="w-100 h-100 border border-secondary rounded"></textarea>
+                                                        </div>  
                                                     </div>
 
                                                 </div>                     
@@ -67,7 +67,7 @@
                                                     </div>
 
                                                     <div class="tab-pane fade h-100" id="pills-html" role="tabpanel" aria-labelledby="pills-html-tab">
-                                                        <textarea id="taHtml" name="taHtml" class="w-100 h-100 border border-secondary rounded"></textarea>			
+                                                        <textarea id="taHtml" name="content" class="w-100 h-100 border border-secondary rounded"></textarea>			
                                                     </div>
                                                 </div>                    
 
@@ -76,6 +76,19 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <!-- FIELDS SYSTEM -->
+                                <div class="row">
+                                    <div class="col">
+                                        <input type="hidden" id="bookId" name="bookId" value="<?php echo $data["bookId"]; ?>" class="" />
+                                    </div>
+                                    <div class="col">
+                                        <input type="hidden" id="bookChapterId" name="bookChapterId" value="<?php echo $data["bookChapterId"]; ?>" class="" />
+                                    </div>  
+                                    <div class="col">
+                                        <input type="hidden" id="numericalOrder" name="numericalOrder" value="<?php echo $data["bookChapterContentsNumericalOrderLast"]; ?>" class="" />
+                                    </div>                                      
+                                </div>                                
 
                             </form>             
                             <!-- MAIN CONTENT END -->

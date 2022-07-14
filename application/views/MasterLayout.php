@@ -5,8 +5,9 @@
     </head>
 
     <body>
+        <!-- Load header content (title, meta data, css, javascript, ...) -->
         <?php require_once("./application/views/component/header-content.php"); ?>
-        <!-- -->
+        
         <!-- Begin page content -->
         <main role="main" class="container-fluid">
 
