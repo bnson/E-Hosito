@@ -1,9 +1,27 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
-*/
-/* 
-    Created on : Jul 11, 2022, 11:04:48 AM
-    Author     : bnson
-*/
+textarea:hover {
+    border: 1px solid #007bff!important;
+}
 
+textarea:focus {
+    outline: none;
+    border: 1px solid #007bff!important;
+}
+
+.flex {
+    display: flex;
+    flex-direction: row;
+}
+
+.gutter.gutter-horizontal {
+    cursor: ew-resize;
+}
+
+.menu {
+    font-size: 24px;
+}
+
+div#screen,
+textarea#taHtml,
+textarea#taInput {
+    min-height: calc(100vh - calc(24rem + 1px));
+}

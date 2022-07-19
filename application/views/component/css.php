@@ -25,7 +25,7 @@ if ($data["controllerName"] && $data["page"]) {
     if (url_file_exists_1($linkFull)) {
         if ($GLOBALS['environment'] == 'live') {
             $today = date("Ymd");
-            $link = str_last_replace_1('.dev.js', '.min.js', $link);
+            $link = str_last_replace_1('.dev.css', '.min.css', $link);
             echo '<link rel="stylesheet" href="' . $link . '?t=' . $today . '" type="text/css" />';
         } else {
             echo '<link rel="stylesheet" href="' . $link . '?t=' . $today . '" type="text/css" />';

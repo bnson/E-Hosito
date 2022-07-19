@@ -12,7 +12,7 @@ class Home extends Controller {
     public $genres;
 
     public function __construct() {
-        $this->controllerName = "Home";
+        $this->controllerName = "home";
         
         
         $this->layout = "ToolLayout";

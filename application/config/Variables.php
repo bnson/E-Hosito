@@ -1,10 +1,10 @@
 <?php
 //====
-$GLOBALS['environment'] = 'dev';
+$GLOBALS['environment'] = 'live';
 $GLOBALS['domain'] = 'ehosito.com';
 $GLOBALS['website_name'] = 'E-Hosito';
 
-$GLOBALS['ssl'] = 'off';
+$GLOBALS['ssl'] = 'on';
 
 $GLOBALS['domain_http'] = 'http://' . $GLOBALS['domain'];
 $GLOBALS['domain_https'] = 'https://' . $GLOBALS['domain'];

@@ -11,7 +11,7 @@ class Tool extends Controller {
     public $pageKeywords;
 
     public function __construct() {
-        $this->controllerName = "Tool";
+        $this->controllerName = "tool";
         
         $this->layout = "ToolLayout";
 

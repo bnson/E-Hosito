@@ -39,6 +39,8 @@ function processUrl($url) {
         }
 
         $urlFull = $GLOBALS['root_link'] . $url;
+        //echo $urlFull;
+        
         if (url_file_exists_1($urlFull)) {
             echo PHP_EOL . '<script type="text/javascript" src="' . $url . '?t=' . $today . '"></script>';
             return true;

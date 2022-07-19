@@ -60,7 +60,7 @@ $book = $data["books"][0];
                                             foreach ($bookChapterContents as $rowChapterContents) {
                                                 ?>
                                                 <div class="w-100"></div>
-                                                <div class="col border ml-2 mr-2 mt-1 mb-1 p-2 effect" onclick="location.href = 'https://ehosito.com/Book/loadBookContent/<?php echo $row['book_id']; ?>/<?php echo $row['id']; ?>/<?php echo $rowChapterContents['id']; ?>';">
+                                                <div class="col border ml-2 mr-2 mt-1 mb-1 p-2 effect" onclick="location.href = '<?php echo $GLOBALS['root_link']; ?>/Book/loadBookContent/<?php echo $row['book_id']; ?>/<?php echo $row['id']; ?>/<?php echo $rowChapterContents['id']; ?>';">
                                                     <?php echo $rowChapterContents['subject']; ?>
                                                 </div>
                                                 <?php

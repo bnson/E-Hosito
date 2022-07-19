@@ -12,7 +12,7 @@
                         <div class="card-body">
 
                             <!-- MAIN CONTENT -->
-                            <form action="http://ehosito.local/Book/insertBookChapterContent" method="POST" class="">
+                            <form action="<?php echo $GLOBALS['root_link']; ?>/Book/insertBookChapterContent" method="POST" class="">
 
                                 <div class="row">
                                     <div class="col-auto p-1">

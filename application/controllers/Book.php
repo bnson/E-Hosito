@@ -20,7 +20,7 @@ class Book extends Controller {
     public $utilityString;
 
     public function __construct() {
-        $this->controllerName = "Book";
+        $this->controllerName = "book";
         
         //== LAYOUT ==
         $this->layout = "MasterLayout";

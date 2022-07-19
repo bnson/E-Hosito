@@ -12,7 +12,7 @@ class Admin extends Controller {
     public $pageKeywords;
 
     public function __construct() {
-        $this->controllerName = "Admin";
+        $this->controllerName = "admin";
         
         //== LAYOUT ==
         $this->layout = "AdminLayout";
