@@ -1,4 +1,3 @@
-
 /* 
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Other/javascript.js to edit this template
@@ -6,6 +5,7 @@
  * + https://codepen.io/pmk/pen/mKxjzz?editors=1010 
  * + https://codepen.io/iPawan/pen/rNOXbZa
  */
+window.speechSynthesis;
 
 const languageBcp47 = {
     af: 'Afrikaans',
@@ -238,41 +238,32 @@ const languageBcp47 = {
     zu: 'Zulu',
     zu_ZA: 'Zulu (South Africa)'
 };
+const punctuationPattern = /[\.,;:"[\]{\}!?<>]+/g;
 
 //====
-const languagesSelect = $("#languages");
-const voicesSelect = $("#voices");
+var ai;
+var synthLanguagesUnique = [];
+var languageSelected = "";
+var voiceSelected = "";
+
+//== HTML TAG ==
+const selectLanguages = $("#selectLanguages");
+const selectVoices = $("#selectVoices");
 const panelInformation = $("#panelInformation");
 const playButton = $("#playButton");
 const pauseButton = $("#pauseButton");
 const stopButton = $("#stopButton");
 const taInput = $("#taInput");
-const messageDiv = $("#messageDiv");
+const divMessage = $("#divMessage");
 const ulVoicesSupport = $("#ulVoicesSupport");
 const divScreen = $("#divScreen");
-
 var divEnglishLine = $(".divEnglishLine");
-
-const wordEnglish = $(".wordEnglish");
-const displayEachWords = $(".displayEachWords");
-
-const utterance = new SpeechSynthesisUtterance();
-var synth = window.speechSynthesis;
-var systhVoices = [];
-var synthLanguagesUnique = [];
-
-var languageSelected = "";
-var voiceSelected = "";
-
-var speechTimeOut;
-var person = new Object();
-
-var punctuationPattern = /[\.,;:"[\]{\}!?<>]+/g;
+var wordEnglish = $(".wordEnglish");
+var displayEachWords = $(".displayEachWords");
 
 //== VOICE FUNCTION ==
 function setVoice() {
-    voiceSelected = voicesSelect.find(":selected").val();
-    person.voice = systhVoices.find(x => x.name === voiceSelected);
+    ai.setVoice(selectVoices.find(":selected").val());
 }
 
 function voicesSelectOnChange() {
@@ -280,73 +271,21 @@ function voicesSelectOnChange() {
     setVoice();
 }
 
-function speechSynthesisUtteranceEnd(event) {
-    //console.log("speechSynthesisUtteranceEnd()");
-    //console.log('Utterance has finished being spoken after ' + event.elapsedTime + ' seconds.');
-    
-    clearTimeout(speechTimeOut);
-
+function speechSynthesisUtteranceOnEnd(event) {
     playButton.prop('disabled', false);
     pauseButton.prop('disabled', true);
     stopButton.prop('disabled', true);
 
     taInput.prop('disabled', false);
-    languagesSelect.prop('disabled', false);
-    voicesSelect.prop('disabled', false);
+    selectLanguages.prop('disabled', false);
+    selectVoices.prop('disabled', false);
+    divScreen.children().show();
 
-    messageDiv.html("");
-}
-
-function speak(text) {
-    clearTimeout(speechTimeOut);
-
-    if (synth) {
-        if (synth.paused && synth.speaking) {
-            pauseButton.prop('disabled', false);
-            return synth.resume();
-        }
-
-        if (synth.speaking) {
-            synth.cancel();
-        }
-
-        //console.log("person.voice.name: " + person.voice.name);
-        //var utterance = new SpeechSynthesisUtterance();
-        utterance.voice = person.voice;
-        utterance.lang = person.voice.lang;
-        //utterance.pitch = pitch.value;
-        //utterance.rate = rate.value;
-        //utterance.volume = volume.value;
-        utterance.text = text;
-
-        if (person.voice.localService) {
-            pauseButton.prop('disabled', false);
-            //speechTimeOut = setTimeout(speechTimer, 10000);
-            //clearTimeout(speechTimeOut);
-            utterance.onboundary = onBoundary;
-
-        } else {
-            pauseButton.prop('disabled', true);
-            speechTimeOut = setTimeout(speechTimer, 10000);
-            messageDiv.html("😞 Giọng nói này không hỗ trợ tạm dừng (pause).");
-        }
-
-        synth.speak(utterance);
-        
-    } else {
-        messageDiv.html("Trình duyệt internet của bạn khônf hỗ trợ giọng nói đọc văn bảng.");
-    }
-
-}
-
-function speechTimer() {
-    if (synth) {
-        synth.pause();
-        synth.resume();
-        speechTimeOut = setTimeout(speechTimer, 10000);        
-    } else {
-        console.log("synth undefined!");
-    }
+    divMessage.html("");
+    
+    //console.log("speechSynthesisUtteranceEnd()");
+    //console.log('Utterance has finished being spoken after ' + event.elapsedTime + ' seconds.');
+    
 }
 
 // Get word at specific position. Used for extracting the word currently spoken
@@ -367,25 +306,15 @@ function getWordAt(str, pos) {
 
 // OnBoundary callback handler for when words is spoken
 // Note: Event is not triggered when "localService" is false (Like the Google voices in Chrome)
-function onBoundary(e) {
-    //console.log(e);
-    if (e.name == "word") {
-        if (punctuationPattern.test(word)) {
-            synth.pause();
-            setTimeout(function () {
-                synth.resume();
-            }, 2000);
-        }
-
-        var word = getWordAt(e.target.text, e.charIndex);
-        messageDiv.html(word);
-
+function speechSynthesisUtteranceOnoundary(event) {
+    if (event.name == "word") {
+        var word = getWordAt(event.target.text, event.charIndex);
+        divMessage.html(word);
     }
 }
 
 //== PAGE FUNCTIONS ==
 function convertToHtml() {
-    //console.log("convertToHtml");
     var dataInput = taInput.val();
     //var dataInputArray = dataInput.split(/\r?\n/);
     var dataInputArray = dataInput.match(/[^\r\n.?!]+[\r\n.?!]+(\s)+[\])'"`’”]*|.+/g);
@@ -400,12 +329,12 @@ function convertToHtml() {
             "			<i class=\"fab fa-buromobelexperte fa-2x text-secondary\"></i>\n" +
             "		</div>\n" +
             "		<div class=\"col divEnglishLine border p-2 m-1 d-flex align-items-center button-style-1\">\n" +
-            "			<span class=\"english\">§1</span>\n" +
-            "			<span class=\"pronounce d-none font-weight-light font-italic w-100\">§2</span>\n" +
-            "			<span class=\"vietnamese d-none font-weight-bold text-primary w-100\">§3</span>\n" +
+            "			<span class=\"spanEnglish\">§1</span>\n" +
+            "			<span class=\"spanPronounce d-none font-weight-light font-italic w-100\">§2</span>\n" +
+            "			<span class=\"spanVietnamese d-none font-weight-bold text-primary w-100\">§3</span>\n" +
             "		</div>\n" +
             "	</div>\n" +
-            "	<div class=\"row englishWords d-none\">\n" +
+            "	<div class=\"row divEnglishWords d-none\">\n" +
             "		§4\n" +
             "	</div>\n" +
             "</div>";
@@ -446,7 +375,7 @@ function convertToHtml() {
                 }
                 if (lineArray.length > 2) {
                     line = line.replace('§3', lineArray[1]);
-                    line = line.replace('pronounce d-none', 'pronounce');
+                    line = line.replace('spanPronounce d-none', 'spanPronounce');
                 }
 
                 dataOutputArray.push(line);
@@ -505,7 +434,6 @@ function processingSpecialCharacterHtml(str, pattern) {
 }
 
 function processingRegexReplace(str, strRegexFind, strRegexReplace) {
-    //console.log(str + " - " + strRegexFind + " - " + strRegexReplace);
     if (strRegexFind != "" && isRegexValid(strRegexFind)) {
         var regexFind = new RegExp(strRegexFind, "g");
         strRegexReplace = strRegexReplace.replace(strRegexReplace, "\n");
@@ -541,16 +469,15 @@ function unique(list) {
 }
 
 function displayEachWordsAction(el) {
-    //alert("Hello.");
     var parentElement = $($(el).parent().get(0));
-    var englishWordsElement = $(parentElement.next()[0]);
-    //console.log(englishWordsElement.attr('class'));    
+    var divEnglishWordsElement = $(parentElement.next()[0]);
+    //console.log(divEnglishWordsElement.attr('class'));    
 
-    if (englishWordsElement.hasClass('englishWords d-none')) {
-        englishWordsElement.removeClass("d-none");
+    if (divEnglishWordsElement.hasClass('divEnglishWords d-none')) {
+        divEnglishWordsElement.removeClass("d-none");
         $(el).addClass("font-weight-bold");
     } else {
-        englishWordsElement.addClass("d-none");
+        divEnglishWordsElement.addClass("d-none");
         $(el).removeClass("font-weight-bold");
     }
 }
@@ -563,26 +490,15 @@ function setLanguageDefault() {
         "en_GB"
     ];
 
-    languagesSelect.val(languagesSelect.find("option:first-child").val());
+    selectLanguages.val(selectLanguages.find("option:first-child").val());
     for (var i = 0; i < arrPriorityLanguages.length; i++) {
         var optionFind = 'option[value="' + arrPriorityLanguages[i] + '"]';
-        if (languagesSelect.find(optionFind).length !== 0) {
-            languagesSelect.val(arrPriorityLanguages[i]);
+        if (selectLanguages.find(optionFind).length !== 0) {
+            selectLanguages.val(arrPriorityLanguages[i]);
             break;
         }
     }
 
-//    if (languagesSelect.find('option[value="en-US"]').length !== 0) {
-//        languagesSelect.val('en-US');
-//    } else if (languagesSelect.find('option[value="en-GB"]').length !== 0) {
-//        languagesSelect.val('en-GB');
-//    } if (languagesSelect.find('option[value="en_US"]').length !== 0) {
-//        languagesSelect.val('en_US');
-//    } else if (languagesSelect.find('option[value="en_GB"]').length !== 0) {
-//        languagesSelect.val('en_GB');
-//    } else {
-//        languagesSelect.val(languagesSelect.find("option:first-child").val());
-//    }
 }
 
 function setVoiceDefault() {
@@ -594,14 +510,16 @@ function setVoiceDefault() {
         "English United Kingdom (en_GB)"
     ];
 
-    voicesSelect.val(voicesSelect.find("option:first-child").val());
+    selectVoices.val(selectVoices.find("option:first-child").val());
     for (var i = 0; i < arrPriorityVoices.length; i++) {
         var optionFind = 'option[value="' + arrPriorityVoices[i] + '"]';
-        if (voicesSelect.find(optionFind).length !== 0) {
-            voicesSelect.val(arrPriorityVoices[i]);
+        if (selectVoices.find(optionFind).length !== 0) {
+            selectVoices.val(arrPriorityVoices[i]);
             break;
         }
     }
+
+    setVoice();
 
 }
 
@@ -611,126 +529,109 @@ function playButtonAction() {
     textRead = processingSpecialCharacter(textRead);
 
     taInput.prop('disabled', true);
-    languagesSelect.prop('disabled', true);
-    voicesSelect.prop('disabled', true);
-
-    speak(textRead);
-
+    selectLanguages.prop('disabled', true);
+    selectVoices.prop('disabled', true);
+    
     playButton.prop('disabled', true);
+    pauseButton.prop('disabled', false);
     stopButton.prop('disabled', false);
+    divScreen.prop('disabled', true);
+    divScreen.children().hide();
 
+    ai.speak(textRead);
 }
 
 function pauseButtonAction() {
-    if (synth.speaking) {
-        synth.pause();
-        clearTimeout(speechTimeOut);
-    }
+    ai.pauseSpeaking();
 
     playButton.prop('disabled', false);
     pauseButton.prop('disabled', true);
     stopButton.prop('disabled', false);
+    
+    taInput.prop('disabled', true);
+    selectLanguages.prop('disabled', true);
+    selectVoices.prop('disabled', true);
+    divScreen.children().hide();
+    
 }
 
 function stopButtonAction() {
-    synth.resume();
-    synth.cancel();
-    clearTimeout(speechTimeOut);
-
+    ai.stopSpeaking();
+    
     playButton.prop('disabled', false);
     pauseButton.prop('disabled', true);
     stopButton.prop('disabled', true);
 
     taInput.prop('disabled', false);
-    languagesSelect.prop('disabled', false);
-    voicesSelect.prop('disabled', false);
+    selectLanguages.prop('disabled', false);
+    selectVoices.prop('disabled', false);
+    divScreen.children().show();
 
 }
 
 function addDivEnglishLineAction() {
-    divScreen.on('click', '.divEnglishLine', function () {
-        //console.log("Hello...");
-        var spanEnglish = $(this).find(".english");
+    divScreen.on('click', '.divEnglishLine', function (event) {
+        var spanEnglish = $(this).find(".spanEnglish");
         var text = spanEnglish.text();
-        speak(text);
+        ai.speak(text);
     });
 }
 
 function addDivEnglishWordAction() {
     divScreen.on('click', '.divEnglishWord', function () {
         var text = $(this).text();
-        speak(text);
+        ai.speak(text);
     });
 }
 
 function languagesSelectOnChange() {
-    //console.log("languagesSelectOnChange");
-    languageSelected = languagesSelect.find(":selected").val().toLowerCase();
-    voicesSelect.empty();
-    for (var i = 0; i < systhVoices.length; i++) {
-        if (systhVoices[i].lang.toLowerCase().startsWith(languageSelected)) {
+    languageSelected = selectLanguages.find(":selected").val().toLowerCase();
+    selectVoices.empty();
+    for (var i = 0; i < ai.getVoices().length; i++) {
+        if (ai.getVoices()[i].lang.toLowerCase().startsWith(languageSelected)) {
             var option = $('<option/>');
-            var optionTextContent = systhVoices[i].name + " (" + systhVoices[i].lang + ")";
-            var optionValue = systhVoices[i].name;
+            var optionTextContent = ai.getVoices()[i].name + " (" + ai.getVoices()[i].lang + ")";
+            var optionValue = ai.getVoices()[i].name;
             option.attr({'value': optionValue}).text(optionTextContent);
-            voicesSelect.append(option);
+            selectVoices.append(option);
         }
     }
 
     setVoiceDefault();
-    setVoice();
+
 }
 
-//== PAGE LOAD EVENT ==
-function load() {
-    synth.cancel;
-    systhVoices = synth.getVoices();
-
-    //====
-    playButton.prop('disabled', false);
-    pauseButton.prop('disabled', true);
-    stopButton.prop('disabled', true);
-
-    if (systhVoices) {
-        messageDiv.html("");
-        languagesSelect.empty();
-        voicesSelect.empty();
-
-        //== Sort voices by language, then name ==
-        systhVoices.sort(function (obj1, obj2) {
-            if (obj1.lang < obj2.lang)
-                return -1;
-            if (obj1.lang > obj2.lang)
-                return 1;
-            if (obj1.name < obj2.name)
-                return -1;
-            if (obj1.name > obj2.name)
-                return 1;
-            return 0;
-        });
-
-        //====
-        for (var i = 0; i < systhVoices.length; i++) {
-            synthLanguagesUnique.push(systhVoices[i].lang);
+//== PAGE LOAD ==
+function loadDivInfoVoicesSupport() {
+    if (ai) {
+        for (var i = 0; i < ai.getVoices().length; i++) {
+            synthLanguagesUnique.push(ai.getVoices()[i].lang);
 
             var li = $('<li/>');
-            if (systhVoices[i].localService) {
-                li.text(systhVoices[i].lang + " - " + systhVoices[i].name + " (offline)");
+            if (ai.getVoices()[i].localService) {
+                li.text(ai.getVoices()[i].lang + " - " + ai.getVoices()[i].name + " (offline)");
             } else {
-                li.text(systhVoices[i].lang + " - " + systhVoices[i].name + " (online)");
+                li.text(ai.getVoices()[i].lang + " - " + ai.getVoices()[i].name + " (online)");
             }
             li.appendTo(ulVoicesSupport);
 
-            var languageCode = systhVoices[i].lang.replace("-", "_");
+            var languageCode = ai.getVoices()[i].lang.replace("-", "_");
             var languageName = languageBcp47[languageCode];
 
             if (!languageName) {
-                languageBcp47[languageCode] = systhVoices[i].name + ' (' + systhVoices[i].lang + ')';
+                languageBcp47[languageCode] = ai.getVoices()[i].name + ' (' + ai.getVoices()[i].lang + ')';
             }
         }
         synthLanguagesUnique = unique(synthLanguagesUnique);
+    } else {
+        divMessage.text("Can not connect to AI.");
+        //console.log("Can not connect to AI.");
+    }
 
-        //== Set languages ==
+}
+
+function loadSelectLanguages() {
+    if (synthLanguagesUnique && Array.isArray(synthLanguagesUnique)) {
         synthLanguagesUnique.forEach(language => {
             var option = $('<option/>');
             var languageName = languageBcp47[language.replace("-", "_")];
@@ -741,63 +642,92 @@ function load() {
                 option.attr({'value': language}).text(language);
             }
 
-            languagesSelect.append(option);
+            selectLanguages.append(option);
 
         });
-        
+
         setLanguageDefault();
-
-        //== Set voices ==
-        languageSelected = languagesSelect.find(":selected").val();
-        //languageSelected = languagesSelect.find(":selected").text();
-        for (var i = 0; i < systhVoices.length; i++) {
-            //panelInformation.append(systhVoices[i].name + "<br>");
-            if (systhVoices[i].lang == languageSelected) {
-                var option = $('<option/>');
-                var optionTextContent = systhVoices[i].name + " (" + systhVoices[i].lang + ")";
-                var optionValue = systhVoices[i].name;
-                option.attr({'value': optionValue}).text(optionTextContent);
-                voicesSelect.append(option);
-            }
-        }
-        setVoiceDefault();
-        //setVoice();
-
-        //== ADD EVENT ==
-        addDivEnglishLineAction();
-        addDivEnglishWordAction();
-        languagesSelect.on("change", languagesSelectOnChange);
-        voicesSelect.on("change", voicesSelectOnChange);
-        playButton.on("click", playButtonAction);
-        pauseButton.on("click", pauseButtonAction);
-        stopButton.on("click", stopButtonAction);
-        taInput.on('input', convertToHtml);
-        //taInput.on('keyup', convertToHtml);
-        //taInput.on('propertychange keyup input paste', convertToHtml);     
-        utterance.addEventListener('end', function (event) {
-            speechSynthesisUtteranceEnd(event);
-        });
-        
-        //====
-        setVoice();
-
     } else {
-        messageDiv.html("Trình duyệt internet của bạn khônf hỗ trợ giọng nói đọc văn bảng.");
+        divMessage.text("Can not load tag selectLanguages");
+        //console.log("Can not load tag selectLanguages");
     }
 
 }
 
-$(function () {
-    load();
-    if (speechSynthesis.onvoiceschanged !== undefined) {
-        speechSynthesis.onvoiceschanged = load;
+function loadSelectVoices() {
+    languageSelected = selectLanguages.find(":selected").val();
+    //languageSelected = languagesSelect.find(":selected").text();
+
+    for (var i = 0; i < ai.getVoices().length; i++) {
+        if (ai.getVoices()[i].lang == languageSelected) {
+            var option = $('<option/>');
+            var optionTextContent = ai.getVoices()[i].name + " (" + ai.getVoices()[i].lang + ")";
+            var optionValue = ai.getVoices()[i].name;
+            option.attr({'value': optionValue}).text(optionTextContent);
+            selectVoices.append(option);
+        }
     }
 
+    setVoiceDefault();
+
+}
+
+function load() {
+    ai = new AI("Sliver");
+
+    if (ai.getStatus() == 1) {
+        divMessage.html(ai.getStatusMessage());
+        selectLanguages.empty();
+        selectVoices.empty();
+
+        playButton.prop('disabled', false);
+        pauseButton.prop('disabled', true);
+        stopButton.prop('disabled', true);
+
+        //----
+        loadDivInfoVoicesSupport();
+        loadSelectLanguages();
+        loadSelectVoices();
+
+        //-- ADD EVENT --
+        addDivEnglishLineAction();
+        addDivEnglishWordAction();
+        selectLanguages.on("change", languagesSelectOnChange);
+        selectVoices.on("change", voicesSelectOnChange);
+        playButton.on("click", playButtonAction);
+        pauseButton.on("click", pauseButtonAction);
+        stopButton.on("click", stopButtonAction);
+
+        taInput.on('input', convertToHtml);
+        //taInput.on('keyup', convertToHtml);
+        //taInput.on('propertychange keyup input paste', convertToHtml);
+
+        //====
+        var utterOnboundary = event => {
+            speechSynthesisUtteranceOnoundary(event);
+        };        
+        ai.addUtterOnBoundaryEvent(utterOnboundary);
+        
+        var utterOnEnd = event => {
+            speechSynthesisUtteranceOnEnd(event);
+        };        
+        ai.addUtterOnEndEvent(utterOnEnd);        
+        //====
+        
+        setVoice();
+    } else {
+        divMessage.html(ai.getStatusMessage);
+    }
+
+}
+
+//== PAGE READY ==
+$(function () {
+    load();
 });
 
-//== PAGE BEFORE UNLOAD EVENT ==
+//== PAGE BEFORE UNLOAD ==
 $(window).on('beforeunload', function () {
-    //synth.resume();
-    synth.cancel();
-    clearTimeout(speechTimeOut);
+    ai.getSynth().cancel();
+    ai = null;
 });

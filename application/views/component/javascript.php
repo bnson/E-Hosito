@@ -8,46 +8,30 @@
 require_once(dirname(__FILE__) . '/../../config/Prepend.php');
 
 //-- $data get from controllers --
-load($data);
+loadJs($data);
 
 //== FUNCTIONS ==
-function load($data) {
-    $urlMasterCoreJs = "/public/js/core.dev.js";
-    $urlGeneralJs = "";
+function loadJs($data) {
+    $controllerUsedCoreJs = ["home", "book", "about"];
+
+    $urlCoreJs = "/public/js/core/general." . $GLOBALS['environment'] . ".js";
+
+    $urlpluginGeneralJs = "";
+    $urlPluginPageJs = "";
 
     //-- Load JavaScript by page --
-    if ($data["controllerName"] && $data["page"]) {
-        $urlPageJs = "/public/js/" . $data["controllerName"] . "/" . $data["page"] . ".dev.js";
-        $urlGeneralJs = "/public/js/" . $data["controllerName"] . "/general.dev.js";
-        
-        processUrl($urlPageJs);
-    }
-
-    if (!processUrl($urlGeneralJs)) {
-        processUrl($urlMasterCoreJs);
+    if (in_array(strtolower($data["controllerName"]), $controllerUsedCoreJs)) {
+        processUrl($urlCoreJs);
     }
     
-}
+    if ($data["controllerName"] && $data["page"]) {
+        $urlpluginGeneralJs = "/public/js/" . $data["controllerName"] . "/general." . $GLOBALS['environment'] . ".js";
+        $urlPluginPageJs = "/public/js/" . $data["controllerName"] . "/" . $data["page"] . "." . $GLOBALS['environment'] . ".js";
 
-function processUrl($url) {
-    if ($url) {
-        $today = date("YmdHis");
-
-        if ($GLOBALS['environment'] == 'live') {
-            $today = date("Ymd");
-            $url = str_last_replace_1('.dev.js', '.min.js', $url);
-        }
-
-        $urlFull = $GLOBALS['root_link'] . $url;
-        //echo $urlFull;
-        
-        if (url_file_exists_1($urlFull)) {
-            echo PHP_EOL . '<script type="text/javascript" src="' . $url . '?t=' . $today . '"></script>';
-            return true;
-        }
-        
-    }
-    return false;
+        processUrl($urlpluginGeneralJs);
+        processUrl($urlPluginPageJs);
+    }  
+    
 }
 
 ?>

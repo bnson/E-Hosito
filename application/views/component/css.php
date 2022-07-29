@@ -1,4 +1,3 @@
-<!-- LOAD CSS FRAMEWORK -->
 <link rel="stylesheet" type="text/css" href="/public/framework/bootstrap-4.5.3/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="/public/framework/bootstrap-4.5.3/css/docs.min.css" />
 <link rel="stylesheet" type="text/css" href="/public/framework/fontawesome-free-5.8.2-web/css/all.css" />
@@ -9,27 +8,34 @@
 <link rel="stylesheet" href="/public/framework/highlight/styles/default.css">
 <link rel="stylesheet" href="/public/framework/highlight/styles/a11y-dark.css">
 
-<!-- LOAD CSS GENERAL -->
-<link rel="stylesheet" type="text/css" href="/public/css/general.css" />
-
-<!-- LOAD CSS BY PAGE -->
+<!-- LOAD CSS OF E-HOSITO -->
 <?php
 require_once(dirname(__FILE__) . '/../../config/Prepend.php');
 
-if ($data["controllerName"] && $data["page"]) {
-    $today = date("YmdHis");
-    $link = "/public/css/" . $data["controllerName"] . "/" . $data["page"] . ".dev.css";
-    $linkFull = $GLOBALS['root_link'] . $link;
-    //echo $linkFull;
+//-- $data get from controllers --
+loadCss($data);
 
-    if (url_file_exists_1($linkFull)) {
-        if ($GLOBALS['environment'] == 'live') {
-            $today = date("Ymd");
-            $link = str_last_replace_1('.dev.css', '.min.css', $link);
-            echo '<link rel="stylesheet" href="' . $link . '?t=' . $today . '" type="text/css" />';
-        } else {
-            echo '<link rel="stylesheet" href="' . $link . '?t=' . $today . '" type="text/css" />';
-        }
+//== FUNCTIONS ==
+function loadCss($data) {
+    $controllerUsedCoreCss = ["home", "book", "tool", "game", "about", "aboutprivacy", "abouttermsofservice"];
+    $urlCoreCss = "/public/css/core/general." . $GLOBALS['environment'] . ".css";
+    $urlpluginGeneralCss = "";
+    $urlPluginPageCss = "";
+    
+    //echo $urlCoreCss;
+    if (in_array(strtolower($data["controllerName"]), $controllerUsedCoreCss)) {
+        processUrl($urlCoreCss);
     }
+    
+    if ($data["controllerName"] && $data["page"]) {
+        $urlpluginGeneralCss = "/public/css/" . $data["controllerName"] . "/general." . $GLOBALS['environment'] . ".css";
+        $urlPluginPageCss = "/public/css/" . $data["controllerName"] . "/" . $data["page"] . "." . $GLOBALS['environment'] . ".css";
+
+        processUrl($urlpluginGeneralCss);
+        processUrl($urlPluginPageCss);
+    }    
+    
 }
+
+
 ?>

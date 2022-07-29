@@ -9,7 +9,7 @@ class About extends Controller {
     public $pageKeywords;
 
     public function __construct() {
-        $this->controllerName = "About";
+        $this->controllerName = "about";
         
         //== MODEL ==
         //$this->book = $this->model("BookModel");

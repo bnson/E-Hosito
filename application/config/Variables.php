@@ -1,10 +1,12 @@
 <?php
 //====
-$GLOBALS['environment'] = 'live';
+$GLOBALS['environment'] = 'dev';
+$GLOBALS['version'] = '0001';
+
 $GLOBALS['domain'] = 'ehosito.com';
 $GLOBALS['website_name'] = 'E-Hosito';
 
-$GLOBALS['ssl'] = 'on';
+$GLOBALS['ssl'] = 'off';
 
 $GLOBALS['domain_http'] = 'http://' . $GLOBALS['domain'];
 $GLOBALS['domain_https'] = 'https://' . $GLOBALS['domain'];
@@ -12,6 +14,7 @@ $GLOBALS['domain_https'] = 'https://' . $GLOBALS['domain'];
 //====
 if ($GLOBALS['environment'] == 'dev') {
     $GLOBALS['domain'] = 'ehosito.local';
+    $GLOBALS['version'] = date("YmdHis");
 }
 
 if ($GLOBALS['ssl'] == 'off') {

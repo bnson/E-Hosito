@@ -39,3 +39,23 @@ function str_last_replace_1($search, $replace, $subject) {
 
     return $subject;
 }
+
+function processUrl($url) {
+    $utilityString = new UtilityString();
+
+    if ($url) {
+        $urlFull = $GLOBALS['root_link'] . $url;
+        //echo $urlFull;
+
+        if (url_file_exists_1($urlFull)) {
+
+            if ($utilityString->endsWith(strtolower($url), ".js")) {
+                echo PHP_EOL . '<script type="text/javascript" src="' . $url . '?v=' . $GLOBALS['version'] . '"></script>';
+            }
+
+            if ($utilityString->endsWith(strtolower($url), ".css")) {
+                echo PHP_EOL . '<link rel="stylesheet" href="' . $url .  '?v=' . $GLOBALS['version'] . '">';
+            }
+        }
+    }
+}

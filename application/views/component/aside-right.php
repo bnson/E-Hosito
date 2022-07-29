@@ -2,6 +2,23 @@
 
     <div class="col m-2 border ">
         <div class="row">
+            <div class="col p-1 border-bottom title">THÔNG BÁO</div>
+        </div>
+        <div class="row">
+            <div class="w-100"></div>
+            <div class="col p-2 m-1">
+                Xin chào, mình là Sliver, mình sẽ đồng hành với bạn.<br>
+                Thông báo mới mình mới nhận từ Admin là:<br>
+                <p class="text-info font-italic mb-0">"Website đang trong quá trình xây dựng và sửa lỗi, nếu bạn hãy nhấn <b>[Ctrl + F5]</b> ba lần, và nếu vẫn còn lỗi bạn hãy quay lại ngày hôm sau nhé, Admin sẽ sửa lỗi sớm ^-^!"</p>
+            </div>
+            <div class="w-100"></div>              
+        </div>
+    </div>        
+
+    <div class="w-100"></div>    
+    
+    <div class="col m-2 border ">
+        <div class="row">
             <div class="col p-1 border-bottom title">CHUYÊN MỤC</div>
         </div>
         <div class="row">
