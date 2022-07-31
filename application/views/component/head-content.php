@@ -20,7 +20,7 @@
 <script type="text/javascript" src="/public/framework/highlight/highlight.pack.js"></script>    
 
 <script type="text/javascript" src="/public/js/utilities/timer.js"></script>
-<script type="text/javascript" src="/public/js/core/ai.<?php echo $GLOBALS['environment'] ?>.js?v=<?php echo $GLOBALS['version'] ?>"></script>
+<script type="text/javascript" src="/public/js/core/ai.<?php echo $GLOBALS['environment'] ?>.js?v=<?php echo date("YmdHis") ?>"></script>
 
 <script>
     hljs.highlightAll();

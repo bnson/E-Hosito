@@ -1,19 +1,15 @@
 //--
-var utterance = new SpeechSynthesisUtterance();
-
-var synth = window.speechSynthesis;
-var systhVoices = [];
-var synthLanguagesUnique = [];
-var synthTimeOut;
-var synthLanguageSelected = "";
-var synthVoiceSelected = "";  
-        
-//--
-var interval;
-var elWords;
+window.speechSynthesis;
 
 //--
-var englishWordTemplateVersion1 = "<div onclick=\"speak(this)\" class=\"englishWord col-auto border rounded text-secondary pt-2 pb-2 pl-3 pr-3 m-1 button-style-1\">§1</div>";
+let ai = new AI("Sliver");
+let divNotification = $("#divNotification");
+
+let interval;
+let elWords;
+
+//--
+let englishWordTemplateVersion1 = "<div class=\"englishWord col-auto border rounded text-secondary pt-2 pb-2 pl-3 pr-3 m-1 button-style-1\">§1</div>";
 
 //===========================
 words();
@@ -24,75 +20,12 @@ initGuiWhiteQuiz();
 initGuiWhiteQuizSentence();
 
 //===========================
-function loadSpeechSynthesis() {   
-    systhVoices = synth.getVoices();
-    
-    if (systhVoices) {
-        
-        //== Sort voices by language, then name ==
-        systhVoices.sort(function (obj1, obj2) {
-            if (obj1.lang < obj2.lang)
-                return -1;
-            if (obj1.lang > obj2.lang)
-                return 1;
-            if (obj1.name < obj2.name)
-                return -1;
-            if (obj1.name > obj2.name)
-                return 1;
-            return 0;
-        });
-        
-        //== Get language and set to synthLanguagesUnique ==
-        for (var i = 0; i < systhVoices.length; i++) {
-            synthLanguagesUnique.push(systhVoices[i].lang);
-        }
-        synthLanguagesUnique = unique(synthLanguagesUnique);
-        
-        //== Set the language ==
-        synthLanguageSelected = "en-US";
-        
-        //== Set the voice ==
-        var arrPriorityVoices = [
-            "Microsoft David - English (United States)",
-            "Microsoft Zira - English (United States)",
-            "Microsoft Mark - English (United States)",
-            "English United States (en_us)",
-            "English United Kingdom (en_GB)"
-        ];
-        
-        synthVoiceSelected = systhVoices[0];
-        for (var i = 0; i < systhVoices.length; i++) {
-            if (systhVoices[i].lang == synthLanguageSelected) {
-                if(jQuery.inArray(systhVoices[i].name, arrPriorityVoices) != -1) {
-                    synthVoiceSelected = systhVoices[i];
-                    break;
-                }
-            }
-        }
-
-        synthTimer();
-        
-        //----
-        utterance.addEventListener("end", () => {
-            clearTimeout(synthTimeOut);
-        });        
-        
-    } else {
-        console.log("Your browser doesn't support voice.");
-    }
-}
-
-function synthTimer() {
-    synth.pause();
-    synth.resume();
-    synthTimeOut = setTimeout(synthTimer, 10000);
-}
-
+//== PROCESS EVENT ==
 function loadEventEnglishTranslate() {
     //== FOR VIEWS-BOOK ==
     $('.wordsTranslate').click(function () {
-        var elWordsTemplate = $(this).parent().get(0);
-        var elWords = $(this).next()[0];
+        let elWordsTemplate = $(this).parent().get(0);
+        let elWords = $(this).next()[0];
         //console.log($(elWordsTemplate).attr('class'));
 
         if ($(elWordsTemplate).hasClass('wordsTemplate2')) {
@@ -162,12 +95,12 @@ function loadEventEnglishShowWordByWord() {
 
 function eventShowWordByWord(el) {
     //alert("btShowWordByWordAction.");
-    var line = null;
-    var words = null;
-    var wordsAutoGenerate = null;
-    var parentElement = $($($(el).parent().get(0)).parent().get(0));
-    var divShowWordByWord = parentElement.find(".divShowWordByWord");
-    var spanEnglish = parentElement.find(".divEnglishLine > .spanEnglish");
+    let line = null;
+    let words = null;
+    let wordsAutoGenerate = null;
+    let parentElement = $($($(el).parent().get(0)).parent().get(0));
+    let divShowWordByWord = parentElement.find(".divShowWordByWord");
+    let spanEnglish = parentElement.find(".divEnglishLine > .spanEnglish");
     //console.log(englishWordsElement.attr('class'));    
 
 
@@ -198,14 +131,19 @@ function eventShowWordByWord(el) {
             divShowWordByWord.addClass("d-none");
             $(el).removeClass("font-weight-bold");
         }
+        
+        divShowWordByWord.on('click', '.englishWord', function () {
+            let text = $(this).text();
+            ai.speak(text);
+        });        
     }
 
 }
 
 function eventEnglishTranslate(el) {
-    var parentElement = $($(el).parent().get(0));
-    var divEnglishLine = parentElement.find(".divEnglishLine");
-    var spanVietnamese = divEnglishLine.find(".spanVietnamese");
+    let parentElement = $($(el).parent().get(0));
+    let divEnglishLine = parentElement.find(".divEnglishLine");
+    let spanVietnamese = divEnglishLine.find(".spanVietnamese");
 
     if (spanVietnamese) {
         if (spanVietnamese.hasClass('d-none')) {
@@ -256,120 +194,10 @@ function wordsTemplate2() {
 }
 
 //===========================
-function read(el) {
-    synth.cancel();
-    if (interval) {
-        interval = clearInterval(interval);
-    }
-    $($(el).children()[4]).addClass("d-none");
-    //alert($($(el).children()[0]).text());
-    speak($(el).children()[0]);
-}
-
-function personRead(el, type) {
-    synth.cancel();
-    
-    if (interval) {
-        interval = clearInterval(interval);
-    }
-
-    elWordsTemplate = $(el).parent().get(0);
-    if ($(elWordsTemplate).hasClass('wordsTemplate2')) {
-        $($(el).children()[2]).addClass("d-none");
-    } else {
-        $($(el).children()[4]).addClass("d-none");
-        //alert($($(el).children()[0]).text());
-    }
-
-    var textRead = $($(el).children()[0]).text();
-    textRead = processingRegexReplace(textRead, "[→|*|_|-]", "");
-    if (type > 0) {
-        textRead = processingRegexReplace(textRead, "^[^:]+: ", "");
-        personSpeak(textRead);
-    } else {
-        personSpeak(textRead);
-    }
-}
-
-function personSpeak(text) {
-    var msg = trimSpace(text);
-    var voices = synth.getVoices();
-    var speech = new SpeechSynthesisUtterance();
-    speech.lang = "en-US";
-    speech.text = msg;
-    //speech.voice = voices[0];
-    speech.volume = 1;
-    //speech.rate = 0;
-    //speech.pitch = 0;
-
-    synth.speak(speech);
-}
-
-function speak(el) {
-    //-- Old code, will be remove late.
-    synth.cancel();
-    
-    if (synth) {
-        var element = $($(el));
-        var text = "";
-
-        if (synth.speaking) {
-            synth.cancel();
-        }
-
-        if (element.children().length == 0) {
-            text = element.text();
-        } else {
-            var spanEnglish = element.find(".spanEnglish");                        
-            if (spanEnglish) {
-                text = spanEnglish.text();
-            }
-            
-            var spanVietnamese = element.find(".spanVietnamese");
-            if (spanVietnamese) {
-                spanVietnamese.addClass("d-none");
-            }
-        }
-
-        if (text) {
-            text = processingRegexReplace(text, "[â†’|*|_|-]", "");
-            text = processingRegexReplace(text, "^[^:]{0,8}: ", "");
-            text = trimSpace(text);
-
-            //console.log("person.voice.name: " + person.voice.name);
-            //var utterance = new SpeechSynthesisUtterance();
-            utterance.voice = synthVoiceSelected;
-            utterance.lang = synthLanguageSelected;
-            //utterance.pitch = pitch.value;
-            //utterance.rate = rate.value;
-            //utterance.volume = volume.value;
-            utterance.text = text;
-
-
-            if (synthVoiceSelected.localService) {
-                //synthTimeOut = setTimeout(synthTimer, 10000);
-                clearTimeout(synthTimeOut);
-                //utterance.onboundary = onBoundary;                
-            } else {
-                synthTimeOut = setTimeout(synthTimer, 10000);
-                console.log("😞 Voice don't support the pause.");
-            }
-
-            synth.speak(utterance);
-
-        }
-
-    } else {
-        console.log("Can't read!");
-    }
-
-}
-
-//===========================
 function processingRegexReplace(str, strRegexFind, strRegexReplace) {
     //console.log(str + " - " + strRegexFind + " - " + strRegexReplace);
     if (strRegexFind !== "" && isRegexValid(strRegexFind)) {
-        var regexFind = new RegExp(strRegexFind, "g");
+        let regexFind = new RegExp(strRegexFind, "g");
         str = str.replace(regexFind, strRegexReplace);
     }
     return str;
@@ -398,24 +226,24 @@ function initGuiWhiteQuizSentence() {
 }
 
 function initGuiWhiteQuizSentenceAnswer(el) {
-    var text = $(el).text();
+    let text = $(el).text();
     $(el).text("");
 
-    var arrQuiz = text.split("↔");
-    var arrQuizWord = arrQuiz[0].split("↨");
-    var quizAnswer = trimSpace(arrQuiz[1]);
+    let arrQuiz = text.split("↔");
+    let arrQuizWord = arrQuiz[0].split("↨");
+    let quizAnswer = trimSpace(arrQuiz[1]);
 
     $(el).append('<div class="border border-dark rounded bg-dark text-white p-2 m-1 w-100 font-weight-light quizAnswerChoicesShow" style="min-height: 77px;"></div>');
-    for (var i = 0; i < arrQuizWord.length; i++) {
+    for (let i = 0; i < arrQuizWord.length; i++) {
         $(el).append('<div class="border p-2 m-1 w-100 quizAnswerChoices" onclick="quizSentenceTemplate1Answer(this)">' + arrQuizWord[i].trim() + '</div>');
     }
     $(el).append('<div class="quizAnswer d-none">' + quizAnswer + '</div>');
 }
 
 function quizSentenceTemplate1Answer(el) {
-    var strAnswer = trimSpace($($($(el).parent().get(0)).children(".quizAnswer")[0]).text());
-    var elAnswerChoicesShow = $($(el).parent().get(0)).children(".quizAnswerChoicesShow")[0];
-    var strAnswerChoices = trimSpace($(elAnswerChoicesShow).text() + ' ' + $(el).text());
+    let strAnswer = trimSpace($($($(el).parent().get(0)).children(".quizAnswer")[0]).text());
+    let elAnswerChoicesShow = $($(el).parent().get(0)).children(".quizAnswerChoicesShow")[0];
+    let strAnswerChoices = trimSpace($(elAnswerChoicesShow).text() + ' ' + $(el).text());
 
     $(el).parent().children('div').each(function () {
         if ($(this).hasClass('bg-danger text-white')) {
@@ -460,13 +288,13 @@ function initGuiWhiteQuiz() {
 }
 
 function initGuiWhiteQuizAnswer(element) {
-    var elementParent = element.parent();
-    var typeAnswer = 'single';
-    var totalCorrectAnswers = 0;
-    var chooseCorrectAnswers = 0;
+    let elementParent = element.parent();
+    let typeAnswer = 'single';
+    let totalCorrectAnswers = 0;
+    let chooseCorrectAnswers = 0;
 
     elementParent.children('.answer').each(function () {
-        var answerValue = $(this).attr("answerValue");
+        let answerValue = $(this).attr("answerValue");
         totalCorrectAnswers = totalCorrectAnswers + (answerValue * 1);
     });
     //console.log(totalAnswersTrue);
@@ -484,7 +312,7 @@ function initGuiWhiteQuizAnswer(element) {
         }
     });
     //===
-    var answerValue = element.attr("answerValue");
+    let answerValue = element.attr("answerValue");
     if (answerValue == '1') {
         element.addClass('bg-primary');
     } else {
@@ -507,25 +335,158 @@ function initGuiWhiteQuizAnswer(element) {
 }
 
 //============================
-function unique(list) {
-    var result = [];
-    $.each(list, function (i, e) {
-        if ($.inArray(e, result) == -1)
-            result.push(e);
-    });
-    return result;
+//============================
+//===========================
+function loadAi() {
+    ai = new AI("Sliver");
+
+    if (ai.getStatus() === 1) {
+        let patternExcludeSpeakWords = "[â†’|*|_|-|→|/|/]";
+
+        //== LOAD VOICE ==
+        let divEnglishLine = $(".divEnglishLine");
+        divEnglishLine.removeAttr('onclick');
+
+        let divWords = $(".words");
+        divWords.removeAttr('onclick');
+
+        let divWordsContent = $(".wordsContent");
+        divWordsContent.removeAttr('onclick');
+        
+
+
+        let divPlayCircle = $(".display-4.w-100");
+        if (divPlayCircle) {
+            divPlayCircle.each(function (index) {
+                //console.log("index: " + index);
+                let script = $(this).attr("onclick");
+                //console.log(script);
+
+                if (script) {
+                    $(this).removeAttr('onclick');
+                    let text = script.replace("personSpeak('", "");
+                    text = text.replace("');", "");
+                    text = text.split("↨")[0];
+
+                    $(this).on('click', function () {
+                        text = processingRegexReplace(text, patternExcludeSpeakWords, "");
+                        text = trimSpace(text);
+                        ai.speak(text);
+                    });
+
+                }
+
+            });
+
+        }
+
+
+        divWordsContent.on('click', function () {
+            let element = $(this);
+            let text = "";
+            let textHtml = "";
+
+            if (element.children().length == 0) {
+                text = element.text();
+            } else {
+                let spanEnglish = element.find(".words-english");
+                if (spanEnglish) {
+                    text = spanEnglish.text();
+                    textHtml = spanEnglish.html();
+                    if (textHtml.startsWith("<b>") && (textHtml.lastIndexOf(":</b>") < textHtml.length)) {
+                        let spanEnglishBold = $(spanEnglish.children("b")[0]);
+                        if (spanEnglishBold.text().split(" ").length < 4) {
+                            text = text.replace(spanEnglishBold.text(), "");
+                        }
+                    }
+                }
+
+                let spanVietnamese = element.find(".words-vietnamese");
+                if (spanVietnamese) {
+                    spanVietnamese.addClass("d-none");
+                }
+            }
+
+            text = processingRegexReplace(text, patternExcludeSpeakWords, "");
+            text = trimSpace(text);
+            ai.speak(text);
+        });
+
+        divWords.on('click', function () {
+            let element = $(this);
+            let text = "";
+            let textHtml = "";
+
+            if (element.children().length == 0) {
+                text = element.text();
+            } else {
+                let spanEnglish = element.children("span:first");
+                if (spanEnglish) {
+                    text = spanEnglish.text();
+                    textHtml = spanEnglish.html();
+                    if (textHtml.startsWith("<b>") && (textHtml.lastIndexOf(":</b>") < textHtml.length)) {
+                        let spanEnglishBold = $(spanEnglish.children("b")[0]);
+                        if (spanEnglishBold.text().split(" ").length < 4) {
+                            text = text.replace(spanEnglishBold.text(), "");
+                        }
+                    }
+                }
+            }
+
+            text = processingRegexReplace(text, patternExcludeSpeakWords, "");
+            text = trimSpace(text);
+            ai.speak(text);
+
+        });
+
+        divEnglishLine.on('click', function () {
+            let element = $(this);
+            let text = "";
+            let textHtml = "";
+
+            if (element.children().length == 0) {
+                text = element.text();
+            } else {
+                let spanEnglish = element.find(".spanEnglish");
+                if (spanEnglish) {
+                    text = spanEnglish.text();
+                    textHtml = spanEnglish.html();
+                    if (textHtml.startsWith("<b>") && (textHtml.lastIndexOf(":</b>") < textHtml.length)) {
+                        let spanEnglishBold = $(spanEnglish.children("b")[0]);
+                        if (spanEnglishBold.text().split(" ").length < 4) {
+                            text = text.replace(spanEnglishBold.text(), "");
+                        }
+                    }
+                }
+
+                let spanVietnamese = element.find(".spanVietnamese");
+                if (spanVietnamese) {
+                    spanVietnamese.addClass("d-none");
+                }
+            }
+
+            text = processingRegexReplace(text, patternExcludeSpeakWords, "");
+            text = trimSpace(text);
+            ai.speak(text);
+        });
+    } else {
+        divNotification.text("Can't load AI!");
+        console.log("Can't load AI!");
+    }
+
 }
 
+function loadGui() {
+    let divWordsRepeat = $(".wordsRepeat");
+    divWordsRepeat.removeClass("d-flex");
+    divWordsRepeat.addClass("d-none");
+}
 
-//============================
 function ready() {
-    //==
-    loadSpeechSynthesis();
-    if (speechSynthesis.onvoiceschanged !== undefined) {
-        speechSynthesis.onvoiceschanged = loadSpeechSynthesis;
-    }
-    
-    //==
+    //--
+    loadAi();
+    loadGui();
+    //--
     loadEventEnglishTranslate();
     loadEventEnglishRepeat();
     loadEventEnglishShowWordByWord();
@@ -541,8 +502,8 @@ function unload() {
 }
 
 //============================
-//== PAGE LOAD EVENT ==
-$(document).ready(function () {
+//== PAGE READY EVENT ==
+$(function () {
     ready();
 });
 
@@ -551,9 +512,8 @@ $(window).on('beforeunload', function () {
 
 });
 
-//== PAGE UNLOAD EVENT ==
-$(window).on('unload', function () {
-    synth.resume();
-    synth.cancel();
-    clearTimeout(synthTimeOut);
+//== PAGE BEFORE UNLOAD ==
+$(window).on('beforeunload', function () {
+    ai.getSynth().cancel();
+    ai = null;
 });

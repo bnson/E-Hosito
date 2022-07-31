@@ -1,1 +1,735 @@
-var _0x117c46=_0x4d10;(function(_0x510881,_0x2c363f){var _0x2a4df=_0x4d10,_0x362b8c=_0x510881();while(!![]){try{var _0x2ad336=parseInt(_0x2a4df(0x1aa))/0x1*(parseInt(_0x2a4df(0x1e5))/0x2)+-parseInt(_0x2a4df(0x177))/0x3*(parseInt(_0x2a4df(0x169))/0x4)+parseInt(_0x2a4df(0x251))/0x5*(-parseInt(_0x2a4df(0x25e))/0x6)+parseInt(_0x2a4df(0x14c))/0x7+parseInt(_0x2a4df(0x1df))/0x8+parseInt(_0x2a4df(0x252))/0x9+-parseInt(_0x2a4df(0x206))/0xa*(parseInt(_0x2a4df(0x1e1))/0xb);if(_0x2ad336===_0x2c363f)break;else _0x362b8c['push'](_0x362b8c['shift']());}catch(_0x203cd3){_0x362b8c['push'](_0x362b8c['shift']());}}}(_0x37d7,0xcd7d4));const languageBcp47={'af':_0x117c46(0x208),'af_ZA':'Afrikaans\x20(South\x20Africa)','ar':_0x117c46(0x25a),'ar_AE':_0x117c46(0x15b),'ar_BH':_0x117c46(0x1f9),'ar_DZ':_0x117c46(0x200),'ar_EG':_0x117c46(0x173),'ar_IQ':'Arabic\x20(Iraq)','ar_JO':_0x117c46(0x1da),'ar_KW':_0x117c46(0x232),'ar_LB':'Arabic\x20(Lebanon)','ar_LY':_0x117c46(0x256),'ar_MA':'Arabic\x20(Morocco)','ar_OM':'Arabic\x20(Oman)','ar_QA':_0x117c46(0x15f),'ar_SA':_0x117c46(0x1d3),'ar_SY':_0x117c46(0x17f),'ar_TN':_0x117c46(0x24a),'ar_YE':_0x117c46(0x196),'az':_0x117c46(0x233),'az_AZ':_0x117c46(0x22f),'be':_0x117c46(0x14f),'be_BY':'Belarusian\x20(Belarus)','bg':'Bulgarian','bg_BG':'Bulgarian\x20(Bulgaria)','bs_BA':_0x117c46(0x20b),'ca':_0x117c46(0x212),'ca_ES':_0x117c46(0x1ea),'cs':_0x117c46(0x1fd),'cs_CZ':_0x117c46(0x1d0),'cy':_0x117c46(0x24f),'cy_GB':_0x117c46(0x1d7),'da':_0x117c46(0x1ec),'da_DK':_0x117c46(0x221),'de':'German','de_AT':_0x117c46(0x1a8),'de_CH':_0x117c46(0x152),'de_DE':_0x117c46(0x216),'de_LI':_0x117c46(0x1a0),'de_LU':_0x117c46(0x191),'dv':'Divehi','dv_MV':_0x117c46(0x1eb),'el':'Greek','el_GR':'Greek\x20(Greece)','en':_0x117c46(0x1e9),'en_AU':'English\x20(Australia)','en_BZ':_0x117c46(0x1c7),'en_CA':'English\x20(Canada)','en_CB':_0x117c46(0x20d),'en_GB':_0x117c46(0x222),'en_IE':'English\x20(Ireland)','en_JM':_0x117c46(0x1d1),'en_NZ':_0x117c46(0x1be),'en_PH':_0x117c46(0x1a3),'en_TT':_0x117c46(0x164),'en_US':_0x117c46(0x1f5),'en_ZA':'English\x20(South\x20Africa)','en_ZW':'English\x20(Zimbabwe)','eo':_0x117c46(0x186),'es':_0x117c46(0x1bd),'es_AR':_0x117c46(0x14d),'es_BO':_0x117c46(0x190),'es_CL':_0x117c46(0x1b1),'es_CO':_0x117c46(0x1ab),'es_CR':'Spanish\x20(Costa\x20Rica)','es_DO':_0x117c46(0x1b2),'es_EC':_0x117c46(0x184),'es_ES':_0x117c46(0x1bd),'es_GT':_0x117c46(0x195),'es_HN':'Spanish\x20(Honduras)','es_MX':_0x117c46(0x1c3),'es_NI':_0x117c46(0x241),'es_PA':'Spanish\x20(Panama)','es_PE':'Spanish\x20(Peru)','es_PR':'Spanish\x20(Puerto\x20Rico)','es_PY':_0x117c46(0x1ef),'es_SV':_0x117c46(0x248),'es_US':_0x117c46(0x25c),'es_UY':_0x117c46(0x226),'es_VE':_0x117c46(0x244),'et':_0x117c46(0x180),'et_EE':_0x117c46(0x1cf),'eu':_0x117c46(0x21c),'eu_ES':_0x117c46(0x1b0),'fa':_0x117c46(0x166),'fa_IR':_0x117c46(0x1a5),'fi':_0x117c46(0x1ee),'fi_FI':_0x117c46(0x174),'fo':_0x117c46(0x1cb),'fo_FO':_0x117c46(0x22b),'fr':'French','fr_BE':_0x117c46(0x254),'fr_CA':'French\x20(Canada)','fr_CH':'French\x20(Switzerland)','fr_FR':'French\x20(France)','fr_LU':_0x117c46(0x15d),'fr_MC':_0x117c46(0x1c4),'gl':_0x117c46(0x187),'gl_ES':_0x117c46(0x188),'gu':_0x117c46(0x1f2),'gu_IN':_0x117c46(0x167),'he':_0x117c46(0x225),'he_IL':_0x117c46(0x231),'hi':_0x117c46(0x16d),'hi_IN':_0x117c46(0x1f3),'hr':_0x117c46(0x235),'hr_BA':_0x117c46(0x23b),'hr_HR':_0x117c46(0x1a7),'hu':_0x117c46(0x25d),'hu_HU':_0x117c46(0x1c0),'hy':_0x117c46(0x1a1),'hy_AM':'Armenian\x20(Armenia)','id':'Indonesian','id_ID':_0x117c46(0x1e6),'is':_0x117c46(0x1c2),'is_IS':_0x117c46(0x204),'it':_0x117c46(0x202),'it_CH':'Italian\x20(Switzerland)','it_IT':'Italian\x20(Italy)','ja':_0x117c46(0x24e),'ja_JP':_0x117c46(0x1b7),'ka':'Georgian','ka_GE':'Georgian\x20(Georgia)','kk':'Kazakh','kk_KZ':'Kazakh\x20(Kazakhstan)','kn':_0x117c46(0x198),'kn_IN':_0x117c46(0x1ce),'ko':_0x117c46(0x1fc),'ko_KR':_0x117c46(0x17b),'kok':_0x117c46(0x211),'kok_IN':'Konkani\x20(India)','ky':_0x117c46(0x182),'ky_KG':_0x117c46(0x261),'lt':_0x117c46(0x246),'lt_LT':_0x117c46(0x16a),'lv':'Latvian','lv_LV':'Latvian\x20(Latvia)','mi':_0x117c46(0x16e),'mi_NZ':_0x117c46(0x21b),'mk':_0x117c46(0x25f),'mk_MK':_0x117c46(0x192),'mn':'Mongolian','mn_MN':'Mongolian\x20(Mongolia)','mr':'Marathi','mr_IN':_0x117c46(0x1d2),'ms':_0x117c46(0x247),'ms_BN':'Malay\x20(Brunei\x20Darussalam)','ms_MY':_0x117c46(0x199),'mt':_0x117c46(0x1d5),'mt_MT':'Maltese\x20(Malta)','nb':_0x117c46(0x1af),'nb_NO':_0x117c46(0x17e),'nl':_0x117c46(0x153),'nl_BE':'Dutch\x20(Belgium)','nl_NL':'Dutch\x20(Netherlands)','nn_NO':_0x117c46(0x19e),'ns':_0x117c46(0x162),'ns_ZA':_0x117c46(0x1c8),'pa':_0x117c46(0x1d4),'pa_IN':_0x117c46(0x1de),'pl':_0x117c46(0x1c6),'pl_PL':_0x117c46(0x201),'ps':_0x117c46(0x1b4),'ps_AR':_0x117c46(0x1f0),'pt':_0x117c46(0x178),'pt_BR':_0x117c46(0x160),'pt_PT':'Portuguese\x20(Portugal)','qu':_0x117c46(0x159),'qu_BO':_0x117c46(0x1ed),'qu_EC':_0x117c46(0x14e),'qu_PE':_0x117c46(0x253),'ro':_0x117c46(0x1ff),'ro_RO':_0x117c46(0x257),'ru':_0x117c46(0x220),'ru_RU':_0x117c46(0x165),'sa':_0x117c46(0x228),'sa_IN':'Sanskrit\x20(India)','se':_0x117c46(0x263),'se_FI':_0x117c46(0x24b),'se_NO':_0x117c46(0x18c),'se_SE':_0x117c46(0x1d6),'sk':'Slovak','sk_SK':'Slovak\x20(Slovakia)','sl':_0x117c46(0x158),'sl_SI':_0x117c46(0x1b5),'sq':_0x117c46(0x19f),'sq_AL':'Albanian\x20(Albania)','sr_BA':_0x117c46(0x219),'sr_SP':_0x117c46(0x181),'sv':_0x117c46(0x172),'sv_FI':_0x117c46(0x149),'sv_SE':_0x117c46(0x1fb),'sw':_0x117c46(0x1e2),'sw_KE':_0x117c46(0x1b9),'syr':_0x117c46(0x227),'syr_SY':_0x117c46(0x1db),'ta':_0x117c46(0x24c),'ta_IN':_0x117c46(0x18e),'te':_0x117c46(0x205),'te_IN':_0x117c46(0x209),'th':_0x117c46(0x1fa),'th_TH':_0x117c46(0x203),'tl':'Tagalog','tl_PH':_0x117c46(0x22e),'tn':_0x117c46(0x23a),'tn_ZA':_0x117c46(0x262),'tr':_0x117c46(0x207),'tr_TR':_0x117c46(0x238),'tt':_0x117c46(0x19d),'tt_RU':_0x117c46(0x1c5),'ts':_0x117c46(0x1f8),'uk':'Ukrainian','uk_UA':_0x117c46(0x249),'ur':_0x117c46(0x194),'ur_PK':'Urdu\x20(Islamic\x20Republic\x20of\x20Pakistan)','uz':_0x117c46(0x1ae),'uz_UZ':_0x117c46(0x157),'vi':'Vietnamese','vi_VN':_0x117c46(0x230),'xh':_0x117c46(0x1a2),'xh_ZA':_0x117c46(0x193),'zh':_0x117c46(0x1f7),'zh_CN':'Chinese\x20(PRC)','zh_HK':_0x117c46(0x1b3),'zh_MO':'Chinese\x20(Macau)','zh_SG':_0x117c46(0x150),'zh_TW':_0x117c46(0x1ad),'zu':'Zulu','zu_ZA':_0x117c46(0x1a4)},languagesSelect=$(_0x117c46(0x229)),voicesSelect=$('#voices'),panelInformation=$(_0x117c46(0x21a)),playButton=$(_0x117c46(0x19b)),pauseButton=$(_0x117c46(0x210)),stopButton=$(_0x117c46(0x18a)),taInput=$('#taInput'),messageDiv=$(_0x117c46(0x21d)),ulVoicesSupport=$(_0x117c46(0x17d)),divScreen=$(_0x117c46(0x19c));var divEnglishLine=$(_0x117c46(0x1dc));const wordEnglish=$(_0x117c46(0x17c)),displayEachWords=$(_0x117c46(0x23f)),utterance=new SpeechSynthesisUtterance();function _0x4d10(_0x17ae22,_0x31448a){var _0x37d708=_0x37d7();return _0x4d10=function(_0x4d1011,_0x2ecee7){_0x4d1011=_0x4d1011-0x149;var _0x575e0e=_0x37d708[_0x4d1011];return _0x575e0e;},_0x4d10(_0x17ae22,_0x31448a);}var synth=window[_0x117c46(0x214)],systhVoices=[],synthLanguagesUnique=[],languageSelected='',voiceSelected='',speechTimeOut,person=new Object(),punctuationPattern=/[\.,;:"[\]{\}!?<>]+/g;function setVoice(){var _0x37e943=_0x117c46;voiceSelected=voicesSelect[_0x37e943(0x25b)](_0x37e943(0x1d8))[_0x37e943(0x1d9)](),person['voice']=systhVoices['find'](_0x13c01a=>_0x13c01a['name']===voiceSelected);}function voicesSelectOnChange(){setVoice();}function speechSynthesisUtteranceEnd(_0x87932f){var _0x37c499=_0x117c46;clearTimeout(speechTimeOut),playButton[_0x37c499(0x20e)]('disabled',![]),pauseButton[_0x37c499(0x20e)](_0x37c499(0x176),!![]),stopButton[_0x37c499(0x20e)]('disabled',!![]),taInput['prop']('disabled',![]),languagesSelect[_0x37c499(0x20e)](_0x37c499(0x176),![]),voicesSelect[_0x37c499(0x20e)]('disabled',![]),messageDiv[_0x37c499(0x1e4)]('');}function speak(_0x18f30a){var _0x5baeb7=_0x117c46;clearTimeout(speechTimeOut);if(synth){if(synth[_0x5baeb7(0x260)]&&synth[_0x5baeb7(0x197)])return pauseButton[_0x5baeb7(0x20e)](_0x5baeb7(0x176),![]),synth[_0x5baeb7(0x22a)]();synth['speaking']&&synth[_0x5baeb7(0x151)](),utterance[_0x5baeb7(0x1bb)]=person['voice'],utterance['lang']=person[_0x5baeb7(0x1bb)][_0x5baeb7(0x1a6)],utterance[_0x5baeb7(0x16b)]=_0x18f30a,person[_0x5baeb7(0x1bb)][_0x5baeb7(0x24d)]?(pauseButton['prop'](_0x5baeb7(0x176),![]),utterance['onboundary']=onBoundary):(pauseButton[_0x5baeb7(0x20e)]('disabled',!![]),speechTimeOut=setTimeout(speechTimer,0x2710),messageDiv['html'](_0x5baeb7(0x170))),synth[_0x5baeb7(0x17a)](utterance);}else messageDiv['html']('Trình\x20duyệt\x20internet\x20của\x20bạn\x20khônf\x20hỗ\x20trợ\x20giọng\x20nói\x20đọc\x20văn\x20bảng.');}function speechTimer(){var _0x32a424=_0x117c46;synth?(synth[_0x32a424(0x1ac)](),synth[_0x32a424(0x22a)](),speechTimeOut=setTimeout(speechTimer,0x2710)):console[_0x32a424(0x21f)](_0x32a424(0x156));}function getWordAt(_0x298471,_0x5aa423){var _0x5acd22=_0x117c46;_0x298471=String(_0x298471),_0x5aa423=Number(_0x5aa423)>>>0x0;var _0x16d67b=_0x298471[_0x5acd22(0x23d)](0x0,_0x5aa423+0x1)[_0x5acd22(0x18d)](/\S+$/),_0x436ed4=_0x298471['slice'](_0x5aa423)[_0x5acd22(0x18d)](/\s/);return _0x436ed4<0x0?_0x298471[_0x5acd22(0x23d)](_0x16d67b):_0x298471[_0x5acd22(0x23d)](_0x16d67b,_0x436ed4+_0x5aa423);}function onBoundary(_0x19c854){var _0x5ea9d2=_0x117c46;if(_0x19c854[_0x5ea9d2(0x179)]=='word'){punctuationPattern[_0x5ea9d2(0x1c9)](_0x14bfb2)&&(synth[_0x5ea9d2(0x1ac)](),setTimeout(function(){synth['resume']();},0x7d0));var _0x14bfb2=getWordAt(_0x19c854['target'][_0x5ea9d2(0x16b)],_0x19c854[_0x5ea9d2(0x1bc)]);messageDiv[_0x5ea9d2(0x1e4)](_0x14bfb2);}}function convertToHtml(){var _0x2aebb2=_0x117c46,_0x227ab4=taInput[_0x2aebb2(0x1d9)](),_0x5d4c66=_0x227ab4[_0x2aebb2(0x250)](/[^\r\n.?!]+[\r\n.?!]+(\s)+[\])'"`’”]*|.+/g),_0x27d391,_0x25d04d=[],_0xd73630=''+_0x2aebb2(0x258)+_0x2aebb2(0x1ba)+_0x2aebb2(0x224)+'\x09\x09\x09<i\x20class=\x22fab\x20fa-buromobelexperte\x20fa-2x\x20text-secondary\x22></i>\x0a'+'\x09\x09</div>\x0a'+_0x2aebb2(0x16f)+_0x2aebb2(0x1f1)+_0x2aebb2(0x234)+_0x2aebb2(0x171)+_0x2aebb2(0x1e3)+_0x2aebb2(0x19a)+_0x2aebb2(0x1cd)+_0x2aebb2(0x1e8)+_0x2aebb2(0x19a)+_0x2aebb2(0x185),_0x3d45bc=_0x2aebb2(0x20a),_0x27f437,_0x597e52,_0x1b5fe6;if(_0x227ab4){for(index=0x0;index<_0x5d4c66[_0x2aebb2(0x161)];index++){_0x27f437='',_0x597e52=null,_0x1b5fe6=null,_0x27f437=processingSpecialCharacter(_0x5d4c66[index]);if(_0x27f437!=''){var _0x45da31=_0x27f437['split']('↨');_0x27f437=_0xd73630['replace']('§1',_0x45da31[0x0]),_0x597e52=_0x45da31[0x0][_0x2aebb2(0x250)](/\b(\w+)\b/g),_0x597e52&&(_0x1b5fe6=_0x597e52['map'](function(_0x5ae575){var _0xb32b9f=_0x2aebb2;return _0x3d45bc[_0xb32b9f(0x223)]('§1',_0x5ae575);})),Array[_0x2aebb2(0x163)](_0x1b5fe6)?_0x27f437=_0x27f437['replace']('§4',trimSpace(_0x1b5fe6[_0x2aebb2(0x245)]('\x20'))):_0x27f437=_0x27f437[_0x2aebb2(0x223)]('§4',_0x3d45bc[_0x2aebb2(0x223)]('§1',_0x45da31[0x0])),_0x45da31[_0x2aebb2(0x161)]>0x1&&(_0x27f437=_0x27f437[_0x2aebb2(0x223)]('§2',_0x45da31[0x1])),_0x45da31[_0x2aebb2(0x161)]>0x2&&(_0x27f437=_0x27f437[_0x2aebb2(0x223)]('§3',_0x45da31[0x1]),_0x27f437=_0x27f437[_0x2aebb2(0x223)](_0x2aebb2(0x236),_0x2aebb2(0x155))),_0x25d04d['push'](_0x27f437);}}_0x27d391=_0x25d04d[_0x2aebb2(0x245)]('\x0a'),divScreen['html'](_0x27d391);}else divScreen[_0x2aebb2(0x1e4)]('');}function htmlEntities(_0x3e2e5f){var _0x535cd7=_0x117c46;return String(_0x3e2e5f)[_0x535cd7(0x223)](/&/g,'&amp;')[_0x535cd7(0x223)](/</g,'&lt;')[_0x535cd7(0x223)](/>/g,_0x535cd7(0x22d))[_0x535cd7(0x223)](/"/g,_0x535cd7(0x15e));}function wordCount(_0x67b780){var _0x5cb495=_0x117c46;return _0x67b780[_0x5cb495(0x16c)]('\x20')[_0x5cb495(0x161)];}function arrayRemoveEmpty(_0x22c226){var _0x699202=_0x117c46;return _0x22c226=_0x22c226[_0x699202(0x18f)](function(_0x196ce4){return/\S/['test'](_0x196ce4);}),_0x22c226;}function trimSpace(_0x108982){var _0x5c538d=_0x117c46;return _0x108982[_0x5c538d(0x15a)]()[_0x5c538d(0x223)](/\s+/g,'\x20');}function processingSpecialCharacter(_0x3d779e){var _0x35ee06=_0x117c46;return _0x3d779e=trimSpace(_0x3d779e),_0x3d779e=_0x3d779e[_0x35ee06(0x223)](/'/gi,'’'),_0x3d779e=trimSpace(_0x3d779e),_0x3d779e;}function processingSpecialCharacterHtml(_0x4454a7,_0x198a2a){var _0xfdff73=_0x117c46,_0x4c742f=trimSpace(_0x4454a7),_0x2cd6a9=trimSpace(_0x4454a7)['replace'](_0x198a2a,'');return _0x4c742f=_0x4c742f[_0xfdff73(0x223)](_0x2cd6a9,''),_0x2cd6a9=_0x2cd6a9[_0xfdff73(0x223)](/'/gi,'’'),_0x2cd6a9=_0x2cd6a9['replace'](/</gi,_0xfdff73(0x183)),_0x2cd6a9=_0x2cd6a9[_0xfdff73(0x223)](/>/gi,'&gt;'),_0x2cd6a9=trimSpace(_0x2cd6a9),_0x4c742f=_0x4c742f+_0x2cd6a9,_0x4c742f;}function processingRegexReplace(_0xb774c0,_0x325545,_0x225539){var _0x2ce2c7=_0x117c46;if(_0x325545!=''&&isRegexValid(_0x325545)){var _0x1cd910=new RegExp(_0x325545,'g');_0x225539=_0x225539[_0x2ce2c7(0x223)](_0x225539,'\x0a'),_0xb774c0=_0xb774c0[_0x2ce2c7(0x223)](_0x1cd910,_0x225539);}return _0xb774c0;}function processingRegexRemove(_0x32a4e1,_0x29f6fa){var _0x45cbc5=_0x117c46;if(isRegexValid(_0x29f6fa)){var _0x1d74fc=new RegExp(_0x29f6fa,'g');_0x32a4e1=_0x32a4e1[_0x45cbc5(0x223)](_0x1d74fc,'');}return _0x32a4e1;}function _0x37d7(){var _0x59931a=['Bosnian\x20(Bosnia\x20and\x20Herzegovina)','d-none','English\x20(Caribbean)','prop','onvoiceschanged','#pauseButton','Konkani','Catalan','\x20(offline)','speechSynthesis','Microsoft\x20Zira\x20-\x20English\x20(United\x20States)','German\x20(Germany)','addClass','input','Serbian\x20(Bosnia\x20and\x20Herzegovina)','#panelInformation','Maori\x20(New\x20Zealand)','Basque','#messageDiv','append','log','Russian','Danish\x20(Denmark)','English\x20(United\x20Kingdom)','replace','\x09\x09<div\x20onclick=\x22displayEachWordsAction(this)\x22\x20class=\x22displayEachWords\x20col-auto\x20border\x20p-2\x20m-1\x20d-flex\x20align-items-center\x20justify-content-center\x22>\x0a','Hebrew','Spanish\x20(Uruguay)','Syriac','Sanskrit','#languages','resume','Faroese\x20(Faroe\x20Islands)','English\x20United\x20States\x20(en_us)','&gt;','Tagalog\x20(Philippines)','Azeri\x20(Azerbaijan)','Vietnamese\x20(Viet\x20Nam)','Hebrew\x20(Israel)','Arabic\x20(Kuwait)','Azeri\x20(Latin)','\x09\x09\x09<span\x20class=\x22pronounce\x20d-none\x20font-weight-light\x20font-italic\x20w-100\x22>§2</span>\x0a','Croatian','pronounce\x20d-none','inArray','Turkish\x20(Turkey)','hasClass','Tswana','Croatian\x20(Bosnia\x20and\x20Herzegovina)','parent','slice','English\x20United\x20Kingdom\x20(en_GB)','.displayEachWords','each','Spanish\x20(Nicaragua)','empty','push','Spanish\x20(Venezuela)','join','Lithuanian','Malay','Spanish\x20(El\x20Salvador)','Ukrainian\x20(Ukraine)','Arabic\x20(Tunisia)','Sami\x20(Finland)','Tamil','localService','Japanese','Welsh','match','365100jXiBSy','11156283BSjues','Quechua\x20(Peru)','French\x20(Belgium)','addEventListener','Arabic\x20(Libya)','Romanian\x20(Romania)','<div\x20class=\x22englishRowTemplateVersion1\x20col-12\x22>\x0a','click','Arabic','find','Spanish\x20(United\x20States)','Hungarian','12JPmQei','FYRO\x20Macedonian','paused','Kyrgyz\x20(Kyrgyzstan)','Tswana\x20(South\x20Africa)','Sami\x20(Northern)','Swedish\x20(Finland)','toLowerCase','Trình\x20duyệt\x20internet\x20của\x20bạn\x20khônf\x20hỗ\x20trợ\x20giọng\x20nói\x20đọc\x20văn\x20bảng.','2432717YZEMmm','Spanish\x20(Argentina)','Quechua\x20(Ecuador)','Belarusian','Chinese\x20(Singapore)','cancel','German\x20(Switzerland)','Dutch','en-US','pronounce','synth\x20undefined!','Uzbek\x20(Uzbekistan)','Slovenian','Quechua','trim','Arabic\x20(U.A.E.)','option:first-child','French\x20(Luxembourg)','&quot;','Arabic\x20(Qatar)','Portuguese\x20(Brazil)','length','Northern\x20Sotho','isArray','English\x20(Trinidad\x20and\x20Tobago)','Russian\x20(Russia)','Farsi','Gujarati\x20(India)','appendTo','28ykavcV','Lithuanian\x20(Lithuania)','text','split','Hindi','Maori','\x09\x09<div\x20class=\x22col\x20divEnglishLine\x20border\x20p-2\x20m-1\x20d-flex\x20align-items-center\x20button-style-1\x22>\x0a','😞\x20Giọng\x20nói\x20này\x20không\x20hỗ\x20trợ\x20tạm\x20dừng\x20(pause).','\x09\x09\x09<span\x20class=\x22vietnamese\x20d-none\x20font-weight-bold\x20text-primary\x20w-100\x22>§3</span>\x0a','Swedish','Arabic\x20(Egypt)','Finnish\x20(Finland)','englishWords\x20d-none','disabled','305961qPQAGI','Portuguese','name','speak','Korean\x20(Korea)','.wordEnglish','#ulVoicesSupport','Norwegian\x20(Bokm?l)\x20(Norway)','Arabic\x20(Syria)','Estonian','Serbian\x20(Serbia\x20and\x20Montenegro)','Kyrgyz','&lt;','Spanish\x20(Ecuador)','</div>','Esperanto','Galician','Galician\x20(Spain)','<option/>','#stopButton','attr','Sami\x20(Norway)','search','Tamil\x20(India)','filter','Spanish\x20(Bolivia)','German\x20(Luxembourg)','FYRO\x20Macedonian\x20(Former\x20Yugoslav\x20Republic\x20of\x20Macedonia)','Xhosa\x20(South\x20Africa)','Urdu','Spanish\x20(Guatemala)','Arabic\x20(Yemen)','speaking','Kannada','Malay\x20(Malaysia)','\x09</div>\x0a','#playButton','#divScreen','Tatar','Norwegian\x20(Nynorsk)\x20(Norway)','Albanian','German\x20(Liechtenstein)','Armenian','Xhosa','English\x20(Republic\x20of\x20the\x20Philippines)','Zulu\x20(South\x20Africa)','Farsi\x20(Iran)','lang','Croatian\x20(Croatia)','German\x20(Austria)','forEach','1244907ZLMlmH','Spanish\x20(Colombia)','pause','Chinese\x20(Taiwan)','Uzbek\x20(Latin)','Norwegian\x20(Bokm?l)','Basque\x20(Spain)','Spanish\x20(Chile)','Spanish\x20(Dominican\x20Republic)','Chinese\x20(Hong\x20Kong)','Pashto','Slovenian\x20(Slovenia)','change','Japanese\x20(Japan)','end','Swahili\x20(Kenya)','\x09<div\x20class=\x22row\x22>\x0a','voice','charIndex','Spanish','English\x20(New\x20Zealand)','option[value=\x22','Hungarian\x20(Hungary)','Microsoft\x20David\x20-\x20English\x20(United\x20States)','Icelandic','Spanish\x20(Mexico)','French\x20(Principality\x20of\x20Monaco)','Tatar\x20(Russia)','Polish','English\x20(Belize)','Northern\x20Sotho\x20(South\x20Africa)','test','.divEnglishWord','Faroese','next','\x09<div\x20class=\x22row\x20englishWords\x20d-none\x22>\x0a','Kannada\x20(India)','Estonian\x20(Estonia)','Czech\x20(Czech\x20Republic)','English\x20(Jamaica)','Marathi\x20(India)','Arabic\x20(Saudi\x20Arabia)','Punjabi','Maltese','Sami\x20(Sweden)','Welsh\x20(United\x20Kingdom)',':selected','val','Arabic\x20(Jordan)','Syriac\x20(Syria)','.divEnglishLine','\x20-\x20','Punjabi\x20(India)','6126608kYLfEQ','beforeunload','20858398wcxFvK','Swahili','\x09\x09</div>\x0a','html','2hhFqfZ','Indonesian\x20(Indonesia)','removeClass','\x09\x09§4\x0a','English','Catalan\x20(Spain)','Divehi\x20(Maldives)','Danish','Quechua\x20(Bolivia)','Finnish','Spanish\x20(Paraguay)','Pashto\x20(Afghanistan)','\x09\x09\x09<span\x20class=\x22english\x22>§1</span>\x0a','Gujarati','Hindi\x20(India)','sort','English\x20(United\x20States)','get','Chinese','Tsonga','Arabic\x20(Bahrain)','Thai','Swedish\x20(Sweden)','Korean','Czech','font-weight-bold','Romanian','Arabic\x20(Algeria)','Polish\x20(Poland)','Italian','Thai\x20(Thailand)','Icelandic\x20(Iceland)','Telugu','10TvJvzA','Turkish','Afrikaans','Telugu\x20(India)','<div\x20class=\x22divEnglishWord\x20col-auto\x20border\x20rounded\x20text-secondary\x20pt-2\x20pb-2\x20pl-3\x20pr-3\x20m-1\x20button-style-1\x22>§1</div>'];_0x37d7=function(){return _0x59931a;};return _0x37d7();}function isRegexValid(_0x4a07c5){try{return new RegExp(_0x4a07c5),!![];}catch(_0xf85921){return![];}}function unique(_0x43df80){var _0x4f18a4=_0x117c46,_0x13ff51=[];return $[_0x4f18a4(0x240)](_0x43df80,function(_0x367dd1,_0x5340d0){var _0x3af1e8=_0x4f18a4;if($[_0x3af1e8(0x237)](_0x5340d0,_0x13ff51)==-0x1)_0x13ff51[_0x3af1e8(0x243)](_0x5340d0);}),_0x13ff51;}function displayEachWordsAction(_0x47fd14){var _0x2ebe3e=_0x117c46,_0x2450af=$($(_0x47fd14)[_0x2ebe3e(0x23c)]()[_0x2ebe3e(0x1f6)](0x0)),_0x2fbdc4=$(_0x2450af[_0x2ebe3e(0x1cc)]()[0x0]);_0x2fbdc4[_0x2ebe3e(0x239)](_0x2ebe3e(0x175))?(_0x2fbdc4[_0x2ebe3e(0x1e7)](_0x2ebe3e(0x20c)),$(_0x47fd14)['addClass'](_0x2ebe3e(0x1fe))):(_0x2fbdc4[_0x2ebe3e(0x217)]('d-none'),$(_0x47fd14)[_0x2ebe3e(0x1e7)](_0x2ebe3e(0x1fe)));}function setLanguageDefault(){var _0x628e94=_0x117c46,_0x32c44f=[_0x628e94(0x154),'en_US','en-GB','en_GB'];languagesSelect['val'](languagesSelect[_0x628e94(0x25b)](_0x628e94(0x15c))[_0x628e94(0x1d9)]());for(var _0x464249=0x0;_0x464249<_0x32c44f[_0x628e94(0x161)];_0x464249++){var _0x3c6153='option[value=\x22'+_0x32c44f[_0x464249]+'\x22]';if(languagesSelect[_0x628e94(0x25b)](_0x3c6153)[_0x628e94(0x161)]!==0x0){languagesSelect[_0x628e94(0x1d9)](_0x32c44f[_0x464249]);break;}}}function setVoiceDefault(){var _0x1d858c=_0x117c46,_0x53a866=[_0x1d858c(0x215),_0x1d858c(0x1c1),'Microsoft\x20Mark\x20-\x20English\x20(United\x20States)',_0x1d858c(0x22c),_0x1d858c(0x23e)];voicesSelect[_0x1d858c(0x1d9)](voicesSelect[_0x1d858c(0x25b)]('option:first-child')['val']());for(var _0x2eff62=0x0;_0x2eff62<_0x53a866[_0x1d858c(0x161)];_0x2eff62++){var _0x19037a=_0x1d858c(0x1bf)+_0x53a866[_0x2eff62]+'\x22]';if(voicesSelect[_0x1d858c(0x25b)](_0x19037a)[_0x1d858c(0x161)]!==0x0){voicesSelect[_0x1d858c(0x1d9)](_0x53a866[_0x2eff62]);break;}}}function playButtonAction(){var _0x4e2e3c=_0x117c46,_0x2692f3=taInput[_0x4e2e3c(0x1d9)]();_0x2692f3=processingSpecialCharacter(_0x2692f3),taInput[_0x4e2e3c(0x20e)](_0x4e2e3c(0x176),!![]),languagesSelect[_0x4e2e3c(0x20e)]('disabled',!![]),voicesSelect['prop'](_0x4e2e3c(0x176),!![]),speak(_0x2692f3),playButton[_0x4e2e3c(0x20e)](_0x4e2e3c(0x176),!![]),stopButton[_0x4e2e3c(0x20e)](_0x4e2e3c(0x176),![]);}function pauseButtonAction(){var _0x296df3=_0x117c46;synth[_0x296df3(0x197)]&&(synth['pause'](),clearTimeout(speechTimeOut)),playButton[_0x296df3(0x20e)](_0x296df3(0x176),![]),pauseButton['prop']('disabled',!![]),stopButton[_0x296df3(0x20e)](_0x296df3(0x176),![]);}function stopButtonAction(){var _0x415b63=_0x117c46;synth[_0x415b63(0x22a)](),synth[_0x415b63(0x151)](),clearTimeout(speechTimeOut),playButton[_0x415b63(0x20e)]('disabled',![]),pauseButton[_0x415b63(0x20e)]('disabled',!![]),stopButton[_0x415b63(0x20e)]('disabled',!![]),taInput[_0x415b63(0x20e)](_0x415b63(0x176),![]),languagesSelect[_0x415b63(0x20e)](_0x415b63(0x176),![]),voicesSelect[_0x415b63(0x20e)](_0x415b63(0x176),![]);}function addDivEnglishLineAction(){var _0x6f25cc=_0x117c46;divScreen['on'](_0x6f25cc(0x259),_0x6f25cc(0x1dc),function(){var _0x30d762=_0x6f25cc,_0xd5ef13=$(this)[_0x30d762(0x25b)]('.english'),_0x3877a5=_0xd5ef13[_0x30d762(0x16b)]();speak(_0x3877a5);});}function addDivEnglishWordAction(){var _0x3ac1f7=_0x117c46;divScreen['on'](_0x3ac1f7(0x259),_0x3ac1f7(0x1ca),function(){var _0x5013ea=$(this)['text']();speak(_0x5013ea);});}function languagesSelectOnChange(){var _0x52847a=_0x117c46;languageSelected=languagesSelect['find'](_0x52847a(0x1d8))[_0x52847a(0x1d9)]()[_0x52847a(0x14a)](),voicesSelect['empty']();for(var _0x29497b=0x0;_0x29497b<systhVoices[_0x52847a(0x161)];_0x29497b++){if(systhVoices[_0x29497b]['lang'][_0x52847a(0x14a)]()['startsWith'](languageSelected)){var _0x2051b5=$('<option/>'),_0x5795f7=systhVoices[_0x29497b][_0x52847a(0x179)]+'\x20('+systhVoices[_0x29497b][_0x52847a(0x1a6)]+')',_0x4ef6f0=systhVoices[_0x29497b]['name'];_0x2051b5[_0x52847a(0x18b)]({'value':_0x4ef6f0})[_0x52847a(0x16b)](_0x5795f7),voicesSelect[_0x52847a(0x21e)](_0x2051b5);}}setVoiceDefault(),setVoice();}function load(){var _0x221d85=_0x117c46;synth['cancel'],systhVoices=synth['getVoices'](),playButton[_0x221d85(0x20e)]('disabled',![]),pauseButton['prop'](_0x221d85(0x176),!![]),stopButton[_0x221d85(0x20e)](_0x221d85(0x176),!![]);if(systhVoices){messageDiv[_0x221d85(0x1e4)](''),languagesSelect[_0x221d85(0x242)](),voicesSelect['empty'](),systhVoices[_0x221d85(0x1f4)](function(_0xa73bfa,_0x28ea7e){var _0x526ae1=_0x221d85;if(_0xa73bfa['lang']<_0x28ea7e[_0x526ae1(0x1a6)])return-0x1;if(_0xa73bfa[_0x526ae1(0x1a6)]>_0x28ea7e[_0x526ae1(0x1a6)])return 0x1;if(_0xa73bfa['name']<_0x28ea7e[_0x526ae1(0x179)])return-0x1;if(_0xa73bfa[_0x526ae1(0x179)]>_0x28ea7e[_0x526ae1(0x179)])return 0x1;return 0x0;});for(var _0x49e38b=0x0;_0x49e38b<systhVoices['length'];_0x49e38b++){synthLanguagesUnique[_0x221d85(0x243)](systhVoices[_0x49e38b][_0x221d85(0x1a6)]);var _0x4d3ea5=$('<li/>');systhVoices[_0x49e38b]['localService']?_0x4d3ea5['text'](systhVoices[_0x49e38b][_0x221d85(0x1a6)]+_0x221d85(0x1dd)+systhVoices[_0x49e38b][_0x221d85(0x179)]+_0x221d85(0x213)):_0x4d3ea5[_0x221d85(0x16b)](systhVoices[_0x49e38b][_0x221d85(0x1a6)]+_0x221d85(0x1dd)+systhVoices[_0x49e38b]['name']+'\x20(online)');_0x4d3ea5[_0x221d85(0x168)](ulVoicesSupport);var _0x45a7e5=systhVoices[_0x49e38b][_0x221d85(0x1a6)]['replace']('-','_'),_0x445fdb=languageBcp47[_0x45a7e5];!_0x445fdb&&(languageBcp47[_0x45a7e5]=systhVoices[_0x49e38b][_0x221d85(0x179)]+'\x20('+systhVoices[_0x49e38b][_0x221d85(0x1a6)]+')');}synthLanguagesUnique=unique(synthLanguagesUnique),synthLanguagesUnique[_0x221d85(0x1a9)](_0x1acea4=>{var _0x18c21d=_0x221d85,_0x27d8db=$(_0x18c21d(0x189)),_0x14c34b=languageBcp47[_0x1acea4['replace']('-','_')];_0x14c34b?_0x27d8db[_0x18c21d(0x18b)]({'value':_0x1acea4})[_0x18c21d(0x16b)](_0x14c34b):_0x27d8db[_0x18c21d(0x18b)]({'value':_0x1acea4})[_0x18c21d(0x16b)](_0x1acea4),languagesSelect[_0x18c21d(0x21e)](_0x27d8db);}),setLanguageDefault(),languageSelected=languagesSelect[_0x221d85(0x25b)](_0x221d85(0x1d8))[_0x221d85(0x1d9)]();for(var _0x49e38b=0x0;_0x49e38b<systhVoices['length'];_0x49e38b++){if(systhVoices[_0x49e38b][_0x221d85(0x1a6)]==languageSelected){var _0x1ba947=$(_0x221d85(0x189)),_0x2c0012=systhVoices[_0x49e38b][_0x221d85(0x179)]+'\x20('+systhVoices[_0x49e38b][_0x221d85(0x1a6)]+')',_0x5e2304=systhVoices[_0x49e38b][_0x221d85(0x179)];_0x1ba947['attr']({'value':_0x5e2304})['text'](_0x2c0012),voicesSelect[_0x221d85(0x21e)](_0x1ba947);}}setVoiceDefault(),addDivEnglishLineAction(),addDivEnglishWordAction(),languagesSelect['on'](_0x221d85(0x1b6),languagesSelectOnChange),voicesSelect['on']('change',voicesSelectOnChange),playButton['on'](_0x221d85(0x259),playButtonAction),pauseButton['on']('click',pauseButtonAction),stopButton['on']('click',stopButtonAction),taInput['on'](_0x221d85(0x218),convertToHtml),utterance[_0x221d85(0x255)](_0x221d85(0x1b8),function(_0x111c98){speechSynthesisUtteranceEnd(_0x111c98);}),setVoice();}else messageDiv[_0x221d85(0x1e4)](_0x221d85(0x14b));}$(function(){var _0x266602=_0x117c46;load(),speechSynthesis[_0x266602(0x20f)]!==undefined&&(speechSynthesis[_0x266602(0x20f)]=load);}),$(window)['on'](_0x117c46(0x1e0),function(){var _0x211f86=_0x117c46;synth[_0x211f86(0x151)](),clearTimeout(speechTimeOut);});
+/* 
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Other/javascript.js to edit this template
+ * Reference
+ * + https://codepen.io/pmk/pen/mKxjzz?editors=1010 
+ * + https://codepen.io/iPawan/pen/rNOXbZa
+ */
+
+const languageBcp47 = {
+    af: 'Afrikaans',
+    af_ZA: 'Afrikaans (South Africa)',
+    ar: 'Arabic',
+    ar_AE: 'Arabic (U.A.E.)',
+    ar_BH: 'Arabic (Bahrain)',
+    ar_DZ: 'Arabic (Algeria)',
+    ar_EG: 'Arabic (Egypt)',
+    ar_IQ: 'Arabic (Iraq)',
+    ar_JO: 'Arabic (Jordan)',
+    ar_KW: 'Arabic (Kuwait)',
+    ar_LB: 'Arabic (Lebanon)',
+    ar_LY: 'Arabic (Libya)',
+    ar_MA: 'Arabic (Morocco)',
+    ar_OM: 'Arabic (Oman)',
+    ar_QA: 'Arabic (Qatar)',
+    ar_SA: 'Arabic (Saudi Arabia)',
+    ar_SY: 'Arabic (Syria)',
+    ar_TN: 'Arabic (Tunisia)',
+    ar_YE: 'Arabic (Yemen)',
+    az: 'Azeri (Latin)',
+    az_AZ: 'Azeri (Azerbaijan)',
+    be: 'Belarusian',
+    be_BY: 'Belarusian (Belarus)',
+    bg: 'Bulgarian',
+    bg_BG: 'Bulgarian (Bulgaria)',
+    bs_BA: 'Bosnian (Bosnia and Herzegovina)',
+    ca: 'Catalan',
+    ca_ES: 'Catalan (Spain)',
+    cs: 'Czech',
+    cs_CZ: 'Czech (Czech Republic)',
+    cy: 'Welsh',
+    cy_GB: 'Welsh (United Kingdom)',
+    da: 'Danish',
+    da_DK: 'Danish (Denmark)',
+    de: 'German',
+    de_AT: 'German (Austria)',
+    de_CH: 'German (Switzerland)',
+    de_DE: 'German (Germany)',
+    de_LI: 'German (Liechtenstein)',
+    de_LU: 'German (Luxembourg)',
+    dv: 'Divehi',
+    dv_MV: 'Divehi (Maldives)',
+    el: 'Greek',
+    el_GR: 'Greek (Greece)',
+    en: 'English',
+    en_AU: 'English (Australia)',
+    en_BZ: 'English (Belize)',
+    en_CA: 'English (Canada)',
+    en_CB: 'English (Caribbean)',
+    en_GB: 'English (United Kingdom)',
+    en_IE: 'English (Ireland)',
+    en_JM: 'English (Jamaica)',
+    en_NZ: 'English (New Zealand)',
+    en_PH: 'English (Republic of the Philippines)',
+    en_TT: 'English (Trinidad and Tobago)',
+    en_US: 'English (United States)',
+    en_ZA: 'English (South Africa)',
+    en_ZW: 'English (Zimbabwe)',
+    eo: 'Esperanto',
+    es: 'Spanish',
+    es_AR: 'Spanish (Argentina)',
+    es_BO: 'Spanish (Bolivia)',
+    es_CL: 'Spanish (Chile)',
+    es_CO: 'Spanish (Colombia)',
+    es_CR: 'Spanish (Costa Rica)',
+    es_DO: 'Spanish (Dominican Republic)',
+    es_EC: 'Spanish (Ecuador)',
+    es_ES: 'Spanish',
+    es_GT: 'Spanish (Guatemala)',
+    es_HN: 'Spanish (Honduras)',
+    es_MX: 'Spanish (Mexico)',
+    es_NI: 'Spanish (Nicaragua)',
+    es_PA: 'Spanish (Panama)',
+    es_PE: 'Spanish (Peru)',
+    es_PR: 'Spanish (Puerto Rico)',
+    es_PY: 'Spanish (Paraguay)',
+    es_SV: 'Spanish (El Salvador)',
+    es_US: 'Spanish (United States)',
+    es_UY: 'Spanish (Uruguay)',
+    es_VE: 'Spanish (Venezuela)',
+    et: 'Estonian',
+    et_EE: 'Estonian (Estonia)',
+    eu: 'Basque',
+    eu_ES: 'Basque (Spain)',
+    fa: 'Farsi',
+    fa_IR: 'Farsi (Iran)',
+    fi: 'Finnish',
+    fi_FI: 'Finnish (Finland)',
+    fo: 'Faroese',
+    fo_FO: 'Faroese (Faroe Islands)',
+    fr: 'French',
+    fr_BE: 'French (Belgium)',
+    fr_CA: 'French (Canada)',
+    fr_CH: 'French (Switzerland)',
+    fr_FR: 'French (France)',
+    fr_LU: 'French (Luxembourg)',
+    fr_MC: 'French (Principality of Monaco)',
+    gl: 'Galician',
+    gl_ES: 'Galician (Spain)',
+    gu: 'Gujarati',
+    gu_IN: 'Gujarati (India)',
+    he: 'Hebrew',
+    he_IL: 'Hebrew (Israel)',
+    hi: 'Hindi',
+    hi_IN: 'Hindi (India)',
+    hr: 'Croatian',
+    hr_BA: 'Croatian (Bosnia and Herzegovina)',
+    hr_HR: 'Croatian (Croatia)',
+    hu: 'Hungarian',
+    hu_HU: 'Hungarian (Hungary)',
+    hy: 'Armenian',
+    hy_AM: 'Armenian (Armenia)',
+    id: 'Indonesian',
+    id_ID: 'Indonesian (Indonesia)',
+    is: 'Icelandic',
+    is_IS: 'Icelandic (Iceland)',
+    it: 'Italian',
+    it_CH: 'Italian (Switzerland)',
+    it_IT: 'Italian (Italy)',
+    ja: 'Japanese',
+    ja_JP: 'Japanese (Japan)',
+    ka: 'Georgian',
+    ka_GE: 'Georgian (Georgia)',
+    kk: 'Kazakh',
+    kk_KZ: 'Kazakh (Kazakhstan)',
+    kn: 'Kannada',
+    kn_IN: 'Kannada (India)',
+    ko: 'Korean',
+    ko_KR: 'Korean (Korea)',
+    kok: 'Konkani',
+    kok_IN: 'Konkani (India)',
+    ky: 'Kyrgyz',
+    ky_KG: 'Kyrgyz (Kyrgyzstan)',
+    lt: 'Lithuanian',
+    lt_LT: 'Lithuanian (Lithuania)',
+    lv: 'Latvian',
+    lv_LV: 'Latvian (Latvia)',
+    mi: 'Maori',
+    mi_NZ: 'Maori (New Zealand)',
+    mk: 'FYRO Macedonian',
+    mk_MK: 'FYRO Macedonian (Former Yugoslav Republic of Macedonia)',
+    mn: 'Mongolian',
+    mn_MN: 'Mongolian (Mongolia)',
+    mr: 'Marathi',
+    mr_IN: 'Marathi (India)',
+    ms: 'Malay',
+    ms_BN: 'Malay (Brunei Darussalam)',
+    ms_MY: 'Malay (Malaysia)',
+    mt: 'Maltese',
+    mt_MT: 'Maltese (Malta)',
+    nb: 'Norwegian (Bokm?l)',
+    nb_NO: 'Norwegian (Bokm?l) (Norway)',
+    nl: 'Dutch',
+    nl_BE: 'Dutch (Belgium)',
+    nl_NL: 'Dutch (Netherlands)',
+    nn_NO: 'Norwegian (Nynorsk) (Norway)',
+    ns: 'Northern Sotho',
+    ns_ZA: 'Northern Sotho (South Africa)',
+    pa: 'Punjabi',
+    pa_IN: 'Punjabi (India)',
+    pl: 'Polish',
+    pl_PL: 'Polish (Poland)',
+    ps: 'Pashto',
+    ps_AR: 'Pashto (Afghanistan)',
+    pt: 'Portuguese',
+    pt_BR: 'Portuguese (Brazil)',
+    pt_PT: 'Portuguese (Portugal)',
+    qu: 'Quechua',
+    qu_BO: 'Quechua (Bolivia)',
+    qu_EC: 'Quechua (Ecuador)',
+    qu_PE: 'Quechua (Peru)',
+    ro: 'Romanian',
+    ro_RO: 'Romanian (Romania)',
+    ru: 'Russian',
+    ru_RU: 'Russian (Russia)',
+    sa: 'Sanskrit',
+    sa_IN: 'Sanskrit (India)',
+    se: 'Sami (Northern)',
+    se_FI: 'Sami (Finland)',
+    se_NO: 'Sami (Norway)',
+    se_SE: 'Sami (Sweden)',
+    sk: 'Slovak',
+    sk_SK: 'Slovak (Slovakia)',
+    sl: 'Slovenian',
+    sl_SI: 'Slovenian (Slovenia)',
+    sq: 'Albanian',
+    sq_AL: 'Albanian (Albania)',
+    sr_BA: 'Serbian (Bosnia and Herzegovina)',
+    sr_SP: 'Serbian (Serbia and Montenegro)',
+    sv: 'Swedish',
+    sv_FI: 'Swedish (Finland)',
+    sv_SE: 'Swedish (Sweden)',
+    sw: 'Swahili',
+    sw_KE: 'Swahili (Kenya)',
+    syr: 'Syriac',
+    syr_SY: 'Syriac (Syria)',
+    ta: 'Tamil',
+    ta_IN: 'Tamil (India)',
+    te: 'Telugu',
+    te_IN: 'Telugu (India)',
+    th: 'Thai',
+    th_TH: 'Thai (Thailand)',
+    tl: 'Tagalog',
+    tl_PH: 'Tagalog (Philippines)',
+    tn: 'Tswana',
+    tn_ZA: 'Tswana (South Africa)',
+    tr: 'Turkish',
+    tr_TR: 'Turkish (Turkey)',
+    tt: 'Tatar',
+    tt_RU: 'Tatar (Russia)',
+    ts: 'Tsonga',
+    uk: 'Ukrainian',
+    uk_UA: 'Ukrainian (Ukraine)',
+    ur: 'Urdu',
+    ur_PK: 'Urdu (Islamic Republic of Pakistan)',
+    uz: 'Uzbek (Latin)',
+    uz_UZ: 'Uzbek (Uzbekistan)',
+    vi: 'Vietnamese',
+    vi_VN: 'Vietnamese (Viet Nam)',
+    xh: 'Xhosa',
+    xh_ZA: 'Xhosa (South Africa)',
+    zh: 'Chinese',
+    zh_CN: 'Chinese (PRC)',
+    zh_HK: 'Chinese (Hong Kong)',
+    zh_MO: 'Chinese (Macau)',
+    zh_SG: 'Chinese (Singapore)',
+    zh_TW: 'Chinese (Taiwan)',
+    zu: 'Zulu',
+    zu_ZA: 'Zulu (South Africa)'
+};
+
+//====
+window.speechSynthesis;
+const punctuationPattern = /[\.,;:"[\]{\}!?<>]+/g;
+
+//====
+let ai = new AI("Sliver");
+let synthLanguagesUnique = [];
+let languageSelected = "";
+let voiceSelected = "";
+
+//== HTML TAG ==
+const selectLanguages = $("#selectLanguages");
+const selectVoices = $("#selectVoices");
+const panelInformation = $("#panelInformation");
+const playButton = $("#playButton");
+const pauseButton = $("#pauseButton");
+const stopButton = $("#stopButton");
+const taInput = $("#taInput");
+const divMessage = $("#divMessage");
+const ulVoicesSupport = $("#ulVoicesSupport");
+const divScreen = $("#divScreen");
+let divEnglishLine = $(".divEnglishLine");
+let wordEnglish = $(".wordEnglish");
+let displayEachWords = $(".displayEachWords");
+
+//== VOICE FUNCTION ==
+function setVoice() {
+    ai.setVoice(selectVoices.find(":selected").val());
+}
+
+function voicesSelectOnChange() {
+    //console.log("voicesSelectOnChange");
+    setVoice();
+}
+
+function speechSynthesisUtteranceOnEnd(event) {
+    playButton.prop('disabled', false);
+    pauseButton.prop('disabled', true);
+    stopButton.prop('disabled', true);
+
+    taInput.prop('disabled', false);
+    selectLanguages.prop('disabled', false);
+    selectVoices.prop('disabled', false);
+    divScreen.children().show();
+
+    divMessage.html("");
+    
+    //console.log("speechSynthesisUtteranceEnd()");
+    //console.log('Utterance has finished being spoken after ' + event.elapsedTime + ' seconds.');
+    
+}
+
+// Get word at specific position. Used for extracting the word currently spoken
+// Source: https://stackoverflow.com/questions/5173316/finding-the-word-at-a-position-in-javascript
+function getWordAt(str, pos) {
+    // Perform type conversions.
+    str = String(str);
+    pos = Number(pos) >>> 0;
+
+    // Search for the word's beginning and end.
+    let left = str.slice(0, pos + 1).search(/\S+$/);
+    let right = str.slice(pos).search(/\s/);
+
+    // The last word in the string is a special case.
+    // else Return the word, using the located bounds to extract it from the string.
+    return right < 0 ? str.slice(left) : str.slice(left, right + pos);
+}
+
+// OnBoundary callback handler for when words is spoken
+// Note: Event is not triggered when "localService" is false (Like the Google voices in Chrome)
+function speechSynthesisUtteranceOnoundary(event) {
+    if (event.name == "word") {
+        let word = getWordAt(event.target.text, event.charIndex);
+        divMessage.html(word);
+    }
+}
+
+//== PAGE FUNCTIONS ==
+function convertToHtml() {
+    let dataInput = taInput.val();
+    //let dataInputArray = dataInput.split(/\r?\n/);
+    let dataInputArray = dataInput.match(/[^\r\n.?!]+[\r\n.?!]+(\s)+[\])'"`’”]*|.+/g);
+    let dataOutput;
+    let dataOutputArray = [];
+
+
+    let englishRowTemplateVersion1 = "" +
+            "<div class=\"englishRowTemplateVersion1 col-12\">\n" +
+            "	<div class=\"row\">\n" +
+            "		<div onclick=\"displayEachWordsAction(this)\" class=\"displayEachWords col-auto border p-2 m-1 d-flex align-items-center justify-content-center\">\n" +
+            "			<i class=\"fab fa-buromobelexperte fa-2x text-secondary\"></i>\n" +
+            "		</div>\n" +
+            "		<div class=\"col divEnglishLine border p-2 m-1 d-flex align-items-center button-style-1\">\n" +
+            "			<span class=\"spanEnglish\">§1</span>\n" +
+            "			<span class=\"spanPronounce d-none font-weight-light font-italic w-100\">§2</span>\n" +
+            "			<span class=\"spanVietnamese d-none font-weight-bold text-primary w-100\">§3</span>\n" +
+            "		</div>\n" +
+            "	</div>\n" +
+            "	<div class=\"row divEnglishWords d-none\">\n" +
+            "		§4\n" +
+            "	</div>\n" +
+            "</div>";
+
+    let englishWordTemplateVersion1 = "<div class=\"divEnglishWord col-auto border rounded text-secondary pt-2 pb-2 pl-3 pr-3 m-1 button-style-1\">§1</div>";
+
+    let line;
+    let words;
+    let wordsAutoGenerate;
+
+    if (dataInput) {
+        for (index = 0; index < dataInputArray.length; index++) {
+            line = "";
+            words = null;
+            wordsAutoGenerate = null;
+
+            line = processingSpecialCharacter(dataInputArray[index]);
+            if (line != "") {
+                //==
+                let lineArray = line.split("↨");
+
+                line = englishRowTemplateVersion1.replace('§1', lineArray[0]);
+
+                words = lineArray[0].match(/\b(\w+)\b/g);
+                if (words) {
+                    wordsAutoGenerate = words.map(function (x) {
+                        return englishWordTemplateVersion1.replace('§1', x);
+                    });
+                }
+                if (Array.isArray(wordsAutoGenerate)) {
+                    line = line.replace('§4', trimSpace(wordsAutoGenerate.join(" ")));
+                } else {
+                    line = line.replace('§4', englishWordTemplateVersion1.replace('§1', lineArray[0]));
+                }
+
+                if (lineArray.length > 1) {
+                    line = line.replace('§2', lineArray[1]);
+                }
+                if (lineArray.length > 2) {
+                    line = line.replace('§3', lineArray[1]);
+                    line = line.replace('spanPronounce d-none', 'spanPronounce');
+                }
+
+                dataOutputArray.push(line);
+            }
+
+        }
+
+        dataOutput = dataOutputArray.join("\n");
+        divScreen.html(dataOutput);
+    } else {
+        divScreen.html("");
+    }
+
+}
+
+function htmlEntities(str) {
+    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+function wordCount(str) {
+    return str.split(" ").length;
+}
+
+function arrayRemoveEmpty(array) {
+    //== Remove empty or space elements.
+    array = array.filter(function (str) {
+        return /\S/.test(str);
+    });
+    return array;
+}
+
+function trimSpace(str) {
+    return str.trim().replace(/\s+/g, ' ');
+}
+
+function processingSpecialCharacter(str) {
+    str = trimSpace(str);
+    str = str.replace(/'/gi, "’");
+    str = trimSpace(str);
+    return str;
+}
+
+function processingSpecialCharacterHtml(str, pattern) {
+    let rs = trimSpace(str);
+
+    let tmp = trimSpace(str).replace(pattern, '');
+    rs = rs.replace(tmp, '');
+
+    tmp = tmp.replace(/'/gi, '’');
+    tmp = tmp.replace(/</gi, '&lt;');
+    tmp = tmp.replace(/>/gi, '&gt;');
+    tmp = trimSpace(tmp);
+
+    rs = rs + tmp;
+    return rs;
+}
+
+function processingRegexReplace(str, strRegexFind, strRegexReplace) {
+    if (strRegexFind != "" && isRegexValid(strRegexFind)) {
+        let regexFind = new RegExp(strRegexFind, "g");
+        strRegexReplace = strRegexReplace.replace(strRegexReplace, "\n");
+        str = str.replace(regexFind, strRegexReplace);
+    }
+    return str;
+}
+
+function processingRegexRemove(str, strRegex) {
+    if (isRegexValid(strRegex)) {
+        let regex = new RegExp(strRegex, "g");
+        str = str.replace(regex, "");
+    }
+    return str;
+}
+
+function isRegexValid(strRegex) {
+    try {
+        new RegExp(strRegex);
+        return true;
+    } catch (err) {
+        return false;
+    }
+}
+
+function unique(list) {
+    let result = [];
+    $.each(list, function (i, e) {
+        if ($.inArray(e, result) == -1)
+            result.push(e);
+    });
+    return result;
+}
+
+function displayEachWordsAction(el) {
+    let parentElement = $($(el).parent().get(0));
+    let divEnglishWordsElement = $(parentElement.next()[0]);
+    //console.log(divEnglishWordsElement.attr('class'));    
+
+    if (divEnglishWordsElement.hasClass('divEnglishWords d-none')) {
+        divEnglishWordsElement.removeClass("d-none");
+        $(el).addClass("font-weight-bold");
+    } else {
+        divEnglishWordsElement.addClass("d-none");
+        $(el).removeClass("font-weight-bold");
+    }
+}
+
+function setLanguageDefault() {
+    let arrPriorityLanguages = [
+        "en-US",
+        "en_US",
+        "en-GB",
+        "en_GB"
+    ];
+
+    selectLanguages.val(selectLanguages.find("option:first-child").val());
+    for (let i = 0; i < arrPriorityLanguages.length; i++) {
+        let optionFind = 'option[value="' + arrPriorityLanguages[i] + '"]';
+        if (selectLanguages.find(optionFind).length !== 0) {
+            selectLanguages.val(arrPriorityLanguages[i]);
+            break;
+        }
+    }
+
+}
+
+function setVoiceDefault() {
+    let arrPriorityVoices = [
+        "Microsoft Zira - English (United States)",
+        "Microsoft David - English (United States)",
+        "Microsoft Mark - English (United States)",
+        "English United States (en_us)",
+        "English United Kingdom (en_GB)"
+    ];
+
+    selectVoices.val(selectVoices.find("option:first-child").val());
+    for (let i = 0; i < arrPriorityVoices.length; i++) {
+        let optionFind = 'option[value="' + arrPriorityVoices[i] + '"]';
+        if (selectVoices.find(optionFind).length !== 0) {
+            selectVoices.val(arrPriorityVoices[i]);
+            break;
+        }
+    }
+
+    setVoice();
+
+}
+
+//== EVENT FUNCTION ==
+function playButtonAction() {
+    let textRead = taInput.val();
+    textRead = processingSpecialCharacter(textRead);
+
+    taInput.prop('disabled', true);
+    selectLanguages.prop('disabled', true);
+    selectVoices.prop('disabled', true);
+    
+    playButton.prop('disabled', true);
+    pauseButton.prop('disabled', false);
+    stopButton.prop('disabled', false);
+    divScreen.prop('disabled', true);
+    divScreen.children().hide();
+
+    ai.speak(textRead);
+}
+
+function pauseButtonAction() {
+    ai.pauseSpeaking();
+
+    playButton.prop('disabled', false);
+    pauseButton.prop('disabled', true);
+    stopButton.prop('disabled', false);
+    
+    taInput.prop('disabled', true);
+    selectLanguages.prop('disabled', true);
+    selectVoices.prop('disabled', true);
+    divScreen.children().hide();
+    
+}
+
+function stopButtonAction() {
+    ai.stopSpeaking();
+    
+    playButton.prop('disabled', false);
+    pauseButton.prop('disabled', true);
+    stopButton.prop('disabled', true);
+
+    taInput.prop('disabled', false);
+    selectLanguages.prop('disabled', false);
+    selectVoices.prop('disabled', false);
+    divScreen.children().show();
+
+}
+
+function addDivEnglishLineAction() {
+    divScreen.on('click', '.divEnglishLine', function (event) {
+        let spanEnglish = $(this).find(".spanEnglish");
+        let text = spanEnglish.text();
+        ai.speak(text);
+    });
+}
+
+function addDivEnglishWordAction() {
+    divScreen.on('click', '.divEnglishWord', function () {
+        let text = $(this).text();
+        ai.speak(text);
+    });
+}
+
+function languagesSelectOnChange() {
+    languageSelected = selectLanguages.find(":selected").val().toLowerCase();
+    selectVoices.empty();
+    for (let i = 0; i < ai.getVoices().length; i++) {
+        if (ai.getVoices()[i].lang.toLowerCase().startsWith(languageSelected)) {
+            let option = $('<option/>');
+            let optionTextContent = ai.getVoices()[i].name + " (" + ai.getVoices()[i].lang + ")";
+            let optionValue = ai.getVoices()[i].name;
+            option.attr({'value': optionValue}).text(optionTextContent);
+            selectVoices.append(option);
+        }
+    }
+
+    setVoiceDefault();
+
+}
+
+//== PAGE LOAD ==
+function loadDivInfoVoicesSupport() {
+    if (ai) {
+        for (let i = 0; i < ai.getVoices().length; i++) {
+            synthLanguagesUnique.push(ai.getVoices()[i].lang);
+
+            let li = $('<li/>');
+            if (ai.getVoices()[i].localService) {
+                li.text(ai.getVoices()[i].lang + " - " + ai.getVoices()[i].name + " (offline)");
+            } else {
+                li.text(ai.getVoices()[i].lang + " - " + ai.getVoices()[i].name + " (online)");
+            }
+            li.appendTo(ulVoicesSupport);
+
+            let languageCode = ai.getVoices()[i].lang.replace("-", "_");
+            let languageName = languageBcp47[languageCode];
+
+            if (!languageName) {
+                languageBcp47[languageCode] = ai.getVoices()[i].name + ' (' + ai.getVoices()[i].lang + ')';
+            }
+        }
+        synthLanguagesUnique = unique(synthLanguagesUnique);
+    } else {
+        divMessage.text("Can not connect to AI.");
+        //console.log("Can not connect to AI.");
+    }
+
+}
+
+function loadSelectLanguages() {
+    if (synthLanguagesUnique && Array.isArray(synthLanguagesUnique)) {
+        synthLanguagesUnique.forEach(language => {
+            let option = $('<option/>');
+            let languageName = languageBcp47[language.replace("-", "_")];
+
+            if (languageName) {
+                option.attr({'value': language}).text(languageName);
+            } else {
+                option.attr({'value': language}).text(language);
+            }
+
+            selectLanguages.append(option);
+
+        });
+
+        setLanguageDefault();
+    } else {
+        divMessage.text("Can not load tag selectLanguages");
+        //console.log("Can not load tag selectLanguages");
+    }
+
+}
+
+function loadSelectVoices() {
+    languageSelected = selectLanguages.find(":selected").val();
+    //languageSelected = languagesSelect.find(":selected").text();
+
+    for (let i = 0; i < ai.getVoices().length; i++) {
+        if (ai.getVoices()[i].lang == languageSelected) {
+            let option = $('<option/>');
+            let optionTextContent = ai.getVoices()[i].name + " (" + ai.getVoices()[i].lang + ")";
+            let optionValue = ai.getVoices()[i].name;
+            option.attr({'value': optionValue}).text(optionTextContent);
+            selectVoices.append(option);
+        }
+    }
+
+    setVoiceDefault();
+
+}
+
+function load() {
+    ai = new AI("Sliver");
+    
+    if (ai.getStatus() === 1) {
+        divMessage.html(ai.getStatusMessage());
+        selectLanguages.empty();
+        selectVoices.empty();
+
+        playButton.prop('disabled', false);
+        pauseButton.prop('disabled', true);
+        stopButton.prop('disabled', true);
+
+        //----
+        loadDivInfoVoicesSupport();
+        loadSelectLanguages();
+        loadSelectVoices();
+
+        //-- ADD EVENT --
+        addDivEnglishLineAction();
+        addDivEnglishWordAction();
+        selectLanguages.on("change", languagesSelectOnChange);
+        selectVoices.on("change", voicesSelectOnChange);
+        playButton.on("click", playButtonAction);
+        pauseButton.on("click", pauseButtonAction);
+        stopButton.on("click", stopButtonAction);
+
+        taInput.on('input', convertToHtml);
+        //taInput.on('keyup', convertToHtml);
+        //taInput.on('propertychange keyup input paste', convertToHtml);
+
+        //====
+        let utterOnboundary = event => {
+            speechSynthesisUtteranceOnoundary(event);
+        };        
+        ai.addUtterOnBoundaryEvent(utterOnboundary);
+        
+        let utterOnEnd = event => {
+            speechSynthesisUtteranceOnEnd(event);
+        };        
+        ai.addUtterOnEndEvent(utterOnEnd);        
+        //====
+        
+        setVoice();
+    } else {
+        divMessage.html(ai.getStatusMessage());
+    }
+
+}
+
+//== PAGE READY ==
+$(function () {
+    load();
+});
+
+//== PAGE BEFORE UNLOAD ==
+$(window).on('beforeunload', function () {
+    ai.getSynth().cancel();
+    ai = null;
+});

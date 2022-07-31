@@ -1,11 +1,10 @@
 /* 
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Other/javascript.js to edit this template
- * Reference 
+ * Reference
  * + https://codepen.io/pmk/pen/mKxjzz?editors=1010 
  * + https://codepen.io/iPawan/pen/rNOXbZa
  */
-window.speechSynthesis;
 
 const languageBcp47 = {
     af: 'Afrikaans',
@@ -238,13 +237,16 @@ const languageBcp47 = {
     zu: 'Zulu',
     zu_ZA: 'Zulu (South Africa)'
 };
+
+//====
+window.speechSynthesis;
 const punctuationPattern = /[\.,;:"[\]{\}!?<>]+/g;
 
 //====
-var ai;
-var synthLanguagesUnique = [];
-var languageSelected = "";
-var voiceSelected = "";
+let ai = new AI("Sliver");
+let synthLanguagesUnique = [];
+let languageSelected = "";
+let voiceSelected = "";
 
 //== HTML TAG ==
 const selectLanguages = $("#selectLanguages");
@@ -257,9 +259,9 @@ const taInput = $("#taInput");
 const divMessage = $("#divMessage");
 const ulVoicesSupport = $("#ulVoicesSupport");
 const divScreen = $("#divScreen");
-var divEnglishLine = $(".divEnglishLine");
-var wordEnglish = $(".wordEnglish");
-var displayEachWords = $(".displayEachWords");
+let divEnglishLine = $(".divEnglishLine");
+let wordEnglish = $(".wordEnglish");
+let displayEachWords = $(".displayEachWords");
 
 //== VOICE FUNCTION ==
 function setVoice() {
@@ -296,8 +298,8 @@ function getWordAt(str, pos) {
     pos = Number(pos) >>> 0;
 
     // Search for the word's beginning and end.
-    var left = str.slice(0, pos + 1).search(/\S+$/);
-    var right = str.slice(pos).search(/\s/);
+    let left = str.slice(0, pos + 1).search(/\S+$/);
+    let right = str.slice(pos).search(/\s/);
 
     // The last word in the string is a special case.
     // else Return the word, using the located bounds to extract it from the string.
@@ -308,21 +310,21 @@ function getWordAt(str, pos) {
 // Note: Event is not triggered when "localService" is false (Like the Google voices in Chrome)
 function speechSynthesisUtteranceOnoundary(event) {
     if (event.name == "word") {
-        var word = getWordAt(event.target.text, event.charIndex);
+        let word = getWordAt(event.target.text, event.charIndex);
         divMessage.html(word);
     }
 }
 
 //== PAGE FUNCTIONS ==
 function convertToHtml() {
-    var dataInput = taInput.val();
-    //var dataInputArray = dataInput.split(/\r?\n/);
-    var dataInputArray = dataInput.match(/[^\r\n.?!]+[\r\n.?!]+(\s)+[\])'"`’”]*|.+/g);
-    var dataOutput;
-    var dataOutputArray = [];
+    let dataInput = taInput.val();
+    //let dataInputArray = dataInput.split(/\r?\n/);
+    let dataInputArray = dataInput.match(/[^\r\n.?!]+[\r\n.?!]+(\s)+[\])'"`’”]*|.+/g);
+    let dataOutput;
+    let dataOutputArray = [];
 
 
-    var englishRowTemplateVersion1 = "" +
+    let englishRowTemplateVersion1 = "" +
             "<div class=\"englishRowTemplateVersion1 col-12\">\n" +
             "	<div class=\"row\">\n" +
             "		<div onclick=\"displayEachWordsAction(this)\" class=\"displayEachWords col-auto border p-2 m-1 d-flex align-items-center justify-content-center\">\n" +
@@ -339,11 +341,11 @@ function convertToHtml() {
             "	</div>\n" +
             "</div>";
 
-    var englishWordTemplateVersion1 = "<div class=\"divEnglishWord col-auto border rounded text-secondary pt-2 pb-2 pl-3 pr-3 m-1 button-style-1\">§1</div>";
+    let englishWordTemplateVersion1 = "<div class=\"divEnglishWord col-auto border rounded text-secondary pt-2 pb-2 pl-3 pr-3 m-1 button-style-1\">§1</div>";
 
-    var line;
-    var words;
-    var wordsAutoGenerate;
+    let line;
+    let words;
+    let wordsAutoGenerate;
 
     if (dataInput) {
         for (index = 0; index < dataInputArray.length; index++) {
@@ -354,7 +356,7 @@ function convertToHtml() {
             line = processingSpecialCharacter(dataInputArray[index]);
             if (line != "") {
                 //==
-                var lineArray = line.split("↨");
+                let lineArray = line.split("↨");
 
                 line = englishRowTemplateVersion1.replace('§1', lineArray[0]);
 
@@ -419,9 +421,9 @@ function processingSpecialCharacter(str) {
 }
 
 function processingSpecialCharacterHtml(str, pattern) {
-    var rs = trimSpace(str);
+    let rs = trimSpace(str);
 
-    var tmp = trimSpace(str).replace(pattern, '');
+    let tmp = trimSpace(str).replace(pattern, '');
     rs = rs.replace(tmp, '');
 
     tmp = tmp.replace(/'/gi, '’');
@@ -435,7 +437,7 @@ function processingSpecialCharacterHtml(str, pattern) {
 
 function processingRegexReplace(str, strRegexFind, strRegexReplace) {
     if (strRegexFind != "" && isRegexValid(strRegexFind)) {
-        var regexFind = new RegExp(strRegexFind, "g");
+        let regexFind = new RegExp(strRegexFind, "g");
         strRegexReplace = strRegexReplace.replace(strRegexReplace, "\n");
         str = str.replace(regexFind, strRegexReplace);
     }
@@ -444,7 +446,7 @@ function processingRegexReplace(str, strRegexFind, strRegexReplace) {
 
 function processingRegexRemove(str, strRegex) {
     if (isRegexValid(strRegex)) {
-        var regex = new RegExp(strRegex, "g");
+        let regex = new RegExp(strRegex, "g");
         str = str.replace(regex, "");
     }
     return str;
@@ -460,7 +462,7 @@ function isRegexValid(strRegex) {
 }
 
 function unique(list) {
-    var result = [];
+    let result = [];
     $.each(list, function (i, e) {
         if ($.inArray(e, result) == -1)
             result.push(e);
@@ -469,8 +471,8 @@ function unique(list) {
 }
 
 function displayEachWordsAction(el) {
-    var parentElement = $($(el).parent().get(0));
-    var divEnglishWordsElement = $(parentElement.next()[0]);
+    let parentElement = $($(el).parent().get(0));
+    let divEnglishWordsElement = $(parentElement.next()[0]);
     //console.log(divEnglishWordsElement.attr('class'));    
 
     if (divEnglishWordsElement.hasClass('divEnglishWords d-none')) {
@@ -483,7 +485,7 @@ function displayEachWordsAction(el) {
 }
 
 function setLanguageDefault() {
-    var arrPriorityLanguages = [
+    let arrPriorityLanguages = [
         "en-US",
         "en_US",
         "en-GB",
@@ -491,8 +493,8 @@ function setLanguageDefault() {
     ];
 
     selectLanguages.val(selectLanguages.find("option:first-child").val());
-    for (var i = 0; i < arrPriorityLanguages.length; i++) {
-        var optionFind = 'option[value="' + arrPriorityLanguages[i] + '"]';
+    for (let i = 0; i < arrPriorityLanguages.length; i++) {
+        let optionFind = 'option[value="' + arrPriorityLanguages[i] + '"]';
         if (selectLanguages.find(optionFind).length !== 0) {
             selectLanguages.val(arrPriorityLanguages[i]);
             break;
@@ -502,7 +504,7 @@ function setLanguageDefault() {
 }
 
 function setVoiceDefault() {
-    var arrPriorityVoices = [
+    let arrPriorityVoices = [
         "Microsoft Zira - English (United States)",
         "Microsoft David - English (United States)",
         "Microsoft Mark - English (United States)",
@@ -511,8 +513,8 @@ function setVoiceDefault() {
     ];
 
     selectVoices.val(selectVoices.find("option:first-child").val());
-    for (var i = 0; i < arrPriorityVoices.length; i++) {
-        var optionFind = 'option[value="' + arrPriorityVoices[i] + '"]';
+    for (let i = 0; i < arrPriorityVoices.length; i++) {
+        let optionFind = 'option[value="' + arrPriorityVoices[i] + '"]';
         if (selectVoices.find(optionFind).length !== 0) {
             selectVoices.val(arrPriorityVoices[i]);
             break;
@@ -525,7 +527,7 @@ function setVoiceDefault() {
 
 //== EVENT FUNCTION ==
 function playButtonAction() {
-    var textRead = taInput.val();
+    let textRead = taInput.val();
     textRead = processingSpecialCharacter(textRead);
 
     taInput.prop('disabled', true);
@@ -571,15 +573,15 @@ function stopButtonAction() {
 
 function addDivEnglishLineAction() {
     divScreen.on('click', '.divEnglishLine', function (event) {
-        var spanEnglish = $(this).find(".spanEnglish");
-        var text = spanEnglish.text();
+        let spanEnglish = $(this).find(".spanEnglish");
+        let text = spanEnglish.text();
         ai.speak(text);
     });
 }
 
 function addDivEnglishWordAction() {
     divScreen.on('click', '.divEnglishWord', function () {
-        var text = $(this).text();
+        let text = $(this).text();
         ai.speak(text);
     });
 }
@@ -587,11 +589,11 @@ function addDivEnglishWordAction() {
 function languagesSelectOnChange() {
     languageSelected = selectLanguages.find(":selected").val().toLowerCase();
     selectVoices.empty();
-    for (var i = 0; i < ai.getVoices().length; i++) {
+    for (let i = 0; i < ai.getVoices().length; i++) {
         if (ai.getVoices()[i].lang.toLowerCase().startsWith(languageSelected)) {
-            var option = $('<option/>');
-            var optionTextContent = ai.getVoices()[i].name + " (" + ai.getVoices()[i].lang + ")";
-            var optionValue = ai.getVoices()[i].name;
+            let option = $('<option/>');
+            let optionTextContent = ai.getVoices()[i].name + " (" + ai.getVoices()[i].lang + ")";
+            let optionValue = ai.getVoices()[i].name;
             option.attr({'value': optionValue}).text(optionTextContent);
             selectVoices.append(option);
         }
@@ -604,10 +606,10 @@ function languagesSelectOnChange() {
 //== PAGE LOAD ==
 function loadDivInfoVoicesSupport() {
     if (ai) {
-        for (var i = 0; i < ai.getVoices().length; i++) {
+        for (let i = 0; i < ai.getVoices().length; i++) {
             synthLanguagesUnique.push(ai.getVoices()[i].lang);
 
-            var li = $('<li/>');
+            let li = $('<li/>');
             if (ai.getVoices()[i].localService) {
                 li.text(ai.getVoices()[i].lang + " - " + ai.getVoices()[i].name + " (offline)");
             } else {
@@ -615,8 +617,8 @@ function loadDivInfoVoicesSupport() {
             }
             li.appendTo(ulVoicesSupport);
 
-            var languageCode = ai.getVoices()[i].lang.replace("-", "_");
-            var languageName = languageBcp47[languageCode];
+            let languageCode = ai.getVoices()[i].lang.replace("-", "_");
+            let languageName = languageBcp47[languageCode];
 
             if (!languageName) {
                 languageBcp47[languageCode] = ai.getVoices()[i].name + ' (' + ai.getVoices()[i].lang + ')';
@@ -633,8 +635,8 @@ function loadDivInfoVoicesSupport() {
 function loadSelectLanguages() {
     if (synthLanguagesUnique && Array.isArray(synthLanguagesUnique)) {
         synthLanguagesUnique.forEach(language => {
-            var option = $('<option/>');
-            var languageName = languageBcp47[language.replace("-", "_")];
+            let option = $('<option/>');
+            let languageName = languageBcp47[language.replace("-", "_")];
 
             if (languageName) {
                 option.attr({'value': language}).text(languageName);
@@ -658,11 +660,11 @@ function loadSelectVoices() {
     languageSelected = selectLanguages.find(":selected").val();
     //languageSelected = languagesSelect.find(":selected").text();
 
-    for (var i = 0; i < ai.getVoices().length; i++) {
+    for (let i = 0; i < ai.getVoices().length; i++) {
         if (ai.getVoices()[i].lang == languageSelected) {
-            var option = $('<option/>');
-            var optionTextContent = ai.getVoices()[i].name + " (" + ai.getVoices()[i].lang + ")";
-            var optionValue = ai.getVoices()[i].name;
+            let option = $('<option/>');
+            let optionTextContent = ai.getVoices()[i].name + " (" + ai.getVoices()[i].lang + ")";
+            let optionValue = ai.getVoices()[i].name;
             option.attr({'value': optionValue}).text(optionTextContent);
             selectVoices.append(option);
         }
@@ -674,8 +676,8 @@ function loadSelectVoices() {
 
 function load() {
     ai = new AI("Sliver");
-
-    if (ai.getStatus() == 1) {
+    
+    if (ai.getStatus() === 1) {
         divMessage.html(ai.getStatusMessage());
         selectLanguages.empty();
         selectVoices.empty();
@@ -703,12 +705,12 @@ function load() {
         //taInput.on('propertychange keyup input paste', convertToHtml);
 
         //====
-        var utterOnboundary = event => {
+        let utterOnboundary = event => {
             speechSynthesisUtteranceOnoundary(event);
         };        
         ai.addUtterOnBoundaryEvent(utterOnboundary);
         
-        var utterOnEnd = event => {
+        let utterOnEnd = event => {
             speechSynthesisUtteranceOnEnd(event);
         };        
         ai.addUtterOnEndEvent(utterOnEnd);        
@@ -716,7 +718,7 @@ function load() {
         
         setVoice();
     } else {
-        divMessage.html(ai.getStatusMessage);
+        divMessage.html(ai.getStatusMessage());
     }
 
 }

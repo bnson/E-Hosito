@@ -1,6 +1,6 @@
 <?php
 //====
-$GLOBALS['environment'] = 'dev';
+$GLOBALS['environment'] = 'live';
 $GLOBALS['version'] = '0001';
 
 $GLOBALS['domain'] = 'ehosito.com';

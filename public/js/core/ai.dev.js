@@ -1,10 +1,12 @@
 class AI {
 
     constructor(name) {
-        this.synth = window.speechSynthesis;
+        this.synth = speechSynthesis;
         this.punctuationPattern = /[\.,;:"[\]{\}!?<>]+/g;
         this.name = name;
         this.timer = new Timer();
+        this.patternLanguageEn = /(en_gb|en-gb)/;
+        this.patternLanguageEnPrioty = /(en_us|en-us)/;
         //--
         this.synthStatus = 0;
         this.utter = new SpeechSynthesisUtterance();
@@ -19,31 +21,31 @@ class AI {
         this.rate = 1;
         this.status = 1; //* 0 = Stop * 1 = Play * 2 = Pause
 
-        this.statusMessage = {
-            1: "Hi, I'm " + this.name,
-            2: this.name + " can't load voice!"
-        };
+        this.statusMessage = {};
+        this.statusMessage[1] = "Hi, I'm " + this.name;
+        this.statusMessage[2] = this.name + " can't load voice!";
 
         //====
-        var utterOnBoundary = (event) => {
+        let utterOnBoundary = (event) => {
             this.utterOnBoundary(event);
         };
         this.utterOnBoundaryEvent[0] = utterOnBoundary;
 
-        var utterOnStart = (event) => {
+        let utterOnStart = (event) => {
             this.utterOnStart(event);
         };
         this.utterOnStartEvent[0] = utterOnStart;
 
-        var utterOnEnd = (event) => {
+        let utterOnEnd = (event) => {
             this.utterOnEnd(event);
         };
         this.utterOnEndEvent[0] = utterOnEnd;
 
         //====
         this.loadVoice();
-        if (speechSynthesis.onvoiceschanged !== undefined) {
-            speechSynthesis.onvoiceschanged = this.loadVoice;
+        if (window.speechSynthesis.onvoiceschanged !== undefined) {
+            console.log("onvoiceschanged!");
+            window.speechSynthesis.onvoiceschanged = this.loadVoice;
         }
 
     }
@@ -51,11 +53,40 @@ class AI {
     loadVoice() {
         if (this.synth) {
             this.voices = this.synth.getVoices();
-            this.voice = this.voices[0];
 
+            if (this.voices) {
+                for (let i = 0; i < this.voices.length; i++) {
+                    if (this.patternLanguageEnPrioty.test(this.voices[i].lang.toLowerCase())) {
+                        this.voice = this.voices[i];
+                        
+                        if (this.voices[i].localService) {
+                            this.voice = this.voices[i];
+                            break;
+                        }
+                    }
+                }
+                
+                if (!this.voice) {
+                    for (let i = 0; i < this.voices.length; i++) {
+                        if (this.patternLanguageEn.test(this.voices[i].lang.toLowerCase())) {
+                            this.voice = this.voices[i];
+
+                            if (this.voices[i].localService) {
+                                this.voice = this.voices[i];
+                                break;
+                            }
+                        }
+                    }
+                }
+                
+                if (!this.voice) {
+                    this.voice = this.voices[0];
+                }
+            }
         } else {
             this.status = 2;
             //console.log(this.getStatusMessage());
+            console.log("Can't load voices!");
         }
     }
 
@@ -66,13 +97,13 @@ class AI {
     }
 
     addUtterOnBoundaryEvent(event) {
-        var length = this.utterOnBoundaryEvent.length;
+        let length = this.utterOnBoundaryEvent.length;
         this.utterOnBoundaryEvent[length] = event;
         //console.log("this.utterBoundaryEvent length: " + this.utterBoundaryEvent.length);
     }
 
     addUtterOnEndEvent(event) {
-        var length = this.utterOnEndEvent.length;
+        let length = this.utterOnEndEvent.length;
         this.utterOnEndEvent[length] = event;
         //console.log("this.utterOnEndEvent length: " + this.utterOnEndEvent.length);
     }
@@ -114,7 +145,7 @@ class AI {
                 this.synth.cancel();
             }
 
-            var textArr = text.replace(/(\.+|,|\:|\!|\?)(\"*|\'*|\)*|}*|]*)(\s|\n|\r|\r\n)/gm, "$1$2|").split("|");
+            let textArr = text.replace(/(\.+|,|\:|\!|\?)(\"*|\'*|\)*|}*|]*)(\s|\n|\r|\r\n)/gm, "$1$2|").split("|");
             if (this.voice.localService || !Array.isArray(textArr) || textArr.length == 0) {
                 textArr = [];
                 textArr[0] = text;
@@ -123,9 +154,9 @@ class AI {
             }
 
             //===
-            var utterCurrentTargetIndex = 0;
+            let utterCurrentTargetIndex = 0;
             if (this.utterCurrentTarget) {
-                var index = this.utterCurrentTarget.index;
+                let index = this.utterCurrentTarget.index;
                 if (index < textArr.length - 1) {
                     utterCurrentTargetIndex = index;
                     console.log(this.utterCurrentTarget.index);
@@ -137,7 +168,7 @@ class AI {
             }
             //====
 
-            for (var i = 0; i < textArr.length; i++) {
+            for (let i = 0; i < textArr.length; i++) {
                 this.utter = new SpeechSynthesisUtterance();
                 this.utter.index = i;
                 this.utter.length = textArr.length;
@@ -148,15 +179,15 @@ class AI {
                 this.utter.text = textArr[i];
 
                 if (i == textArr.length - 1) {
-                    for (var index = 0; index < this.utterOnStartEvent.length; index++) {
+                    for (let index = 0; index < this.utterOnStartEvent.length; index++) {
                         this.utter.addEventListener('start', this.utterOnStartEvent[index]);
                     }
 
-                    for (var index = 0; index < this.utterOnBoundaryEvent.length; index++) {
+                    for (let index = 0; index < this.utterOnBoundaryEvent.length; index++) {
                         this.utter.addEventListener('boundary', this.utterOnBoundaryEvent[index]);
                     }
 
-                    for (var index = 0; index < this.utterOnEndEvent.length; index++) {
+                    for (let index = 0; index < this.utterOnEndEvent.length; index++) {
                         this.utter.addEventListener('end', this.utterOnEndEvent[index]);
                     }
 
@@ -220,7 +251,7 @@ class AI {
     utterOnBoundary(event) {
         if (event) {
             if (event.name && event.name == "word") {
-                var word = this.getWordAt(event.target.text, event.charIndex);
+                let word = this.getWordAt(event.target.text, event.charIndex);
                 if (this.punctuationPattern.test(word)) {
                     if (this.synth.speaking && !this.synth.pause() && this.synthStatus != 2) {
                         this.synth.pause();
@@ -292,8 +323,8 @@ class AI {
         pos = Number(pos) >>> 0;
 
         // Search for the word's beginning and end.
-        var left = str.slice(0, pos + 1).search(/\S+$/);
-        var right = str.slice(pos).search(/\s/);
+        let left = str.slice(0, pos + 1).search(/\S+$/);
+        let right = str.slice(pos).search(/\s/);
 
         // The last word in the string is a special case.
         // else Return the word, using the located bounds to extract it from the string.
@@ -322,10 +353,16 @@ class AI {
     }
 
     getVoices() {
+        if (!this.voices || this.voices.length === 0) {
+            this.voices = this.synth.getVoices();
+        }
         return this.voices;
     }
 
     getVoice() {
+        if (!this.voice) {
+            this.voice = this.voices[0];
+        }
         return this.voice;
     }
 
