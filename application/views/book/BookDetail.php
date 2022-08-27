@@ -28,7 +28,7 @@ $booksSameGenres = $data["booksSameGenres"];
                     <?php
                     $genresIndex = 0;
                     foreach ($data["genres"] as $row) {
-                        echo '<div class="col p-1 m-1 border effect" onclick="location.href=\'/Book/filterBookByGenre/' . urlencode(trim($row)) . '\'">' . trim($row) . '</div>';
+                        echo '<div class="col p-1 m-1 border effect" onclick="location.href=\'/Book/filter/genre/' . urlencode(trim($row)) . '\'">' . trim($row) . '</div>';
                         if ($genresIndex % 2) {
                             echo '<div class="w-100"></div>';
                         }
@@ -51,7 +51,7 @@ $booksSameGenres = $data["booksSameGenres"];
                             $bookChapterContentsIdFirst = $bookChapterContents[0]['id'];
                             
                             ?> 
-                            <div class="col border ml-2 mr-2 mt-1 mb-1 p-2 effect font-weight-bold" onclick="location.href = '/Book/loadBookContent/<?php echo $row['book_id']; ?>/<?php echo ($row['id'] . "/" . $bookChapterContentsIdFirst); ?>'">
+                            <div class="col border ml-2 mr-2 mt-1 mb-1 p-2 effect font-weight-bold" onclick="location.href = '/Book/load/BookContent/<?php echo $row['book_id']; ?>/<?php echo ($row['id'] . "/" . $bookChapterContentsIdFirst); ?>'">
                                 <u><?php echo $row['name']; ?></u>
                             </div>
                             <?php
@@ -59,7 +59,7 @@ $booksSameGenres = $data["booksSameGenres"];
                                 foreach ($bookChapterContents as $rowChapterContents) {
                                     ?>
                                     <div class="w-100"></div>
-                                    <div class="col border ml-2 mr-2 mt-1 mb-1 p-2 effect" onclick="location.href = '/Book/loadBookContent/<?php echo $row['book_id']; ?>/<?php echo $row['id']; ?>/<?php echo $rowChapterContents['id']; ?>';">
+                                    <div class="col border ml-2 mr-2 mt-1 mb-1 p-2 effect" onclick="location.href = '/Book/load/BookContent/<?php echo $row['book_id']; ?>/<?php echo $row['id']; ?>/<?php echo $rowChapterContents['id']; ?>';">
                                         <?php echo $rowChapterContents['subject']; ?>
                                     </div>
                                     <?php
@@ -90,7 +90,7 @@ $booksSameGenres = $data["booksSameGenres"];
 
             <?php foreach ($booksSameAuthor as $row) { ?>
                 <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-3 p-1">
-                    <div class="card mb-2 border" onclick="location.href = '/Book/loadBookDetail/<?php echo $row['id']; ?>';">
+                    <div class="card mb-2 border" onclick="location.href = '/Book/load/BookDetail/<?php echo $row['id']; ?>';">
                         <img class="card-img-top img-fluid" src="<?php echo $row['cover']; ?>" >
                         <div class="card-body p-2">
                             <p class="card-text"><?php echo $row['name']; ?></p>
@@ -114,7 +114,7 @@ $booksSameGenres = $data["booksSameGenres"];
 
             <?php foreach ($booksSameGenres as $row) { ?>
                 <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-3 p-1">
-                    <div class="card mb-2 border" onclick="location.href = '/Book/loadBookDetail/<?php echo $row['id']; ?>';">
+                    <div class="card mb-2 border" onclick="location.href = '/Book/load/BookDetail/<?php echo $row['id']; ?>';">
                         <img class="card-img-top img-fluid" src="<?php echo $row['cover']; ?>" >
                         <div class="card-body p-2">
                             <p class="card-text"><?php echo $row['name']; ?></p>

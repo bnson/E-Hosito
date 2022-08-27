@@ -1,12 +1,12 @@
 <?php
 
-class objWords {
+class WordObj {
 
-    public $en;
-    public $vn;
-    public $classes;
-    public $pronounceUs;
-    public $pronounceUk;
+    private $en;
+    private $vn;
+    private $classes;
+    private $pronounceUs;
+    private $pronounceUk;
 
     function getEn() {
         return $this->en;

@@ -2,14 +2,14 @@
 
 class Application {
 
-    protected $controller = "Home";
+    protected $controller = "Page";
     protected $action = "load";
     protected $parameters = [];
 
     function __construct() {
 
         $urlParameter = $this->UrlProcess();
-        //echo '$urlParameter: ' . $urlParameter;
+
         // Controller
         if (!is_null($urlParameter) && !is_null($urlParameter[0]) && file_exists("./application/controllers/" . $urlParameter[0] . ".php")) {
             $this->controller = $urlParameter[0];

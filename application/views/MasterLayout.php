@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 order-1 order-sm-1 order-md-1 order-lg-2">
-                    <?php require_once('./application/views/page/' . $data["page"] . '.php'); ?>
+                    <?php require_once('./application/views/' . $data["pageObj"]->getGroup() . '/' . $data["pageObj"]->getName() . '.php'); ?>
                 </div>
 
                 <div class="col-12 col-sm-12 col-md-12 col-lg-3 order-3  order-sm-3 order-md-3order-lg-3">

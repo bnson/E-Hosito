@@ -20,7 +20,7 @@
                 -->
 
                 <div class="col-12 col-sm-12 col-md-12 col-lg-9 order-1 order-sm-1 order-md-1 order-lg-2">
-                    <?php require_once('./application/views/tool/' . $data["page"] . '.php'); ?>
+                    <?php require_once('./application/views/tool/' . $data["pageObj"]->getName() . '.php'); ?>
                 </div>
 
                 <div class="col-12 col-sm-12 col-md-12 col-lg-3 order-3 order-sm-3 order-md-3 order-lg-3">

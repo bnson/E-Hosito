@@ -13,23 +13,23 @@
 require_once(dirname(__FILE__) . '/../../config/Prepend.php');
 
 //-- $data get from controllers --
-loadCss($data);
+loadCss($view, $data);
 
 //== FUNCTIONS ==
-function loadCss($data) {
-    $controllerUsedCoreCss = ["home", "book", "tool", "game", "about", "aboutprivacy", "abouttermsofservice"];
+function loadCss($view, $data) {
+    $viewUsedCoreCss = ["MasterLayout", "ToolLayout"];
     $urlCoreCss = "/public/css/core/general." . $GLOBALS['environment'] . ".css";
     $urlpluginGeneralCss = "";
     $urlPluginPageCss = "";
     
     //echo $urlCoreCss;
-    if (in_array(strtolower($data["controllerName"]), $controllerUsedCoreCss)) {
+    if (in_array($view, $viewUsedCoreCss)) {
         processUrl($urlCoreCss);
     }
     
-    if ($data["controllerName"] && $data["page"]) {
+    if ($data["controllerName"] && $data["pageObj"]->getName()) {
         $urlpluginGeneralCss = "/public/css/" . $data["controllerName"] . "/general." . $GLOBALS['environment'] . ".css";
-        $urlPluginPageCss = "/public/css/" . $data["controllerName"] . "/" . $data["page"] . "." . $GLOBALS['environment'] . ".css";
+        $urlPluginPageCss = "/public/css/" . $data["controllerName"] . "/" . $data["pageObj"]->getName() . "." . $GLOBALS['environment'] . ".css";
 
         processUrl($urlpluginGeneralCss);
         processUrl($urlPluginPageCss);

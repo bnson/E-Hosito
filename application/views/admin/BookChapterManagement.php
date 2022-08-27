@@ -2,7 +2,6 @@
 $book = $data["books"][0];
 ?>
 
-
 <div class="content-wrapper">
 
     <div class="content-header">
@@ -37,7 +36,7 @@ $book = $data["books"][0];
                                 <?php
                                 if (isset($data["bookChapters"])) {
                                     foreach ($data["bookChapters"] as $row) {
-                                        $bookChapterContents = $this->book->getChapterContents($book['id'], $row["id"]);
+                                        $bookChapterContents = $this->bookModel->getChapterContents($book['id'], $row["id"]);
 
                                         $bookChapterContentsNumericalOrderLast = 1;
                                         if (!is_null($bookChapterContents)) {
@@ -49,7 +48,7 @@ $book = $data["books"][0];
 
                                         <div class="col ml-2 mr-2 mt-1 mb-1 p-2 font-weight-bold">
                                             <div class="row">
-                                                <div class="col border effect" onclick="location.href = '<?php echo $GLOBALS['root_link']; ?>/Book/loadBookContent/<?php echo $row['book_id']; ?>/<?php echo ($row['id'] . "/" . $bookChapterContentsIdFirst); ?>'"><u><?php echo $row['name']; ?></u></div>
+                                                <div class="col border effect" onclick="location.href = '<?php echo $GLOBALS['root_link']; ?>/Book/load/BookContent/<?php echo $row['book_id']; ?>/<?php echo ($row['id'] . "/" . $bookChapterContentsIdFirst); ?>'"><u><?php echo $row['name']; ?></u></div>
                                                 <div class="col border effect" onclick="location.href = '<?php echo $GLOBALS['root_link']; ?>/Admin/load/BookChapterContentInsert/<?php echo $row['book_id']; ?>/<?php echo ($row['id']); ?>/<?php echo ($bookChapterContentsNumericalOrderLast); ?>'">Add new</div>
                                             </div>
 
@@ -60,7 +59,7 @@ $book = $data["books"][0];
                                             foreach ($bookChapterContents as $rowChapterContents) {
                                                 ?>
                                                 <div class="w-100"></div>
-                                                <div class="col border ml-2 mr-2 mt-1 mb-1 p-2 effect" onclick="location.href = '<?php echo $GLOBALS['root_link']; ?>/Book/loadBookContent/<?php echo $row['book_id']; ?>/<?php echo $row['id']; ?>/<?php echo $rowChapterContents['id']; ?>';">
+                                                <div class="col border ml-2 mr-2 mt-1 mb-1 p-2 effect" onclick="location.href = '<?php echo $GLOBALS['root_link']; ?>/Book/load/BookContent/<?php echo $row['book_id']; ?>/<?php echo $row['id']; ?>/<?php echo $rowChapterContents['id']; ?>';">
                                                     <?php echo $rowChapterContents['subject']; ?>
                                                 </div>
                                                 <?php

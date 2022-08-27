@@ -1,6 +1,9 @@
 <?php
 //====
-$GLOBALS['environment'] = 'live';
+$GLOBALS['author'] = 'bnson';
+$GLOBALS['copyright'] = 'Copyright © 2020 by E-Hosito';
+
+$GLOBALS['environment'] = 'dev';
 $GLOBALS['version'] = '0001';
 
 $GLOBALS['domain'] = 'ehosito.com';
@@ -26,6 +29,9 @@ if ($GLOBALS['ssl'] == 'off') {
 //====
 $GLOBALS['root_link'] = $GLOBALS['protocol'] . $GLOBALS['domain'];
 $GLOBALS['page_error'] = './application/views/error/404.php';
+
+$GLOBALS['cookie_days'] = 1;
+$GLOBALS['cookie_days_remember_me'] = 30;
 
 ?>
 

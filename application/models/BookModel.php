@@ -9,7 +9,7 @@ class BookModel extends Db {
         }
         return $this->runQuery($sql);
     }
-    
+
     public function getAllChapterName($bookId) {
         $sql = "SELECT name FROM book_chapter WHERE book_id = " . $bookId . " ORDER BY numerical_order, id";
         return $this->runQuery($sql);
@@ -113,5 +113,18 @@ class BookModel extends Db {
         
         return null;
     }
+    
+    public function getAllGenre() {
+        $sql = "SELECT * FROM book_genre ORDER BY priority";
+        $result = $this->connect()->query($sql);
+        $numRows = $result->num_rows;
+        if ($numRows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return null;
+    }       
 
 }

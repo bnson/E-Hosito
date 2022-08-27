@@ -226,7 +226,7 @@
             </aside>
 
             <!-- LOAD CONTENT -->
-            <?php require_once('./application/views/admin/' . $data["page"] . '.php'); ?>
+            <?php require_once('./application/views/admin/' . $data["pageObj"]->getName() . '.php'); ?>
             <!-- LOAD CONTENT END -->
 
             <aside class="control-sidebar control-sidebar-dark">

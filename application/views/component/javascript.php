@@ -7,7 +7,7 @@ loadJs($data);
 
 //== FUNCTIONS ==
 function loadJs($data) {
-    $controllerUsedCoreJs = ["home", "book", "about"];
+    $controllerUsedCoreJs = ["home", "book", "about", "authenticate"];
 
     $urlCoreJs = "/public/js/core/general." . $GLOBALS['environment'] . ".js";
 
@@ -19,9 +19,9 @@ function loadJs($data) {
         processUrl($urlCoreJs);
     }
     
-    if ($data["controllerName"] && $data["page"]) {
+    if ($data["controllerName"] && $data["pageObj"]->getName()) {
         $urlpluginGeneralJs = "/public/js/" . $data["controllerName"] . "/general." . $GLOBALS['environment'] . ".js";
-        $urlPluginPageJs = "/public/js/" . $data["controllerName"] . "/" . $data["page"] . "." . $GLOBALS['environment'] . ".js";
+        $urlPluginPageJs = "/public/js/" . $data["controllerName"] . "/" . $data["pageObj"]->getName() . "." . $GLOBALS['environment'] . ".js";
 
         processUrl($urlpluginGeneralJs);
         processUrl($urlPluginPageJs);

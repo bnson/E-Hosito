@@ -9,7 +9,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/Home"></span>Sách</a>
+                        <a class="nav-link" href="/Book"></span>Sách</a>
                     </li>     
 
                     <li class="nav-item dropdown">
@@ -24,17 +24,29 @@
                     </li>
                     
                     <li class="nav-item">
-                        <a class="nav-link" href="/About" target="_blank"></span>Chúng tôi là?</a>
+                        <a class="nav-link" href="/Page/load/About" target="_blank"></span>Chúng tôi là?</a>
                     </li>                    
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Tài khoản
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="login.php">Đăng nhập</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="signup.php">Đăng ký</a>
-                        </div>
+                        <?php if (isset($_SESSION['logged_in'])): ?>
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <?php echo $_SESSION['display_name']; ?>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/Page/load/profile">Hồ Sơ</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/">Đăng xuất</a>
+                            </div>
+                        <?php else: ?>
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Tài khoản
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/Authenticate/load/login">Đăng nhập</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/Authenticate/load/signup">Đăng ký</a>
+                            </div>                        
+                        <?php endif; ?>
+
                     </li>
 
                 </ul>

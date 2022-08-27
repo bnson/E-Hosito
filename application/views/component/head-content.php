@@ -1,14 +1,14 @@
 <!-- LOAD META DATA -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-<meta name="title" content="E-Hosito ★ <?php echo $data["pageTitle"] ?>" />
-<meta name="description" content="<?php echo $data["pageDescription"] ?>" />
-<meta name="keywords" content="<?php echo $data["pageKeywords"] ?>" />
-<meta name="author" content="<?php echo $GLOBALS['domain'] ?>" />
-<meta content="Copyright © 2020 by E-Hosito" name="copyright">
+<meta name="title" content="<?php echo $data["pageObj"]->getTitle(); ?>" />
+<meta name="description" content="<?php echo $data["pageObj"]->getDescription(); ?>" />
+<meta name="keywords" content="<?php echo $data["pageObj"]->getKeywords(); ?>" />
+<meta name="author" content="<?php echo $GLOBALS['author']; ?>" />
+<meta name="copyright" content="<?php echo $GLOBALS['copyright']; ?>" />
 
 <!-- LOAD TITLE & ICON -->
-<title>E-Hosito ★ <?php echo $data["pageTitle"] ?></title>
+<title>E-Hosito ★ <?php echo $data["pageObj"]->getTitle(); ?></title>
 <link rel="icon" href="/public/img/logo-favicon.png" />
 
 <!-- LOAD CSS -->

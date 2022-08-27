@@ -1,64 +1,66 @@
 <?php
 
+require_once "./application/object/AccountObj.php";
+require_once "./application/object/PageObj.php";
+
 class Admin extends Controller {
 
     public $controllerName;
-    
     public $layout;
 
-    public $page;
-    public $pageTitle;
-    public $pageDescription;
-    public $pageKeywords;
+    public $pageModel;
+    public $pageObj;    
+    
+    public $accountsModel;
+    public $accountObj;
+    
+    public $bookModel;
 
     public function __construct() {
         $this->controllerName = "admin";
-        
-        //== LAYOUT ==
         $this->layout = "AdminLayout";
-
-        //== PAGE ==
-        $this->page = "Dashboard";
-        $this->pageTitle = "Dashboard";
-        $this->pageDescription = "Chuyên trang sách học online, mang đến cho bạn trải nghiệm đọc sách trực tuyến đa giác gian...";
-        $this->pageKeywords = "Sách giáo khoa, sách tiếng anh, sách tin học, sách lập trình, sách kỹ thuật, sách nói, sách chuyên đề, ...";
-
+        
         //== MODEL ==
-        $this->book = $this->model("BookModel");
+        $this->accountsModel = $this->model("AccountsModel");
+        $this->pageModel = $this->model("PageModel");
+        
+        //== MODEL ==
+        $this->bookModel = $this->model("BookModel");
 
     }
 
-    public function load($page = null, $bookId = null, $bookChapterId = null, $bookChapterContentsNumericalOrderLast = 1) {
+    public function load($pageName = "Dashboard", $bookId = null, $bookChapterId = null, $bookChapterContentsNumericalOrderLast = 1) {
         $data = null;
+        $this->processLogin();
+        $this->pageObj = $this->pageModel->getPageObjByName($pageName);
         
-        if (isset($page) && !empty($page)) {
-            $this->page = $page;
-            $this->pageTitle = $page;
-            $this->pageDescription = $page;
+        if ($this->pageObj) {
+            
+        } else {
+            http_response_code(404);
+            require_once($GLOBALS['page_error']);
+            die();
         }
 
         //== DATA DEFAULT FOR ADMIN PAGE ==
         $data = [
             "controllerName" => $this->controllerName,
-            "page" => $this->page,
-            "pageTitle" => $this->pageTitle,
-            "pageDescription" => $this->pageDescription,
-            "pageKeywords" => $this->pageKeywords
+            "pageObj" => $this->pageObj
         ];
 
         //== DATA DETAILS ==
-        if ($page == "BookManagement") {
-            $data["books"] = $this->book->getAll();
+        if ($pageName == "BookManagement") {
+            $data["books"] = $this->bookModel->getAll();
         } 
         
-        if ($page == "BookChapterManagement") {
+        if ($pageName == "BookChapterManagement") {
             if (isset($bookId) && !empty($bookId)) {
-                $data["books"] = $this->book->getById($bookId);
-                $data["bookChapters"] = $this->book->getChapters($bookId);
+                $data["books"] = $this->bookModel->getById($bookId);
+                $data["bookChapters"] = $this->bookModel->getChapters($bookId);
             }
         } 
         
-        if ($page == "BookChapterContentInsert") {
+        if ($pageName == "BookChapterContentInsert") {
             if (isset($bookId) && !empty($bookId) && isset($bookChapterId) && !empty($bookChapterId) && isset($bookChapterContentsNumericalOrderLast) && !empty($bookChapterContentsNumericalOrderLast)) {
                 //echo "Book ID: " . $bookId . " - " . "Book Chapter ID: " . $bookChapterId;
                 $data["bookId"] = $bookId;
@@ -70,5 +72,24 @@ class Admin extends Controller {
         $this->view($this->layout, $data);
         
     }
+    
+    private function processLogin() {
+        if (isset($_COOKIE['remember_me']) && !empty($_COOKIE['remember_me']) && !isset($_SESSION['logged_in'])) {
+            $this->accountObj = $this->accountsModel->checkRememberMe($_COOKIE['remember_me']);
+            
+            if ($this->accountObj) {
+                session_regenerate_id();
+                $_SESSION['id'] = $this->accountObj->getId();
+                $_SESSION['email'] = $this->accountObj->getEmail();
+                $_SESSION['display_name'] = $this->accountObj->getDisplayName();
+                $_SESSION['logged_in'] = $this->accountObj->getLoggedIn();
+            } else {
+                //header('Location: ' . $GLOBALS['root_link']);
+            }
+        } else if (!isset($_SESSION['loggedin'])) {
+            //header('Location: ' . $GLOBALS['root_link']);
+        }
+        return true;
+    }    
 
 }
